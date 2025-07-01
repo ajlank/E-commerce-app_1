@@ -1,11 +1,34 @@
+import 'package:fashionapp/src/model/categories_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  bool isTapped=false;
+  late final TextEditingController _textController;
+
+
+  @override
+  void initState() {
+    _textController=TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+     _textController.dispose();    
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -108,73 +131,159 @@ class HomeView extends StatelessWidget {
       ],
 
       bottom: PreferredSize(preferredSize: Size.fromHeight(55.h),
-       child:GestureDetector(
-        onTap: () {
-
-        },
-        child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: Container(
-                  height: 700,
-                  width: ScreenUtil().screenWidth - 80,
-                  decoration: BoxDecoration(
-                    // border: Border.all(width: 0.5, color: Colors.black),
-                    // color: Colors.red,
-                    // borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Column(
-
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 48.h,
-                          width: ScreenUtil().screenWidth - 80,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 0.5, color: Colors.black),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ),
-                        Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 48.h,
-                          width: ScreenUtil().screenWidth - 80,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 0.5, color: Colors.black),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 129,
-                      ),
+       child:Column(
+           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+           // crossAxisAlignment: CrossAxisAlignment.start,
+           children: [
+             Padding(
+               padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+               child: Container(
+                 height: 700,
+                 width: ScreenUtil().screenWidth,
+                 decoration: BoxDecoration(
+                   // border: Border.all(width: 0.5, color: Colors.black),
+                   // // color: Colors.red,
+                   // borderRadius: BorderRadius.circular(12),
+                 ),
+                 child: Column(
+       
+                   children: [
+                    Row(
+                     children: [
                        Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 48.h,
-                          width: ScreenUtil().screenWidth - 80,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 0.5, color: Colors.black),
-                            borderRadius: BorderRadius.circular(12),
+                       padding: const EdgeInsets.all(9.0),
+                       child: Container(
+                         height: 40,
+                         width: ScreenUtil().screenWidth - 69,
+                         decoration: BoxDecoration(
+                           border: Border.all(width: 0.5, color: Colors.black),
+                           borderRadius: BorderRadius.circular(12),
+                         ),
+                         child: Padding(
+                           padding: const EdgeInsets.all(8.0),
+                           child: GestureDetector(
+                            onTap: () {
+                             
+                              context.push('/search');
+                            },
+                             child:Row(
+                               children: [
+                                 Icon(Icons.search),
+                                 SizedBox(width: 7,),
+                                 const Text('Search Products')
+                               ],
+                             ),
+                           ),
+                         ),
+                         
+                       ),
+                     ),
+                     IconButton(onPressed: (){
+       
+                     }, icon: Icon(FontAwesome.sliders))
+                     ],
+                    ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(22),
+                      child: Stack(
+                        children: [
+                          ImageSlideshow(
+                            autoPlayInterval: 3000,
+                            isLoop:true,
+                            children: [
+                              Image.network("https://images.template.net/108411/fashion-store-banner-template-edit-online.jpg"),
+                              Image.network("https://tse4.mm.bing.net/th/id/OIP.cU4bM_4LDbAcT_r66BbOCQHaDt?pid=Api&P=0&h=220"),
+                              Image.network("https://static.vecteezy.com/system/resources/previews/026/858/287/non_2x/of-a-vibrant-purple-dress-hanging-on-a-colorful-pink-wall-with-plenty-of-space-for-text-or-graphics-with-copy-space-free-photo.jpg")
+                            ],
                           ),
-                        ),
-                      ),
-                    ],
+                          Positioned(
+                            top: 20,
+                            left:20,
+                            child:Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('New Collection', style: TextStyle(color: Colors.white, 
+                              fontSize: 22, fontWeight: FontWeight.bold),),
+                              const Text('Discount 50% off \nthe first transaction', style: TextStyle(color: Colors.white, 
+                              fontSize: 22, fontWeight: FontWeight.bold),),
+
+                              TextButton(onPressed: (){
+
+                              }, child: Container(
+                                width: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(42),
+                                color: Colors.brown
+                              ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Center(
+                                    child: const Text('Shop Now', style: TextStyle(
+                                      color: Colors.white,
+                                      
+                                    ),),
+                                  ),
+                                ),
+                              ))
+                            ],
+                          ))
+                        ],
+                      )
+                    ),
                   ),
-                ),
-              ),
-            ],
-          ),
-        ),
+                 Padding(
+                   padding: const EdgeInsets.only(left:19.0),
+                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('Categories'),
+                      TextButton(onPressed: (){
+                       context.push('/allcategories');
+                      }, child: const Text('See All'))
+                    ],
+                   ),
+                 )
+                    ],
+                   
+                 ),
+               ),
+             ),
+           ],
+         ),
       ),
     );
   }
 }
 
-// 3:30:29
+
+List<Categories> cat = [
+  Categories(
+    title: "Pants",
+    id: 1,
+    imageUrl: "https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Fjeans.svg?alt=media&token=eb62f916-a4c2-441a-a469-5684f1a62526",
+  ),
+  Categories(
+    title: "T-Shirts",
+    id: 5,
+    imageUrl: "https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Fjersey.svg?alt=media&token=6ca7eabd-54b3-47bb-bb8f-41c3a8920171",
+  ),
+  Categories(
+    title: "Sneakers",
+    id: 3,
+    imageUrl: "https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Frunning_shoe.svg?alt=media&token=0dcb0e57-315e-457c-89dc-1233f6421368",
+  ),
+  Categories(
+    title: "Dresses",
+    id: 2,
+    imageUrl: "https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Fdress.svg?alt=media&token=cf832383-4c8a-4ee1-9676-b66c4d515a1c",
+  ),
+  Categories(
+    title: "Jackets",
+    id: 4,
+    imageUrl: "https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Fjacket.svg?alt=media&token=ffdc9a1e-917f-4e8f-b58e-4df2e6e8587e",
+  ),
+];
+
+//4:38:46

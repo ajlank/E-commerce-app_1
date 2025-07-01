@@ -1,6 +1,8 @@
 // ignore_for_file: unused_element
 import 'package:fashionapp/src/auth/login_view.dart';
 import 'package:fashionapp/src/entrypoint/views/app_entry_point_view.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/searchpage/search_page_view.dart';
 import 'package:fashionapp/src/entrypoint/views/notification_views.dart';
 import 'package:fashionapp/src/onboardingscreen/views/onboarding_screen.dart';
 import 'package:fashionapp/src/splashscreen/views/splash_screen_view.dart';
@@ -30,6 +32,12 @@ final GoRouter _router = GoRouter(
     ),
     GoRoute(path: '/notifications',
     builder: (context, state) => const NotificationViews(),
+    ),
+    GoRoute(path: '/search',
+    builder: (context, state) =>SearchPageView()
+    ),
+    GoRoute(path: '/allcategories',
+     builder: (context, state) => AllCategoriesViews(),
     )
     // GoRoute(
     //   path: '/review',
