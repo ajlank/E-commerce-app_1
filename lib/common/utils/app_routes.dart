@@ -2,6 +2,7 @@
 import 'package:fashionapp/src/auth/login_view.dart';
 import 'package:fashionapp/src/entrypoint/views/app_entry_point_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/category_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/searchpage/search_page_view.dart';
 import 'package:fashionapp/src/entrypoint/views/notification_views.dart';
 import 'package:fashionapp/src/onboardingscreen/views/onboarding_screen.dart';
@@ -38,6 +39,9 @@ final GoRouter _router = GoRouter(
     ),
     GoRoute(path: '/allcategories',
      builder: (context, state) => AllCategoriesViews(),
+    ),
+    GoRoute(path: '/category',
+    builder: (context, state) => CategoryView(),
     )
     // GoRoute(
     //   path: '/review',

@@ -1,10 +1,13 @@
-import 'package:fashionapp/src/model/categories_model.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
+import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -244,7 +247,51 @@ class _HomeViewState extends State<HomeView> {
                       }, child: const Text('See All'))
                     ],
                    ),
-                 )
+                 ),
+               Padding(
+                   padding: const EdgeInsets.all(1.0),
+                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children:List.generate(cat.length,(index){
+                      final item=cat[index];
+                      return GestureDetector(
+                            onTap: () {
+                              context
+                                    .read<CategoryNotifier>()
+                                    .setCategoryAndId(item.id, item.title);
+                                context.push('/category');
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            child: Column(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: const Color.fromARGB(
+                                        255,
+                                        245,
+                                        214,
+                                        167,
+                                      ),
+                                      radius: 20,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(6.0),
+                                        child: SvgPicture.network(item.imageUrl),
+                                      ),
+                                    ),
+                                    Text(
+                                      item.title,
+                                      style: TextStyle(fontSize: 11.3),
+                                    ),
+                                   
+                                  ],
+                            ),
+                          ),
+                        ),
+                      );
+                    })
+                   ),
+                 ),
                     ],
                    
                  ),
@@ -258,32 +305,6 @@ class _HomeViewState extends State<HomeView> {
 }
 
 
-List<Categories> cat = [
-  Categories(
-    title: "Pants",
-    id: 1,
-    imageUrl: "https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Fjeans.svg?alt=media&token=eb62f916-a4c2-441a-a469-5684f1a62526",
-  ),
-  Categories(
-    title: "T-Shirts",
-    id: 5,
-    imageUrl: "https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Fjersey.svg?alt=media&token=6ca7eabd-54b3-47bb-bb8f-41c3a8920171",
-  ),
-  Categories(
-    title: "Sneakers",
-    id: 3,
-    imageUrl: "https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Frunning_shoe.svg?alt=media&token=0dcb0e57-315e-457c-89dc-1233f6421368",
-  ),
-  Categories(
-    title: "Dresses",
-    id: 2,
-    imageUrl: "https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Fdress.svg?alt=media&token=cf832383-4c8a-4ee1-9676-b66c4d515a1c",
-  ),
-  Categories(
-    title: "Jackets",
-    id: 4,
-    imageUrl: "https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Fjacket.svg?alt=media&token=ffdc9a1e-917f-4e8f-b58e-4df2e6e8587e",
-  ),
-];
 
-//4:38:46
+
+//5:04:52

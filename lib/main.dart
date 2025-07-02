@@ -1,5 +1,6 @@
 import 'package:fashionapp/common/utils/app_routes.dart';
 import 'package:fashionapp/common/utils/kstrings2.dart';
+import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
 import 'package:fashionapp/statemanagement/onboard_change_notifier.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => OnboardChangeNotifier()),
-        ChangeNotifierProvider(create: (context)=>NavigationPageNotifier())
+        ChangeNotifierProvider(create: (context)=>NavigationPageNotifier()),
+        ChangeNotifierProvider(create: (context)=>CategoryNotifier())
       ],
       child: const MyApp(),
     ),
