@@ -1,3 +1,4 @@
+import 'package:fashionapp/common/utils/enums.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:flutter/material.dart';
@@ -16,15 +17,20 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView> with TickerProviderStateMixin{
   bool isTapped=false;
   late final TextEditingController _textController;
-
+  late final TabController _tabController;
 
   @override
   void initState() {
     _textController=TextEditingController();
+    _tabController=TabController(length: homeTabs.length,vsync:this);
+    _tabController.addListener(_handleSelection);
     super.initState();
+  }
+  void _handleSelection(){
+    //provider
   }
 
   @override
@@ -292,6 +298,21 @@ class _HomeViewState extends State<HomeView> {
                     })
                    ),
                  ),
+                 SizedBox(
+                  height: 5,
+                 ),
+                  TabBar(
+                    controller: _tabController,
+                    tabs:List.generate(homeTabs.length, (i)=>Tab(
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        child: Center(
+                          child: Text(homeTabs[i],
+                          style: TextStyle(fontSize: 9, fontWeight: FontWeight.w700),))),
+                    ))
+                  )
+                           
                     ],
                    
                  ),
@@ -304,7 +325,14 @@ class _HomeViewState extends State<HomeView> {
   }
 }
 
-
+List<String>homeTabs=[
+"All",
+"Popular",
+"Unisex",
+"Men",
+"Women",
+"kids"
+];
 
 
 //5:04:52

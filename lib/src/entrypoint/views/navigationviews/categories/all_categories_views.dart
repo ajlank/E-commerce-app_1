@@ -69,4 +69,5 @@ List<Categories> cat = [
     id: 4,
     imageUrl: "https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Fjacket.svg?alt=media&token=ffdc9a1e-917f-4e8f-b58e-4df2e6e8587e",
   ),
+  
 ];

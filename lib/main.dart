@@ -3,6 +3,7 @@ import 'package:fashionapp/common/utils/kstrings2.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
 import 'package:fashionapp/statemanagement/onboard_change_notifier.dart';
+import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
@@ -15,7 +16,8 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => OnboardChangeNotifier()),
         ChangeNotifierProvider(create: (context)=>NavigationPageNotifier()),
-        ChangeNotifierProvider(create: (context)=>CategoryNotifier())
+        ChangeNotifierProvider(create: (context)=>CategoryNotifier()),
+        ChangeNotifierProvider(create: (context)=>TabControllerNotifier()),
       ],
       child: const MyApp(),
     ),
