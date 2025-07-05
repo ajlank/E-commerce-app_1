@@ -1,4 +1,5 @@
 import 'package:fashionapp/src/model/categories_model.dart';
+import 'package:fashionapp/src/model/products_model.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

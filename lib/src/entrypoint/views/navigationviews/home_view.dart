@@ -1,6 +1,10 @@
 import 'package:fashionapp/common/utils/enums.dart';
+import 'package:fashionapp/common/utils/kcolors.dart';
+import 'package:fashionapp/common/widgets/staggered_tile_widget.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
+import 'package:fashionapp/src/model/products_model.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
+import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,6 +25,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin{
   bool isTapped=false;
   late final TextEditingController _textController;
   late final TabController _tabController;
+  int _currentTabIndex=0;
 
   @override
   void initState() {
@@ -30,11 +35,19 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin{
     super.initState();
   }
   void _handleSelection(){
-    //provider
+    final controller=Provider.of<TabControllerNotifier>(context,listen: false);
+    if(_tabController.indexIsChanging){
+      setState(() {
+        _currentTabIndex=_tabController.index;
+      });
+    }
+    controller.setIndex(homeTabs[_currentTabIndex]);
   }
 
   @override
   void dispose() {
+    _tabController.removeListener(_handleSelection);
+    _tabController.dispose();
      _textController.dispose();    
     super.dispose();
   }
@@ -139,7 +152,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin{
         ),
       ],
 
-      bottom: PreferredSize(preferredSize: Size.fromHeight(55.h),
+      bottom:PreferredSize(preferredSize: Size.fromHeight(55.h),
        child:Column(
            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
            // crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +168,6 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin{
                    // borderRadius: BorderRadius.circular(12),
                  ),
                  child: Column(
-       
                    children: [
                     Row(
                      children: [
@@ -298,20 +310,27 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin{
                     })
                    ),
                  ),
-                 SizedBox(
-                  height: 5,
-                 ),
+                //  SizedBox(
+                //   height: 10,
+                //  ),
                   TabBar(
                     controller: _tabController,
+                    indicator: BoxDecoration(
+                      color:Kolors.kPrimary,
+                      borderRadius: BorderRadius.circular(12)
+                    ),
+                    labelColor: Colors.white,
+                    dividerColor: Colors.white,
+                    labelPadding: EdgeInsets.zero,
+                    labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+                    unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w500,color: Colors.grey, fontSize: 11),
                     tabs:List.generate(homeTabs.length, (i)=>Tab(
-                      child: Container(
-                        height: 40,
-                        width: 40,
-                        child: Center(
-                          child: Text(homeTabs[i],
-                          style: TextStyle(fontSize: 9, fontWeight: FontWeight.w700),))),
+                      child: Center(
+                        child: Text(homeTabs[i],
+                      )),
                     ))
-                  )
+                  ),
+                   StaggeredTileWidget()
                            
                     ],
                    
@@ -331,8 +350,6 @@ List<String>homeTabs=[
 "Unisex",
 "Men",
 "Women",
-"kids"
+"kids",
+
 ];
-
-
-//5:04:52

@@ -1,4 +1,5 @@
 import 'package:fashionapp/src/entrypoint/views/navigationviews/cart_view.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/home_second_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/profile_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/wishlist_view.dart';
@@ -17,7 +18,7 @@ class AppEntryPointView extends StatefulWidget {
 class _AppEntryPointViewState extends State<AppEntryPointView> {
 
   List<Widget>bottomNavViews=[
-    const HomeView(),
+    const HomeSecondView(),
     const WishListView(),
     const CartView(),
     const ProfileView()

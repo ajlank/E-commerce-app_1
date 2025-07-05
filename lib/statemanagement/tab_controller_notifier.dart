@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class TabControllerNotifier with ChangeNotifier{
   QueryType queryType=QueryType.all;
+
   String _index="All";
   String get index=>_index;
 
@@ -12,31 +13,38 @@ class TabControllerNotifier with ChangeNotifier{
     switch(index){
       
       case 'All':
+      setQueryType(QueryType.all);
       break;
       
       case 'Popular':
+      setQueryType(QueryType.popular);
       break;
       
       case 'Unisex':
+      setQueryType(QueryType.unisex);
       break;
 
       case 'Men':
+      setQueryType(QueryType.men);
       break;
 
       case 'Women':
+      setQueryType(QueryType.women);
       break;
 
       case 'Kids':
+      setQueryType(QueryType.kids);
       break;
       
       default:
-
+      setQueryType(QueryType.all);
     }
-   //
+   notifyListeners();
   }
  
   void setQueryType(QueryType q){
     queryType=q;
+    print(q.name);
   }
 
 }
