@@ -3,6 +3,7 @@ import 'package:fashionapp/common/utils/kstrings2.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
 import 'package:fashionapp/statemanagement/onboard_change_notifier.dart';
+import 'package:fashionapp/statemanagement/product_notifier.dart';
 import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,8 @@ void main() async {
         ChangeNotifierProvider(create: (context)=>NavigationPageNotifier()),
         ChangeNotifierProvider(create: (context)=>CategoryNotifier()),
         ChangeNotifierProvider(create: (context)=>TabControllerNotifier()),
+        ChangeNotifierProvider(create: (context)=>ProductNotifier()),
+       
       ],
       child: const MyApp(),
     ),

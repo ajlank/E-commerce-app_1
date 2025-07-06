@@ -1,8 +1,6 @@
-import 'package:fashionapp/common/utils/enums.dart';
 import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/staggered_tile_widget.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
-import 'package:fashionapp/src/model/products_model.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
 import 'package:flutter/material.dart';
@@ -330,7 +328,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin{
                       )),
                     ))
                   ),
-                   StaggeredTileWidget()
+        
                            
                     ],
                    

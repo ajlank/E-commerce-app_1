@@ -3,7 +3,9 @@ import 'package:fashionapp/src/auth/login_view.dart';
 import 'package:fashionapp/src/entrypoint/views/app_entry_point_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/category_view.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/product_page.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/searchpage/search_page_view.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/test_poduct_view.dart';
 import 'package:fashionapp/src/entrypoint/views/notification_views.dart';
 import 'package:fashionapp/src/onboardingscreen/views/onboarding_screen.dart';
 import 'package:fashionapp/src/splashscreen/views/splash_screen_view.dart';
@@ -42,7 +44,27 @@ final GoRouter _router = GoRouter(
     ),
     GoRoute(path: '/category',
     builder: (context, state) => CategoryView(),
+    ),
+    GoRoute(path: '/product/:id',
+    builder: (BuildContext context ,GoRouterState state) {
+      final productId=state.pathParameters['id'];
+     return ProductPage(productId: productId.toString(),);   
+    },
+    ),
+    GoRoute(path: '/testproducts/:id',
+    builder: (BuildContext context, GoRouterState state) {
+      final productId=state.pathParameters['id'];
+      return TestPoductView(productId: productId.toString(),);
+    },
     )
+
+    // GoRoute(
+    //   path: '/product/:id',
+    //   builder: (BuildContext context, GoRouterState state) {
+    //     final productId = state.pathParameters['id'];
+    //     return ProductPage(productId: productId.toString());
+    //   },
+    // ),
     // GoRoute(
     //   path: '/review',
     //   builder: (context, state) => const ReviewsPage(),
@@ -116,13 +138,6 @@ final GoRouter _router = GoRouter(
     //   builder: (context, state) => const FailedPayment(),
     // ),
 
-    // GoRoute(
-    //   path: '/product/:id',
-    //   builder: (BuildContext context, GoRouterState state) {
-    //     final productId = state.pathParameters['id'];
-    //     return ProductPage(productId: productId.toString());
-    //   },
-    // ),
   ],
 );
 

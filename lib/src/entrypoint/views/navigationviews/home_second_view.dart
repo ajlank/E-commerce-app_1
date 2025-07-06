@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/staggered_tile_widget.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/explore_products.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home_view.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
@@ -64,14 +65,14 @@ class _HomeSecondViewState extends State<HomeSecondView>
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Location', style: TextStyle(fontSize: 12)),
                 Row(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 50,
                       width: ScreenUtil().screenWidth * 0.8,
                       child: Column(
@@ -330,7 +331,7 @@ class _HomeSecondViewState extends State<HomeSecondView>
               //       height: 10,
               //      ),
                     Padding(
-                      padding: const EdgeInsets.only(top:20),
+                      padding: const EdgeInsets.only(top:15),
                       child: SizedBox(
                         height: 20,
                         child: TabBar(
@@ -352,7 +353,7 @@ class _HomeSecondViewState extends State<HomeSecondView>
                         ),
                       ),
                     ),
-                     StaggeredTileWidget()
+                  ExploreProducts()
               ],
             ),
           ),

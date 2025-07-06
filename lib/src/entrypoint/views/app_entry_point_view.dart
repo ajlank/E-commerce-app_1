@@ -1,6 +1,5 @@
 import 'package:fashionapp/src/entrypoint/views/navigationviews/cart_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home_second_view.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/home_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/profile_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/wishlist_view.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';

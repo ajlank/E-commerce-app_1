@@ -1,3 +1,4 @@
+import 'package:fashionapp/src/entrypoint/views/navigationviews/explore_products.dart';
 import 'package:flutter/material.dart';
 
 class WishListView extends StatelessWidget {
@@ -7,7 +8,18 @@ class WishListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Center(child: const Text('WishList')),
+      child:Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: const Text('WishList'),
+            ),
+            ExploreProducts()
+          ],
+        ),
+      )
     );
   }
 }
