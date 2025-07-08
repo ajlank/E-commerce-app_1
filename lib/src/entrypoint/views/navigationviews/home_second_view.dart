@@ -1,5 +1,6 @@
 
 import 'package:fashionapp/common/utils/kcolors.dart';
+import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/explore_products.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home_view.dart';
@@ -104,60 +105,8 @@ class _HomeSecondViewState extends State<HomeSecondView>
                           ),
                           onPressed: () {
                             if (GetStorage().read('accessToken') == null) {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: (context) {
-                                  return SizedBox(
-                                    height: 160,
-                                    width: double.infinity,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            'You are restricted to proceed',
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          Divider(),
-                                          Text(
-                                            'To proceed please login into your account or register',
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          SizedBox(height: 12),
-                                          GestureDetector(
-                                            onTap: () {
-                                              context.go('/login');
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.brown,
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                              ),
-                                              height: 40,
-                                              width: double.infinity,
-                                              child: Center(
-                                                child: const Text(
-                                                  'Proceed to Login',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
+                              
+                              showLoginBottomSheet(context);
                             } else {
                               context.push('/notifications');
                             }

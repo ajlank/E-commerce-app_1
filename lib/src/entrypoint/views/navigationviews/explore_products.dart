@@ -1,3 +1,4 @@
+import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
 import 'package:fashionapp/common/widgets/staggered_tile_widget.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home_tab_products.dart';
 import 'package:flutter/material.dart';
@@ -28,60 +29,7 @@ class ExploreProducts extends StatelessWidget {
             child: StaggeredTileWidget(
               onTap: () {
                 if (accessToken == null) {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (context) {
-                      return SizedBox(
-                        height: 160,
-                        width: double.infinity,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                'You are restricted to proceed',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Divider(),
-                              Text(
-                                'To proceed please login into your account or register',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              SizedBox(height: 12),
-                                          GestureDetector(
-                                            onTap: () {
-                                              context.go('/login');
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.brown,
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                              ),
-                                              height: 40,
-                                              width: double.infinity,
-                                              child: Center(
-                                                child: const Text(
-                                                  'Proceed to Login',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
+                  showLoginBottomSheet(context);
                }else{
                 //handle wishlist functionality
                }          

@@ -1,10 +1,16 @@
+import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
+import 'package:fashionapp/common/widgets/product_bottom_nav_bar.dart';
+import 'package:fashionapp/common/widgets/select_color_widget.dart';
+import 'package:fashionapp/common/widgets/select_size_widget.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/expanded_text_widget.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/recommneded_products.dart';
+import 'package:fashionapp/statemanagement/color_size_notifier.dart';
 import 'package:fashionapp/statemanagement/product_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +19,7 @@ class ProductPage extends StatelessWidget {
   final String productId;
   @override
   Widget build(BuildContext context) {
+    final accessToken= GetStorage().read('accessToken');
     return Consumer<ProductNotifier>(
       builder: (context, value, child) {
         return Scaffold(
@@ -48,7 +55,7 @@ class ProductPage extends StatelessWidget {
                   padding: const EdgeInsets.all(7.0),
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         height:20.h,
                         child:Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,6 +108,9 @@ class ProductPage extends StatelessWidget {
                 ),
               ),
             ),
+            SliverToBoxAdapter(
+              child: SelectSizeWidget(),
+            ),
              SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -110,6 +120,9 @@ class ProductPage extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+           SliverToBoxAdapter(
+              child: SelectColorWidget(),
             ),
             SliverToBoxAdapter(
               child:Padding(
@@ -123,8 +136,26 @@ class ProductPage extends StatelessWidget {
                 child: RecommendedProducts()
               ),
             ),
+            
             ],
+            
           ),
+          bottomNavigationBar: ProductBottomNavBar(
+            onPressed: () {
+             if(accessToken==null){
+               showLoginBottomSheet(context);
+
+             }else{
+               if(context.read<ColorSizeNotifier>().color=='' || context.read<ColorSizeNotifier>().size==''){
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: const Text('Size and color are empty'))
+                );
+               }else{
+                print('Item added to the cart');
+               }
+             }    
+            },
+            price:value.product!.price.toStringAsFixed(2))
         );
       },
     );
