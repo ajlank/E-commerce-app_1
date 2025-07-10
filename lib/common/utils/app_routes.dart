@@ -1,9 +1,10 @@
 // ignore_for_file: unused_element
-import 'package:fashionapp/src/auth/login_view.dart';
 import 'package:fashionapp/src/entrypoint/views/app_entry_point_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/category_view.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/login_shop_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/product_page.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/register_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/searchpage/search_page_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/test_poduct_view.dart';
 import 'package:fashionapp/src/entrypoint/views/notification_views.dart';
@@ -30,9 +31,7 @@ final GoRouter _router = GoRouter(
       path: '/onboarding',
       builder: (context, state) => const OnboardingScreen(),
     ),
-    GoRoute(path: '/login',
-    builder: (context, state) => const LoginView(),
-    ),
+  
     GoRoute(path: '/notifications',
     builder: (context, state) => const NotificationViews(),
     ),
@@ -56,6 +55,12 @@ final GoRouter _router = GoRouter(
       final productId=state.pathParameters['id'];
       return TestPoductView(productId: productId.toString(),);
     },
+    ),
+    GoRoute(path: '/register',
+    builder: (context, state) => RegisterView(),
+    ),
+    GoRoute(path: '/login',
+    builder: (context, state) => LoginShopView(),
     )
 
     // GoRoute(

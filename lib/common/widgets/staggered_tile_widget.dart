@@ -38,7 +38,7 @@ class StaggeredTileWidget extends StatelessWidget {
               children: [
                 Container(
                   width: 150,
-                  color: Colors.red,
+                  color: Colors.white,
                   child: Stack(
                     alignment: Alignment.bottomRight,
                     children: [

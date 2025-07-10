@@ -1,5 +1,6 @@
 import 'package:fashionapp/common/utils/app_routes.dart';
 import 'package:fashionapp/common/utils/kstrings2.dart';
+import 'package:fashionapp/statemanagement/auth_notifier.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:fashionapp/statemanagement/color_size_notifier.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
@@ -21,7 +22,8 @@ void main() async {
         ChangeNotifierProvider(create: (context)=>CategoryNotifier()),
         ChangeNotifierProvider(create: (context)=>TabControllerNotifier()),
         ChangeNotifierProvider(create: (context)=>ProductNotifier()),
-        ChangeNotifierProvider(create: (context)=>ColorSizeNotifier())
+        ChangeNotifierProvider(create: (context)=>ColorSizeNotifier()),
+        ChangeNotifierProvider(create: (context)=>AuthNotifier())
       ],
       child: const MyApp(),
     ),
@@ -69,3 +71,4 @@ class RootApp extends StatelessWidget {
     );
   }
 }
+// 8:47:06
