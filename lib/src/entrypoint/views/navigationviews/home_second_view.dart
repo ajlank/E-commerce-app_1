@@ -300,7 +300,8 @@ class _HomeSecondViewState extends State<HomeSecondView>
                         ),
                       ),
                     ),
-                  ExploreProducts()
+                  ExploreProducts(),
+                  
               ],
             ),
           ),
@@ -309,3 +310,4 @@ class _HomeSecondViewState extends State<HomeSecondView>
     );
   }
 }
+

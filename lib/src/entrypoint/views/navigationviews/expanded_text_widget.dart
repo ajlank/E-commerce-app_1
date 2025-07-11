@@ -23,6 +23,7 @@ class ExpandedTextWidget extends StatelessWidget {
               InkWell(
                 onTap: () {
                   context.read<ProductNotifier>().setDescription();
+                  
                 },
                 child: Text((!context.watch<ProductNotifier>().description?'View More':'View Less')),
               )

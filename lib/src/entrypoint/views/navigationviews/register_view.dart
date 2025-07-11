@@ -1,5 +1,4 @@
 import 'package:fashionapp/common/widgets/app_style.dart';
-import 'package:fashionapp/src/auth/models/login_model.dart';
 import 'package:fashionapp/src/auth/models/register_model.dart';
 import 'package:fashionapp/statemanagement/auth_notifier.dart';
 import 'package:flutter/material.dart';
@@ -113,19 +112,15 @@ class _RegisterViewState extends State<RegisterView> {
              color: Colors.brown,
              borderRadius: BorderRadius.circular(22)
             ),
-            child: context.watch<AuthNotifier>().isloading?const CircularProgressIndicator(
-              backgroundColor: Colors.white,
-
-            ): TextButton(onPressed: (){
-               
+            child:TextButton(onPressed: (){
                RegisterModel model=RegisterModel(
                 email: _email.text, 
                 username: _username.text,
                 password: _password.text,
                 );
                String data=registerModelToJson(model);
-               print(data);
-               context.read<AuthNotifier>().registerFunc(data);
+               context.read<AuthNotifier>().registerFunc(data, context);
+               context.go('/login');
             }, child: Text('SIGN UP',style: appStyle(12, Colors.white, FontWeight.w500),)),
           ),
         ),

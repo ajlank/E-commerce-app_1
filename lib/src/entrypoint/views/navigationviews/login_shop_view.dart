@@ -1,6 +1,7 @@
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/src/auth/models/login_model.dart';
 import 'package:fashionapp/statemanagement/auth_notifier.dart';
+import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +38,7 @@ class _LoginShopViewState extends State<LoginShopView> {
     return Scaffold(
        appBar: AppBar(
         leading: IconButton(onPressed: (){
-        context.go('/home');
+          context.pop();
         }, icon: Icon(Icons.arrow_back)),
       ),
       body: Column(
@@ -95,17 +96,15 @@ class _LoginShopViewState extends State<LoginShopView> {
              color: Colors.brown,
              borderRadius: BorderRadius.circular(22)
             ),
-            child: context.watch<AuthNotifier>().isloading?const CircularProgressIndicator(
-              backgroundColor: Colors.white,
-
-            ):TextButton(onPressed: (){
+            child:TextButton(onPressed: (){
+              
               LoginModel model=LoginModel(
                 password: _password.text, 
                 username: _username.text);
                 
                 String data=loginModelToJson(model);
-                print(data);
-                context.read<AuthNotifier>().loginFunc(data);
+                context.read<AuthNotifier>().loginFunc(data,context);
+                
             }, child: Text('LOGIN',style: appStyle(12, Colors.white, FontWeight.w500),)),
           ),
         ),
