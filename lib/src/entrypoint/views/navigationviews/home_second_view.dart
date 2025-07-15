@@ -2,6 +2,7 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/home_category.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/explore_products.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home_view.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
@@ -229,51 +230,8 @@ class _HomeSecondViewState extends State<HomeSecondView>
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(1.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(cat.length, (index) {
-                      final item = cat[index];
-                      return GestureDetector(
-                        onTap: () {
-                          context.read<CategoryNotifier>().setCategoryAndId(
-                            item.id,
-                            item.title,
-                          );
-                          context.push('/category');
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: const Color.fromARGB(
-                                    255,
-                                    245,
-                                    214,
-                                    167,
-                                  ),
-                                  radius: 20,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: SvgPicture.network(item.imageUrl),
-                                  ),
-                                ),
-                                Text(
-                                  item.title,
-                                  style: TextStyle(fontSize: 11.3),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                ),
-              
+                
+                HomeCategorys(),
               //  SizedBox(
               //       height: 10,
               //      ),

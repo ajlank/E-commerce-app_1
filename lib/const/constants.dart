@@ -108,10 +108,10 @@ List<String> images = [
 //     "clothesType": "kids",
 //     "ratings": 4.333333333333333,
 //     "colors": ["black", "white", "red"],
-//     "imageUrls": [
-//       "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp",
-//       "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp"
-//     ],
+    // "imageUrls": [
+    //   "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp",
+    //   "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp"
+    // ],
 //     "sizes": ["7", "8", "9", "10", "11"],
 //     "created_at": "2024-06-06T07:57:45Z",
 //     "category": 3,
@@ -127,10 +127,10 @@ List<String> images = [
 //     "clothesType": "women",
 //     "ratings": 4.5,
 //     "colors": ["white", "black", "red"],
-//     "imageUrls": [
-//       "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp",
-//       "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp"
-//     ],
+    // "imageUrls": [
+    //   "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp",
+    //   "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp"
+    // ],
 //     "sizes": ["7", "8", "9", "10", "11"],
 //     "created_at": "2024-06-06T07:49:15Z",
 //     "category": 3,

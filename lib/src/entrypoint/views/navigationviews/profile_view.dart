@@ -4,7 +4,6 @@ import 'package:fashionapp/src/auth/models/user_model.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/register_view.dart';
 import 'package:fashionapp/statemanagement/auth_notifier.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
-import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
