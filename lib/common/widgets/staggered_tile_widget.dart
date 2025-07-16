@@ -21,7 +21,7 @@ class StaggeredTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final accessToken = GetStorage().read('accessToken');
- 
+   
     return GestureDetector(
       onTap: () {
         context.read<ProductNotifier>().setProduct(products);
@@ -50,7 +50,7 @@ class StaggeredTileWidget extends StatelessWidget {
                         height: 100,
                         width: 150,
                         fit: BoxFit.cover,
-                        products.imageUrls[0],
+                        products.images[0],
                       ),
 
                       Positioned(

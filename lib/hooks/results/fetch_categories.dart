@@ -12,7 +12,7 @@ FetchCategories fetchCategories(){
   Future<void>fetchData()async{
     isLoading.value=true;
     try{
-       final url= Uri.parse("http://192.168.0.106:8000/api/product/categories/");
+      Uri url= Uri.parse("http://192.168.0.106:8000/api/product/categories/");
        final response= await http.get(url);
 
       if(response.statusCode==200){

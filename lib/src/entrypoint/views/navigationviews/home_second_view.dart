@@ -4,6 +4,7 @@ import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/home_category.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/explore_products.dart';
+import 'package:fashionapp/src/entrypoint/views/navigationviews/home/home_tab_products_type.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home_view.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
@@ -23,38 +24,23 @@ class HomeSecondView extends StatefulWidget {
   State<HomeSecondView> createState() => _HomeSecondViewState();
 }
 
-class _HomeSecondViewState extends State<HomeSecondView>
-    with TickerProviderStateMixin {
+class _HomeSecondViewState extends State<HomeSecondView> {
   bool isTapped = false;
   late final TextEditingController _textController;
-  late final TabController _tabController;
-  int _currentTabIndex = 0;
+
 
   @override
   void initState() {
     _textController = TextEditingController();
-    _tabController = TabController(length: homeTabs.length, vsync: this);
-    _tabController.addListener(_handleSelection);
+    
     super.initState();
   }
 
-  void _handleSelection() {
-    final controller = Provider.of<TabControllerNotifier>(
-      context,
-      listen: false,
-    );
-    if (_tabController.indexIsChanging) {
-      setState(() {
-        _currentTabIndex = _tabController.index;
-      });
-    }
-    controller.setIndex(homeTabs[_currentTabIndex]);
-  }
+ 
 
   @override
   void dispose() {
-    _tabController.removeListener(_handleSelection);
-    _tabController.dispose();
+
     _textController.dispose();
     super.dispose();
   }
@@ -232,32 +218,8 @@ class _HomeSecondViewState extends State<HomeSecondView>
                 ),
                 
                 HomeCategorys(),
-              //  SizedBox(
-              //       height: 10,
-              //      ),
-                    Padding(
-                      padding: const EdgeInsets.only(top:15),
-                      child: SizedBox(
-                        height: 20,
-                        child: TabBar(
-                          controller: _tabController,
-                          indicator: BoxDecoration(
-                            color:Kolors.kPrimary,
-                            borderRadius: BorderRadius.circular(12)
-                          ),
-                          labelColor: Colors.white,
-                          dividerColor: Colors.white,
-                          labelPadding: EdgeInsets.zero,
-                          labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
-                          unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w500,color: Colors.grey, fontSize: 11),
-                          tabs:List.generate(homeTabs.length, (i)=>Tab(
-                            child: Center(
-                              child: Text(homeTabs[i],
-                            )),
-                          ))
-                        ),
-                      ),
-                    ),
+            
+                   HomeTabProductsType(),
                   ExploreProducts(),
                   
               ],

@@ -17,7 +17,7 @@ class HomeCategorys extends HookWidget {
    final homeCategories=result.categories;
    final isLoading=result.isLoading;
    final error=result.error;
-
+  
     if(isLoading){
       return const CircularProgressIndicator();
     }

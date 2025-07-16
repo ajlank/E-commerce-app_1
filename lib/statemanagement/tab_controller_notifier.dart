@@ -2,6 +2,8 @@ import 'package:fashionapp/common/utils/enums.dart';
 import 'package:flutter/material.dart';
 
 class TabControllerNotifier with ChangeNotifier{
+
+  
   QueryType queryType=QueryType.all;
 
   String _index="All";
@@ -42,11 +44,12 @@ class TabControllerNotifier with ChangeNotifier{
    notifyListeners();
   }
  
-  void setQueryType(QueryType q){
+  void setQueryType(QueryType q)async{
     queryType=q;
-    print(q.name);
+   
+    notifyListeners();
   }
+  
 
 }
 
-// 5:36:31

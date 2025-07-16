@@ -7,10 +7,10 @@ List<Products> products = [
     price: 60.0,
     description: "The classic Chuck Taylor All Star sneaker from Converse, featuring a timeless design and comfortable fit.",
     isFeatured: true,
-    clothesType: "kids",
+    clothesTypes: "kids",
     ratings: 4.333333333333333,
     colors: ["black", "white", "red"],
-    imageUrls: [
+    images: [
       "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp",
       "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp"
     ],
@@ -25,10 +25,10 @@ List<Products> products = [
     price: 798.88,
     description: "LV Trainers blend sleek style with athletic functionality, featuring bold logos, premium materials, and comfortable designs that elevate your everyday look with a touch of luxury.",
     isFeatured: true,
-    clothesType: "women",
+    clothesTypes: "women",
     ratings: 4.5,
     colors: ["white", "black", "red"],
-    imageUrls: [
+    images: [
       "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp",
       "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp"
     ],
@@ -43,10 +43,10 @@ List<Products> products = [
     price: 180.0,
     description: "xperience the comfort and energy return of the Ultraboost, designed for running and everyday wear.",
     isFeatured: true,
-    clothesType: "unisex",
+    clothesTypes: "unisex",
     ratings: 5.0,
     colors: ["navy", "grey", "blue"],
-    imageUrls: [
+    images: [
       "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp",
       "https://media.cnn.com/api/v1/images/stellar/prod/220210051008-04-lv-virgil-abloh.jpg?q=w_2000,c_fill/f_webp"
     ],

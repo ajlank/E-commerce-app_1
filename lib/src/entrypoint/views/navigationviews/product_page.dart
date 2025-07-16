@@ -38,12 +38,12 @@ class ProductPage extends StatelessWidget {
                   centerTitle: false,
                   background: ImageSlideshow(
                     autoPlayInterval: 3000,
-                    isLoop: value.product!.imageUrls.length>1?true:false,
-                    children: List.generate(value.product!.imageUrls.length, 
+                    isLoop: value.product!.images.length>1?true:false,
+                    children: List.generate(value.product!.images.length, 
                     (i){
                      return Image.network(
                       fit: BoxFit.cover,
-                      value.product!.imageUrls[i],
+                      value.product!.images[i],
 
                      );
                     })
@@ -60,7 +60,7 @@ class ProductPage extends StatelessWidget {
                         child:Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(value.product!.clothesType.toUpperCase(),
+                            Text(value.product!.clothesTypes.toUpperCase(),
                              style: TextStyle(color: const Color.fromARGB(255, 75, 73, 73)),
                             ),
                             Row(
