@@ -1,7 +1,6 @@
 import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
 import 'package:fashionapp/common/widgets/staggered_tile_widget.dart';
 import 'package:fashionapp/hooks/results/fetch_product.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/home_tab_products.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -19,16 +18,18 @@ class CategoryView extends HookWidget {
     final product=fetchProductByCategoriesResult(context.read<CategoryNotifier>().getId);
     final pdc=product.products;
     final isLoading=product.isLoading;
-    final error=product.error;
 
-  //  if(isLoading){
-  //   return CircularProgressIndicator();
-  //  }
+   if(isLoading){
+    return CircularProgressIndicator();
+   }
     return Scaffold(
       appBar: AppBar(
         title: const Text('Category'),
       ),
-      body:Padding(
+      body:(pdc.isEmpty)? Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text('No products found'),
+    ):Padding(
       padding: EdgeInsets.symmetric(horizontal: 2.h),
       child: StaggeredGrid.count(
         crossAxisCount: 4,

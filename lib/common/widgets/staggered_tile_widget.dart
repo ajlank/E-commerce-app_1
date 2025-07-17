@@ -18,10 +18,10 @@ class StaggeredTileWidget extends StatelessWidget {
   final Products products;
   final void Function()? onTap;
 
+
   @override
   Widget build(BuildContext context) {
     final accessToken = GetStorage().read('accessToken');
-   
     return GestureDetector(
       onTap: () {
         context.read<ProductNotifier>().setProduct(products);
@@ -59,7 +59,8 @@ class StaggeredTileWidget extends StatelessWidget {
                         child: GestureDetector(
                           onTap: onTap,
                           child: Icon(
-                             AntDesign.heart, color: Colors.white,
+                            
+                             AntDesign.heart, color: Colors.red,
                           ),
                         ),
                       ),

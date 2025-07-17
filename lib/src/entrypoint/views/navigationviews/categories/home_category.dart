@@ -1,5 +1,4 @@
 import 'package:fashionapp/hooks/results/fetch_home_categories.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

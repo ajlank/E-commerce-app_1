@@ -1,21 +1,14 @@
 
-import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/home_category.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/explore_products.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home/home_tab_products_type.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/home_view.dart';
-import 'package:fashionapp/statemanagement/category_notifier.dart';
-import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 class HomeSecondView extends StatefulWidget {
   const HomeSecondView({super.key});

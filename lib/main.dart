@@ -6,6 +6,7 @@ import 'package:fashionapp/statemanagement/color_size_notifier.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
 import 'package:fashionapp/statemanagement/onboard_change_notifier.dart';
 import 'package:fashionapp/statemanagement/product_notifier.dart';
+import 'package:fashionapp/statemanagement/search_notifier.dart';
 import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +24,9 @@ void main() async {
         ChangeNotifierProvider(create: (context)=>TabControllerNotifier()),
         ChangeNotifierProvider(create: (context)=>ProductNotifier()),
         ChangeNotifierProvider(create: (context)=>ColorSizeNotifier()),
-        ChangeNotifierProvider(create: (context)=>AuthNotifier())
+        ChangeNotifierProvider(create: (context)=>AuthNotifier()),
+        ChangeNotifierProvider(create: (context)=>SearchNotifier())
+
       ],
       child: const MyApp(),
     ),

@@ -3,8 +3,8 @@ import 'package:fashionapp/src/model/products_model.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:http/http.dart' as http;
 
-FetchProductByCategoriesResult fetchProductByCategoriesResult(int categoryId){
-   
+FetchProductByCategoriesResult fetchRecommendedProducts(int categoryId){
+
    final products=useState<List<Products>>([]);
    final isLoading=useState(false);
    final error=useState<String?>(null);
@@ -12,7 +12,7 @@ FetchProductByCategoriesResult fetchProductByCategoriesResult(int categoryId){
   Future<void>fetchData()async{
      isLoading.value=true;
     try{
-     Uri url=Uri.parse("http://192.168.0.106:8000/api/product/category/?category=$categoryId");
+     Uri url=Uri.parse("http://192.168.0.106:8000/api/product/recommendations/?category=$categoryId");
      final response= await http.get(url);
      if(response.statusCode==200){
        products.value=productsFromJson(response.body);
@@ -35,11 +35,10 @@ FetchProductByCategoriesResult fetchProductByCategoriesResult(int categoryId){
    isLoading.value=false;
    fetchData();
  }
-   return FetchProductByCategoriesResult(
-    products: products.value, 
-    isLoading: isLoading.value, 
-    error: error.value, 
-    refetch: refetch);
 
-
+  return FetchProductByCategoriesResult(
+     products: products.value, 
+     isLoading: isLoading.value,
+     error: error.value, 
+     refetch: refetch);
 }
