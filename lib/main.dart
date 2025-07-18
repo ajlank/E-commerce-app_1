@@ -8,6 +8,7 @@ import 'package:fashionapp/statemanagement/onboard_change_notifier.dart';
 import 'package:fashionapp/statemanagement/product_notifier.dart';
 import 'package:fashionapp/statemanagement/search_notifier.dart';
 import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
+import 'package:fashionapp/statemanagement/wishlist_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
@@ -25,7 +26,8 @@ void main() async {
         ChangeNotifierProvider(create: (context)=>ProductNotifier()),
         ChangeNotifierProvider(create: (context)=>ColorSizeNotifier()),
         ChangeNotifierProvider(create: (context)=>AuthNotifier()),
-        ChangeNotifierProvider(create: (context)=>SearchNotifier())
+        ChangeNotifierProvider(create: (context)=>SearchNotifier()),
+        ChangeNotifierProvider(create: (context)=>WishlistNotifier())
 
       ],
       child: const MyApp(),

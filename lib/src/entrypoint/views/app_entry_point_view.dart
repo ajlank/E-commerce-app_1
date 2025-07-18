@@ -18,7 +18,7 @@ class _AppEntryPointViewState extends State<AppEntryPointView> {
 
   List<Widget>bottomNavViews=[
     const HomeSecondView(),
-    const WishListView(),
+    const WishList(),
     const CartView(),
     const ProfileView()
   ];

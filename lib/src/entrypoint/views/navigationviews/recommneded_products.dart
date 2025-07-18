@@ -1,7 +1,7 @@
 import 'package:fashionapp/common/widgets/staggered_tile_widget.dart';
 import 'package:fashionapp/hooks/results/fetch_recommended_products.dart';
 import 'package:fashionapp/statemanagement/product_notifier.dart';
-import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
+import 'package:fashionapp/statemanagement/wishlist_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -92,7 +92,7 @@ class RecommendedProducts extends HookWidget{
                     },
                   );
                 } else {
-                  //handle wishlist functionality
+                 context.read<WishlistNotifier>().removeOrAddWishList(pd.id, (){});
                 }
               },
               i: i,

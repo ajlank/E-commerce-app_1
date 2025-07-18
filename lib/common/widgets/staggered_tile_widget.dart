@@ -1,5 +1,6 @@
 import 'package:fashionapp/src/model/products_model.dart';
 import 'package:fashionapp/statemanagement/product_notifier.dart';
+import 'package:fashionapp/statemanagement/wishlist_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get_storage/get_storage.dart';
@@ -56,13 +57,17 @@ class StaggeredTileWidget extends StatelessWidget {
                       Positioned(
                         bottom: 70,
                         right: 7,
-                        child: GestureDetector(
+                        child: Consumer<WishlistNotifier>(
+                          builder: (context, value, child) {
+                            return GestureDetector(
                           onTap: onTap,
                           child: Icon(
                             
-                             AntDesign.heart, color: Colors.red,
+                             AntDesign.heart, color: value.wishList.contains(products.id)?Colors.red:Colors.grey,
                           ),
-                        ),
+                        );  
+                          },
+                          )
                       ),
                     ],
                   ),
