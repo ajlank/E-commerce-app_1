@@ -24,7 +24,7 @@ class WishList extends HookWidget {
      final isLoading=products.isLoading;
      final refetch=products.refetch;
      final error=products.error;
-
+     
     if(isLoading){
       return CircularProgressIndicator();
     }

@@ -27,8 +27,8 @@ void main() async {
         ChangeNotifierProvider(create: (context)=>ColorSizeNotifier()),
         ChangeNotifierProvider(create: (context)=>AuthNotifier()),
         ChangeNotifierProvider(create: (context)=>SearchNotifier()),
+        ChangeNotifierProvider(create: (context)=>WishlistNotifier()),
         ChangeNotifierProvider(create: (context)=>WishlistNotifier())
-
       ],
       child: const MyApp(),
     ),
