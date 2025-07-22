@@ -1,5 +1,5 @@
-import 'package:fashionapp/src/auth/cart/model/cart_model.dart';
-import 'package:fashionapp/src/auth/cart/model/hooks/fetch_cart_result.dart';
+import 'package:fashionapp/src/cart/model/cart_model.dart';
+import 'package:fashionapp/src/cart/hooks/fetch_cart_result.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;

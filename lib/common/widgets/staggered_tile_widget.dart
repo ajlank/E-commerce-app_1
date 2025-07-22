@@ -1,6 +1,6 @@
 import 'package:fashionapp/src/model/products_model.dart';
 import 'package:fashionapp/statemanagement/product_notifier.dart';
-import 'package:fashionapp/statemanagement/wishlist_notifier.dart';
+import 'package:fashionapp/src/wishlist/statemanagement/wishlist_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get_storage/get_storage.dart';

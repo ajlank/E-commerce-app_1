@@ -1,8 +1,8 @@
 import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
 import 'package:fashionapp/common/widgets/staggered_tile_widget.dart';
 
-import 'package:fashionapp/hooks/results/fetch_wishlist.dart';
-import 'package:fashionapp/statemanagement/wishlist_notifier.dart';
+import 'package:fashionapp/src/wishlist/fetch/fetch_wishlist.dart';
+import 'package:fashionapp/src/wishlist/statemanagement/wishlist_notifier.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

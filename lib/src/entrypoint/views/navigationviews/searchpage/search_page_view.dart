@@ -3,7 +3,7 @@ import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
 import 'package:fashionapp/common/widgets/email_textfield.dart';
 import 'package:fashionapp/common/widgets/staggered_tile_widget.dart';
 import 'package:fashionapp/statemanagement/search_notifier.dart';
-import 'package:fashionapp/statemanagement/wishlist_notifier.dart';
+import 'package:fashionapp/src/wishlist/statemanagement/wishlist_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';

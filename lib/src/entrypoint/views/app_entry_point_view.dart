@@ -1,30 +1,33 @@
+import 'package:fashionapp/src/cart/fetch/fetch_cart.dart';
+import 'package:fashionapp/src/cart/fetch/fetch_cart_count.dart';
+import 'package:fashionapp/src/cart/statemanagement/cart_notifier.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/cart_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home_second_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/profile_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/wishlist_view.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:provider/provider.dart';
 
-class AppEntryPointView extends StatefulWidget {
-  const AppEntryPointView({super.key});
+class AppEntryPointView extends HookWidget {
+   AppEntryPointView({super.key});
 
-  @override
-  State<AppEntryPointView> createState() => _AppEntryPointViewState();
-}
-
-class _AppEntryPointViewState extends State<AppEntryPointView> {
-
-  List<Widget>bottomNavViews=[
+ final List<Widget>bottomNavViews=[
     const HomeSecondView(),
     const WishList(),
     const CartView(),
     const ProfileView()
   ];
- 
+
   @override
   Widget build(BuildContext context) {
+
+    final result=fetchCartCount(context);
+    print(result);
+   final counts= result.count;
+   final count=counts.cartCount;
     return Consumer<NavigationPageNotifier>(
       builder: (context, value, child) {
       return Scaffold(
@@ -40,7 +43,7 @@ class _AppEntryPointViewState extends State<AppEntryPointView> {
              ), 
              NavigationDestination(
               icon: Badge(
-                label: const Text('9'),
+                label: Text(count.toString()),
                 child: Icon(AntDesign.shoppingcart)),
              label: 'Cart',
              ),
@@ -61,6 +64,5 @@ class _AppEntryPointViewState extends State<AppEntryPointView> {
     );
   }
 }
-
 
 //2:52:04

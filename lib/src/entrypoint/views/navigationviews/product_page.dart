@@ -2,6 +2,8 @@ import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
 import 'package:fashionapp/common/widgets/product_bottom_nav_bar.dart';
 import 'package:fashionapp/common/widgets/select_color_widget.dart';
 import 'package:fashionapp/common/widgets/select_size_widget.dart';
+import 'package:fashionapp/src/cart/model/create_cart_model.dart';
+import 'package:fashionapp/src/cart/statemanagement/cart_notifier.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/expanded_text_widget.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/recommneded_products.dart';
 import 'package:fashionapp/statemanagement/color_size_notifier.dart';
@@ -151,8 +153,15 @@ class ProductPage extends StatelessWidget {
                   SnackBar(content: const Text('Size and color are empty'))
                 );
                }else{
-                print('Item added to the cart');
+               CreateCart data=CreateCart(
+                product:context.read<ProductNotifier>().product!.id,
+                 quantity:1, size: context.read<ColorSizeNotifier>().size, 
+                color: context.read<ColorSizeNotifier>().color);
+                
+               String cartData=createCartToJson(data);
+                context.read<CartNotifier>().add(cartData, context);
                }
+
              }    
             },
             price:value.product!.price.toStringAsFixed(2))
