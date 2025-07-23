@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 FetchCartCountResult fetchCartCount(BuildContext context){
-   final initialCount=CartCount(cartCount: 1);
+   final initialCount=CartCount(cartCount: 0);
    final count=useState<CartCount>(initialCount);
    final isLoading=useState(false);
    final error=useState<String?>(null);
@@ -25,6 +25,7 @@ String? accessToken= GetStorage().read('accessToken');
           'Content-Type': 'application/json',
         },
      );
+     print('before');
      print(response.statusCode);
      if(response.statusCode==200){
          print(response.body);

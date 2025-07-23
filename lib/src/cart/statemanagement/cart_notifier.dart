@@ -1,4 +1,5 @@
-import 'package:fashionapp/src/cart/model/cart_count_model.dart';
+import 'package:fashionapp/src/cart/model/cart_model.dart';
+import 'package:fashionapp/statemanagement/color_size_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
@@ -40,6 +41,8 @@ class CartNotifier with ChangeNotifier{
  void clearCart(){
   _selectedCart=null;
     _qty=0;
+    _selectedCartItemId.clear();
+    _selectedCartItem.clear();
     notifyListeners();  
  }
 Future<void>add(String data, BuildContext ctx)async{
@@ -54,7 +57,10 @@ Future<void>add(String data, BuildContext ctx)async{
         },);
       if(response.statusCode==201){
            refetchCount!();
-           
+           ctx.read<ColorSizeNotifier>().setSize('');
+           ctx.read<ColorSizeNotifier>().setColor('');
+         
+
            ctx.go('/home');
       }
    }catch(e){
@@ -72,10 +78,11 @@ Future<void>add(String data, BuildContext ctx)async{
         },);
       if(response.statusCode==204){
         refetch();
+        refetchCount!();
         clearCart();
       }
    }catch(e){
-      print(e.toString());
+ 
    }}
 
  Future<void>update(int id, void Function() refetch)async{
@@ -89,12 +96,45 @@ Future<void>add(String data, BuildContext ctx)async{
         },);
       if(response.statusCode==200){
         refetch();
+        refetchCount!();
         clearCart();
       }
    }catch(e){
-      print(e.toString());
+  
    }
 
  }
 
+
+List<int>_selectedCartItemId=[];
+List<int> get selectedCartItemId=>_selectedCartItemId;
+
+List<CartModel>_selectedCartItem=[];
+List<CartModel> get selectedCartItem=>_selectedCartItem;
+double totalPrice=0.0;
+
+void selectOrDeselct(int id, CartModel cartItem){
+  if(_selectedCartItemId.contains(id)){
+    _selectedCartItemId.remove(id);
+    _selectedCartItem.removeWhere((i) =>i.id== id,);
+    totalPrice=calculateTotalPrice(_selectedCartItem);
+  }else{
+    _selectedCartItemId.add(id);
+    _selectedCartItem.add(cartItem);
+      totalPrice=calculateTotalPrice(_selectedCartItem);
+  }
+  notifyListeners();
 }
+
+double calculateTotalPrice(List<CartModel> items){
+ double tp=0.0;
+
+ for(var item in items){
+  tp+=item.product.price*item.quantity;
+ }
+ return tp;
+}
+
+}
+
+// 7:12:47

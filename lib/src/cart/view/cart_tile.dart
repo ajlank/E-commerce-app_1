@@ -1,3 +1,4 @@
+import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/src/cart/view/cart_counter_ui.dart';
 import 'package:fashionapp/src/cart/model/cart_model.dart';
 import 'package:fashionapp/src/cart/statemanagement/cart_notifier.dart';
@@ -19,7 +20,9 @@ class CartTile extends StatelessWidget {
         return Padding(
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
-          // onTap: onUpdate,
+          onTap: () {
+           context.read<CartNotifier>().selectOrDeselct(cart.id, cart);
+          },
           child: Row(
             children: [
               Expanded(
@@ -28,7 +31,8 @@ class CartTile extends StatelessWidget {
                 width: ScreenUtil().screenWidth,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: const Color.fromARGB(77, 227, 189, 189)
+                  color: value.selectedCartItemId.contains(cart.id)?
+                   Color.fromARGB(77, 227, 189, 189):Kolors.kOffWhite,
                 ),
                 child: Row(
                   children: [

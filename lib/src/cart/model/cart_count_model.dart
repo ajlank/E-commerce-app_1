@@ -12,10 +12,10 @@ class CartCount {
     });
 
     factory CartCount.fromJson(Map<String, dynamic> json) => CartCount(
-        cartCount: json["cart-count"],
+        cartCount: json["cart_count"]??0,
     );
 
     Map<String, dynamic> toJson() => {
-        "cart-count": cartCount,
+        "cart_count": cartCount,
     };
 }

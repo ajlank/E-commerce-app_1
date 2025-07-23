@@ -1,4 +1,3 @@
-import 'package:fashionapp/src/cart/fetch/fetch_cart.dart';
 import 'package:fashionapp/src/cart/fetch/fetch_cart_count.dart';
 import 'package:fashionapp/src/cart/statemanagement/cart_notifier.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/cart_view.dart';
@@ -23,9 +22,8 @@ class AppEntryPointView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-
+   
     final result=fetchCartCount(context);
-    print(result);
    final counts= result.count;
    final count=counts.cartCount;
     return Consumer<NavigationPageNotifier>(

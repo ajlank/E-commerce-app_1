@@ -25,9 +25,9 @@ String? accessToken= GetStorage().read('accessToken');
           'Content-Type': 'application/json',
         },
      );
-     print(response.statusCode);
+   
      if(response.statusCode==200){
-         print(response.body);
+     
        count.value=cartCountFromJson(response.body);
       
      }
@@ -46,7 +46,7 @@ String? accessToken= GetStorage().read('accessToken');
   }
   
   return;
- },const []);
+ },[]);
 
  void refetch(){
    isLoading.value=false;

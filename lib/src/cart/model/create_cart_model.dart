@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:fashionapp/src/model/products_model.dart';
 
 CreateCart createCartFromJson(String str) => CreateCart.fromJson(json.decode(str));
 
