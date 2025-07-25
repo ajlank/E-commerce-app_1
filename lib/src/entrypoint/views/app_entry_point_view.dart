@@ -1,5 +1,4 @@
 import 'package:fashionapp/src/cart/fetch/fetch_cart_count.dart';
-import 'package:fashionapp/src/cart/statemanagement/cart_notifier.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/cart_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home_second_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/profile_view.dart';

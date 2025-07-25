@@ -106,10 +106,10 @@ Future<void>add(String data, BuildContext ctx)async{
  }
 
 
-List<int>_selectedCartItemId=[];
+final List<int>_selectedCartItemId=[];
 List<int> get selectedCartItemId=>_selectedCartItemId;
 
-List<CartModel>_selectedCartItem=[];
+final List<CartModel>_selectedCartItem=[];
 List<CartModel> get selectedCartItem=>_selectedCartItem;
 double totalPrice=0.0;
 

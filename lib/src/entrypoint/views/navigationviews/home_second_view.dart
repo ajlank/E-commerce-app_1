@@ -1,45 +1,36 @@
 
 import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
+import 'package:fashionapp/src/address/fetch/fetch_default_address.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/home_category.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/explore_products.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home/home_tab_products_type.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeSecondView extends StatefulWidget {
+class HomeSecondView extends HookWidget {
   const HomeSecondView({super.key});
 
-  @override
-  State<HomeSecondView> createState() => _HomeSecondViewState();
-}
+ final bool isTapped = false;
 
-class _HomeSecondViewState extends State<HomeSecondView> {
-  bool isTapped = false;
-  late final TextEditingController _textController;
-
-
-  @override
-  void initState() {
-    _textController = TextEditingController();
-    
-    super.initState();
-  }
-
- 
-
-  @override
-  void dispose() {
-
-    _textController.dispose();
-    super.dispose();
-  }
-
+  // late final TextEditingController _textController;
   @override
   Widget build(BuildContext context) {
+
+    final result=fetchDefaultAddress();
+    final address=result.address;
+   if (result.isLoading) {
+  return const Center(child: CircularProgressIndicator());
+}
+
+if (result.error != null) {
+  return Center(child: Text(result.error!));
+}
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -62,7 +53,7 @@ class _HomeSecondViewState extends State<HomeSecondView> {
                               Icon(Icons.location_on),
                               SizedBox(width: 4),
                               Text(
-                                'Please select a location',
+                                (address!=null)?address.address:'Please Select your location',
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
