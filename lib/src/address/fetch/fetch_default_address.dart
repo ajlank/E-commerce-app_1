@@ -11,6 +11,7 @@ FetchDefaultAddressResult fetchDefaultAddress(){
    final error=useState<String?>(null);
 
   String? accessToken= GetStorage().read('accessToken');
+  
   Future<void>fetchData()async{
      isLoading.value=true;
     try{

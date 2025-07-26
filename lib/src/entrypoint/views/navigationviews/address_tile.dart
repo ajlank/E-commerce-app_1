@@ -1,5 +1,6 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
+import 'package:fashionapp/common/widgets/change_address_modal.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/src/address/model/address_model.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +23,29 @@ class AddressTile extends StatelessWidget {
         child: Icon(MaterialIcons.location_pin,color: Colors.white,),
       ),
       title: ReusableText(text: address.addressType.toUpperCase(), style: appStyle(13, Kolors.kPrimary, FontWeight.bold)),
-      subtitle: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      subtitle: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           ReusableText(text: address.address, style: appStyle(11, Kolors.kPrimary, FontWeight.w400))
-
+           ReusableText(text: address.address, style: appStyle(11, Kolors.kPrimary, FontWeight.w400)),
+           Padding(
+             padding: const EdgeInsets.only(right: 12.0),
+             child: GestureDetector(
+              onTap: () {
+                if(isCheckout==true){
+                  changeAddressBottomSheet(context);
+                }
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.brown
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text('change',style: appStyle(12, Colors.white, FontWeight.w500),),
+                ))),
+           )
         ],
       ),
     );

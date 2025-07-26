@@ -17,7 +17,8 @@ class AddressBlock extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
            Text("Shipping Address", style: appStyle(13,Kolors.kPrimary,FontWeight.bold),),
-           AddressTile(address:address!, isCheckout: true)
+           AddressTile(address:address!, isCheckout: true),
+           
         ],
       ),
     );
