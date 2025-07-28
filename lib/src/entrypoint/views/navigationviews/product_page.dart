@@ -3,7 +3,7 @@ import 'package:fashionapp/common/widgets/product_bottom_nav_bar.dart';
 import 'package:fashionapp/common/widgets/select_color_widget.dart';
 import 'package:fashionapp/common/widgets/select_size_widget.dart';
 import 'package:fashionapp/src/cart/model/create_cart_model.dart';
-import 'package:fashionapp/src/cart/statemanagement/cart_notifier.dart';
+import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/expanded_text_widget.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/recommneded_products.dart';
 import 'package:fashionapp/statemanagement/color_size_notifier.dart';

@@ -1,4 +1,5 @@
 // ignore_for_file: unused_element
+import 'package:fashionapp/src/address/view/shipping_address.dart';
 import 'package:fashionapp/src/cart/view/checkout_screen.dart';
 import 'package:fashionapp/src/entrypoint/views/app_entry_point_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
@@ -65,6 +66,9 @@ final GoRouter _router = GoRouter(
     ),
      GoRoute(path: '/checkout',
     builder: (context, state) => CheckoutScreen(),
+    ),
+     GoRoute(path: '/address',
+    builder: (context, state) => ShippingAddress(),
     )
 
     

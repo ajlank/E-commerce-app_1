@@ -1,6 +1,7 @@
 import 'package:fashionapp/common/utils/app_routes.dart';
 import 'package:fashionapp/common/utils/kstrings2.dart';
-import 'package:fashionapp/src/cart/statemanagement/cart_notifier.dart';
+import 'package:fashionapp/src/address/controller/address_notifier.dart';
+import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
 import 'package:fashionapp/statemanagement/auth_notifier.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:fashionapp/statemanagement/color_size_notifier.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+// 10:11:26
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
@@ -29,7 +31,8 @@ void main() async {
         ChangeNotifierProvider(create: (context)=>AuthNotifier()),
         ChangeNotifierProvider(create: (context)=>SearchNotifier()),
         ChangeNotifierProvider(create: (context)=>WishlistNotifier()),
-        ChangeNotifierProvider(create: (context)=>CartNotifier())
+        ChangeNotifierProvider(create: (context)=>CartNotifier()),
+        ChangeNotifierProvider(create: (context)=>AddressNotifier())
       ],
       child: const MyApp(),
     ),
@@ -77,4 +80,4 @@ class RootApp extends StatelessWidget {
     );
   }
 }
-// 1:23:49
+//9:23:36

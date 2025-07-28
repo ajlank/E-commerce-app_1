@@ -1,10 +1,16 @@
+import 'package:fashionapp/common/widgets/app_style.dart';
+import 'package:fashionapp/common/widgets/back_button.dart';
+import 'package:fashionapp/common/widgets/reusable_text.dart';
+import 'package:fashionapp/src/address/controller/address_notifier.dart';
 import 'package:fashionapp/src/address/fetch/fetch_default_address.dart';
-import 'package:fashionapp/src/cart/statemanagement/cart_notifier.dart';
+import 'package:fashionapp/src/address/model/address_model.dart';
+import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
 import 'package:fashionapp/src/cart/view/checkout_tile.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/address_block.dart';
+import 'package:fashionapp/src/address/view/address_block.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutScreen extends HookWidget {
@@ -15,10 +21,21 @@ class CheckoutScreen extends HookWidget {
      final result=fetchDefaultAddress();
     final address=result.address;
     final isLoading=result.isLoading;
+    final error=result.error;
+    if(isLoading){
+      return Text('$error');
+    }
+    print(error);
     return Scaffold(
       appBar: AppBar(
         title: Text('Checkout'),
         centerTitle: true,
+        leading: AppBackButton(
+          onTap: () {
+            context.read<AddressNotifier>().clearAddress();
+            context.pop();
+          },
+        ),
       ),
       body: Consumer<CartNotifier>(
         builder: (context, value, child) {
@@ -38,9 +55,33 @@ class CheckoutScreen extends HookWidget {
                 ),
               )
           ],
-         );  
+          
+         );
+           
         },
+      
         ),
+    bottomNavigationBar: Consumer<CartNotifier>(
+      builder: (context, value, child) {
+        return GestureDetector(
+        onTap: () {
+          
+        },
+        child: Container(
+          height: 80,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 200, 138, 115),
+          borderRadius: BorderRadius.circular(12.0)
+        ),
+        child: Center(child: ReusableText(text: address==null?"Please add an address":"Proceed to payment", style: appStyle(18, Colors.white, FontWeight.w400))),
+        ),
+      );
+      },
+      
+    ),
+
     );
   }
 }
+
+// 10:11:26

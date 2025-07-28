@@ -3,6 +3,7 @@ import 'package:fashionapp/common/utils/kstrings.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/const/constants.dart';
+import 'package:fashionapp/src/address/view/checkout_address_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -41,9 +42,9 @@ Future<dynamic> changeAddressBottomSheet(BuildContext context) {
               height: 10.h,
             ),
             SizedBox(
-              height: ScreenUtil().screenHeight*0.6
-              // child: const CheckoutAddressSelection())
-            )
+              height: ScreenUtil().screenHeight*0.6,
+              child: CheckoutAddressList()
+            ),
           ],
         ),
       );

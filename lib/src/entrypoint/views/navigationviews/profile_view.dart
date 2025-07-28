@@ -62,7 +62,9 @@ class _ProfileViewState extends State<ProfileView> {
               ),
             ),
            ProfileListTile(title: 'My orders', leading:Octicons.checklist),
-           ProfileListTile(title: 'Shipping Address', leading:MaterialIcons.location_pin),
+           ProfileListTile(title: 'Shipping Address',onTap: () {
+             context.push('/address');
+           }, leading:MaterialIcons.location_pin),
            ProfileListTile(title: 'Privacy Policy', leading:MaterialIcons.policy),
            ProfileListTile(title: 'Help', leading:AntDesign.customerservice),
            Padding(
