@@ -3,7 +3,6 @@ import 'package:fashionapp/common/widgets/back_button.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/src/address/controller/address_notifier.dart';
 import 'package:fashionapp/src/address/fetch/fetch_default_address.dart';
-import 'package:fashionapp/src/address/model/address_model.dart';
 import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
 import 'package:fashionapp/src/cart/view/checkout_tile.dart';
 import 'package:fashionapp/src/address/view/address_block.dart';

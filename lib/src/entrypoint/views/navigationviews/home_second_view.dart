@@ -17,7 +17,6 @@ class HomeSecondView extends HookWidget {
 
  final bool isTapped = false;
 
-  // late final TextEditingController _textController;
   @override
   Widget build(BuildContext context) {
 

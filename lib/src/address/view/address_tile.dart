@@ -1,3 +1,4 @@
+
 import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/change_address_modal.dart';
@@ -20,14 +21,18 @@ class AddressTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AddressNotifier>(
       builder: (context, value, child) {
-        return   ListTile(
+        
+        final currentAddress=value.address??address;
+
+        return ListTile(
         contentPadding: EdgeInsets.zero,
         leading: CircleAvatar(
           backgroundColor: Kolors.kPrimary,
           child: Icon(MaterialIcons.location_pin,color: Colors.white,),
         ),
         title: ReusableText(
-          text: value.address==null? address.addressType.toUpperCase():value.address!.addressType, style: appStyle(13, Kolors.kPrimary, FontWeight.bold)),
+          text: currentAddress.addressType.toUpperCase(), 
+          style: appStyle(13, Kolors.kPrimary, FontWeight.bold)),
         subtitle: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,10 +40,8 @@ class AddressTile extends StatelessWidget {
              Column(
               crossAxisAlignment: CrossAxisAlignment.start,
                children: [
-                 ReusableText(text:value.address==null?
-                  address.address:value.address!.address, style: appStyle(11, Kolors.kPrimary, FontWeight.w400)),
-               ReusableText(text:value.address==null?
-              address.phone:value.address!.phone,
+                 ReusableText(text:currentAddress.address, style: appStyle(11, Kolors.kPrimary, FontWeight.w400)),
+               ReusableText(text:currentAddress.phone,
                style: appStyle(11, Kolors.kPrimary, FontWeight.w400)),
                ],
              ),
@@ -49,29 +52,28 @@ class AddressTile extends StatelessWidget {
                   if(isCheckout==true){
                     changeAddressBottomSheet(context);
                   }else{
-                    setDefault!();
+                    setDefault?.call();
                   }
                 },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: value.address!.isDefault!=true? Colors.greenAccent:const Color.fromARGB(255, 108, 49, 27)
+                    color: currentAddress.isDefault!=true? 
+                    Colors.greenAccent:const Color.fromARGB(255, 108, 49, 27)
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Text(
-                     isCheckout==true?'change':
-                     value.address==null? address.isDefault==true
-                      ?"Default"
-                      :"Set default":
-                     value.address!.isDefault==true? "Default":"Set default"
-                     
-                     ,style: appStyle(12, Colors.white, FontWeight.w500),),
+                     isCheckout==true?"change":
+                    currentAddress.isDefault!=true
+                      ?"Set default"
+                      :"Default",
+                    style: appStyle(12, Colors.white, FontWeight.w500),),
                   ))
                   ),
                   
              ),
-             isCheckout==true? SizedBox.shrink():
+             if(!isCheckout)
              Padding(
                padding: const EdgeInsets.only(right: 12.0),
                child: GestureDetector(

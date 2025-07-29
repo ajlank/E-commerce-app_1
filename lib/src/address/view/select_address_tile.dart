@@ -17,6 +17,7 @@ class SelectAddressTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AddressNotifier>(
       builder: (context, value, child) {
+        print(value.address);
         return   ListTile(
           onTap: () {
             value.setAddress(address);

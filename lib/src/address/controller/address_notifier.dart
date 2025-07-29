@@ -48,21 +48,24 @@ class AddressNotifier with ChangeNotifier{
   void setAsDefault(int id, Function refetch)async {
     String accessToken=GetStorage().read('accessToken');
    try{
-     Uri url=Uri.parse("http://192.168.0.106:8000/api/default/?$id");
+     Uri url=Uri.parse("http://192.168.0.106:8000/api/address/default/?id=$id");
     
      final response=await http.patch(url,
      headers: {
           'Authorization': 'Token $accessToken',
           'Content-Type': 'application/json',
         },);
+        
       if(response.statusCode==201){
            refetch();
       }else if(response.statusCode==404 || response.statusCode==400){
         final data=apiErrorFromJson(response.body);
+        // showErrorPopup(context, errorMessage, title, removeCancel)
         print('error $data');
       }
    }catch(e){
       print(e.toString());
+
    }
   }
 
@@ -70,13 +73,14 @@ class AddressNotifier with ChangeNotifier{
 void deleteAddress(int id, Function refetch)async {
     String accessToken=GetStorage().read('accessToken');
    try{
-     Uri url=Uri.parse("http://192.168.0.106:8000/api/address/delete/?$id");
+     Uri url=Uri.parse("http://192.168.0.106:8000/api/address/delete/?id=$id");
     
-     final response=await http.patch(url,
-     headers: {
-          'Authorization': 'Token $accessToken',
-          'Content-Type': 'application/json',
-        },);
+     final response=await http.delete(url,
+          headers: {
+            'Authorization': 'Token $accessToken',
+            'Content-Type': 'application/json',
+          },
+        );
       if(response.statusCode==200){
            refetch();
       }else if(response.statusCode==404 || response.statusCode==400){

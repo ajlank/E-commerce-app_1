@@ -1,9 +1,11 @@
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
+import 'package:fashionapp/src/address/controller/address_notifier.dart';
 import 'package:fashionapp/src/address/fetch/fetch_address.dart';
 import 'package:fashionapp/src/address/view/address_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:provider/provider.dart';
 
 class ShippingAddress extends HookWidget {
   const ShippingAddress({super.key});
@@ -16,7 +18,6 @@ class ShippingAddress extends HookWidget {
     final isLoading=result.isLoading;
     final errorr=result.error;
     final refetch=result.refetch;
-
     if(isLoading){
       return Text('Loading..');
     }
@@ -28,11 +29,15 @@ class ShippingAddress extends HookWidget {
 
       body: ListView(
         children:List.generate(address.length, (i){
-          return AddressTile(address: address[i], isCheckout: false,
+          final addresss=address[i];
+          return AddressTile(address: addresss,
+          isCheckout: false,
           onDelete: () {
-            
+            context.read<AddressNotifier>().deleteAddress(addresss.id,refetch);
           },
-          
+          setDefault: () {
+            context.read<AddressNotifier>().setAsDefault(addresss.id,refetch);
+          },
           );
         }),
       ),

@@ -23,12 +23,14 @@ FetchAddressResult fetchAddress(){
      );
   
      if(response.statusCode==200){
+        print('confirmed');
+        print(response.body);
        address.value=addressListFromJson(response.body);
      }
     
     }catch(e){
       error.value = e.toString();
-    
+    print(e);
     }finally{
       isLoading.value=false;
     }
@@ -38,7 +40,7 @@ FetchAddressResult fetchAddress(){
   if(accessToken!=null){
    fetchData();
   }
-  return;
+  return null;
  },const []);
 
  void refetch(){

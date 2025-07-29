@@ -13,10 +13,7 @@ class CheckoutAddressList extends HookWidget {
     final address=result.address;
     final isLoading=result.isLoading;
     final error=result.error;
-    
-    if(isLoading){
-      return Text('Loading...');
-    }
+
     return ListView(
       children:List.generate(address.length, (i){
         return SelectAddressTile(address: address[i]);
