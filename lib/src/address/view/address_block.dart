@@ -1,12 +1,14 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
-import 'package:fashionapp/src/address/model/address_model.dart';
 import 'package:fashionapp/src/address/view/address_tile.dart';
+import 'package:fashionapp/src/addresses2/models/addresses_model2.dart';
 import 'package:flutter/material.dart';
 
 class AddressBlock extends StatelessWidget {
   const AddressBlock({super.key, required this.address});
+
   final AddressModel? address;
+
 
   @override
   Widget build(BuildContext context) {

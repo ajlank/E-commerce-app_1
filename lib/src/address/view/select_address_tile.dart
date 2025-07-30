@@ -1,35 +1,40 @@
+
 import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
+import 'package:fashionapp/common/widgets/change_address_modal.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/src/address/controller/address_notifier.dart';
-import 'package:fashionapp/src/address/model/address_model.dart';
+import 'package:fashionapp/src/addresses2/models/addresses_model2.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class SelectAddressTile extends StatelessWidget {
-  const SelectAddressTile({super.key, required this.address});
+class SelectAddressTile2 extends StatelessWidget {
+  const SelectAddressTile2({super.key, 
+  required this.address});
   
   final AddressModel address;
-
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<AddressNotifier>(
-      builder: (context, value, child) {
-        print(value.address);
-        return   ListTile(
+      builder: (context, addressNotifier, child) {
+        return ListTile(
           onTap: () {
-            value.setAddress(address);
+            addressNotifier.setAddress(address);
             context.pop();
           },
         contentPadding: EdgeInsets.zero,
         leading: CircleAvatar(
-          backgroundColor: Kolors.kPrimary,
-          child: Icon(MaterialIcons.location_pin,color: Colors.white,),
+          backgroundColor: Kolors.kSecondaryLight,
+          child: Icon(MaterialIcons.location_pin,color: Kolors.kPrimary,),
         ),
         title: ReusableText(
-          text: address.addressType.toUpperCase(), style: appStyle(13, Kolors.kPrimary, FontWeight.bold)),
+          text:address.addressType.toUpperCase(), 
+          style: appStyle(13, Kolors.kPrimary, FontWeight.bold)),
         subtitle: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,13 +47,14 @@ class SelectAddressTile extends StatelessWidget {
                style: appStyle(11, Kolors.kPrimary, FontWeight.w400)),
                ],
              ),
-             
-          
+        
+               
           ],
         ),
-        trailing: ReusableText(
-          text: value.address!=null && value.address!.id==address.id?"Selected":'Select', 
-          style: appStyle(12, Kolors.kPrimaryLight,FontWeight.w400)),
+      trailing: ReusableText(
+        text:addressNotifier.address!=null &&
+         addressNotifier.address!.id==address.id?"Selected"
+         :"Select", style:appStyle(12,Kolors.kPrimaryLight, FontWeight.w400))
       );
       },
      

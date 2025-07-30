@@ -1,5 +1,5 @@
 import 'package:fashionapp/common/models/api_error_model.dart';
-import 'package:fashionapp/src/address/model/address_model.dart';
+import 'package:fashionapp/src/addresses2/models/addresses_model2.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -40,6 +40,7 @@ class AddressNotifier with ChangeNotifier{
     notifyListeners();
   }
   bool get defaultToggle=>_defaultToggle;
+  
   void clearDefaultToggle(){
     _defaultToggle=false;
     notifyListeners();

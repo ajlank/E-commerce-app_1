@@ -29,8 +29,8 @@ class AddressModel {
 
   factory AddressModel.fromJson(Map<String, dynamic> json) => AddressModel(
         id: json["id"],
-        lat: (json["lat"] as num).toDouble(),
-        lan: (json["lan"] as num).toDouble(),
+        lat: json["lat"]?.toDouble(),
+        lan: json["lan"]?.toDouble(),
         isDefault: json["isDefault"],
         address: json["address"],
         phone: json["phone"],

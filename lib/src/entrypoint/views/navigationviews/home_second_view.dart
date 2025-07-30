@@ -1,6 +1,6 @@
 
 import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
-import 'package:fashionapp/src/address/fetch/fetch_default_address.dart';
+import 'package:fashionapp/src/addresses2/hooks/fetch/fetch_default.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/home_category.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/explore_products.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home/home_tab_products_type.dart';
@@ -20,16 +20,17 @@ class HomeSecondView extends HookWidget {
   @override
   Widget build(BuildContext context) {
 
-    final result=fetchDefaultAddress();
+    final result=fetchDefaultAdd2();
     final address=result.address;
-   if (result.isLoading) {
-  return const Center(child: CircularProgressIndicator());
-}
+    final isLoading=result.isLoading;
+    final error=result.error;
 
-if (result.error != null) {
-  return Center(child: Text(result.error!));
-}
-
+    if(isLoading){
+      return Text('loading..');
+    }
+    if(error!=null){
+      return Center(child: Text(error.toString()));
+    }
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -52,7 +53,8 @@ if (result.error != null) {
                               Icon(Icons.location_on),
                               SizedBox(width: 4),
                               Text(
-                                (address!=null)?address.address:'Please Select your location',
+                               address==null?'Please select a location':address.address
+                               ,
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
