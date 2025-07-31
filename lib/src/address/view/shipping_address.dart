@@ -6,6 +6,7 @@ import 'package:fashionapp/src/address/view/address_tile.dart';
 import 'package:fashionapp/src/addresses2/hooks/fetch/fetch_address_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ShippingAddress extends HookWidget {
@@ -49,7 +50,7 @@ class ShippingAddress extends HookWidget {
       ),
     bottomNavigationBar: GestureDetector(
         onTap: () {
-          //
+          context.push('/addaddress');
         },
         child: Container(
           height: 80,

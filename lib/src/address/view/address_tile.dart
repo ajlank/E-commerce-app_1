@@ -30,7 +30,7 @@ class AddressTile extends StatelessWidget {
           backgroundColor: Kolors.kSecondaryLight,
           child: Icon(MaterialIcons.location_pin,color: Kolors.kPrimary,),
         ),
-        title: ReusableText(
+        title:ReusableText(
           text: addressNotifier.address==null
                  ?address.addressType:
                  addressNotifier.address!.addressType.toUpperCase(), 
@@ -62,6 +62,7 @@ class AddressTile extends StatelessWidget {
               if(isCheckout==true){
                   changeAddressBottomSheet(context);
               }else{
+              
               setDefault!();
               }
             },
@@ -89,8 +90,7 @@ class AddressTile extends StatelessWidget {
                 style: appStyle(12, Kolors.kWhite, FontWeight.bold)),
             ),
           ),
-          isCheckout==true?
-          SizedBox.shrink():GestureDetector(
+          isCheckout==true? SizedBox.shrink():GestureDetector(
             onTap: onDelete,
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 12),
