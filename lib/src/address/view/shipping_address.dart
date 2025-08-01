@@ -14,13 +14,12 @@ class ShippingAddress extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final result=fetchAddressList2();
-    final address=result.address;
-    final isLoading=result.isLoading;
-    final errorr=result.error;
-    final refetch=result.refetch;
-    if(isLoading){
+    final result = fetchAddressList2();
+    final address = result.address;
+    final isLoading = result.isLoading;
+    final errorr = result.error;
+    final refetch = result.refetch;
+    if (isLoading) {
       return Scaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -28,37 +27,47 @@ class ShippingAddress extends HookWidget {
         ),
       );
     }
+    context.read<AddressNotifier>().setRefetch(refetch);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Address'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text('Address'), centerTitle: true),
 
       body: ListView(
-        children:List.generate(address.length, (i){
-          final addresss=address[i];
-          return AddressTile(address: addresss,
-          isCheckout: false,
-          onDelete: () {
-            context.read<AddressNotifier>().deleteAddress(addresss.id,refetch);
-          },
-          setDefault: () {
-            context.read<AddressNotifier>().setAsDefault(addresss.id,refetch);
-          },
+        children: List.generate(address.length, (i) {
+          final addresss = address[i];
+          return AddressTile(
+            address: addresss,
+            isCheckout: false,
+            onDelete: () {
+              context.read<AddressNotifier>().deleteAddress(
+                addresss.id,
+                refetch,
+              );
+            },
+            setDefault: () {
+              context.read<AddressNotifier>().setAsDefault(
+                addresss.id,
+                refetch,
+              );
+            },
           );
         }),
       ),
-    bottomNavigationBar: GestureDetector(
+      bottomNavigationBar: GestureDetector(
         onTap: () {
           context.push('/addaddress');
         },
         child: Container(
           height: 80,
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 200, 138, 115),
-          borderRadius: BorderRadius.circular(12.0)
-        ),
-        child: Center(child: ReusableText(text: "Add address", style: appStyle(18, Colors.white, FontWeight.w400))),
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 200, 138, 115),
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          child: Center(
+            child: ReusableText(
+              text: "Add address",
+              style: appStyle(18, Colors.white, FontWeight.w400),
+            ),
+          ),
         ),
       ),
     );
