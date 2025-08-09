@@ -4,8 +4,10 @@ import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/src/address/controller/address_notifier.dart';
 import 'package:fashionapp/src/addresses2/hooks/fetch/fetch_default.dart';
 import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
+import 'package:fashionapp/src/cart/model/cart_model.dart';
 import 'package:fashionapp/src/cart/view/checkout_tile.dart';
 import 'package:fashionapp/src/address/view/address_block.dart';
+import 'package:fashionapp/src/checkout/payment/payment_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,10 +19,10 @@ class CheckoutScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final result=fetchDefaultAdd2();
-    final address=result.address;
-    final isLoading=result.isLoading;
-    final error=result.error;
+    final result = fetchDefaultAdd2();
+    final address = result.address;
+    final isLoading = result.isLoading;
+    final error = result.error;
 
     return Scaffold(
       appBar: AppBar(
@@ -35,49 +37,53 @@ class CheckoutScreen extends HookWidget {
       ),
       body: Consumer<CartNotifier>(
         builder: (context, value, child) {
-         return ListView(
-          children: [
-            isLoading?SizedBox.shrink():
-            AddressBlock(address: address,),
-            SizedBox(
-              height: 18.h,
-            ),
-              SizedBox(
-                height: ScreenUtil().screenHeight*0.5,
-                child: Column(
-                  children:List.generate(value.selectedCartItem.length, (i){
-                    return CheckOutTile(cart: value.selectedCartItem[i]);
-                  })
+          return value.paymentUrl.contains('https://checkout.stripe.com')
+              ? const PaymentWebView()
+              : ListView(
+                  children: [
+                    isLoading
+                        ? SizedBox.shrink()
+                        : AddressBlock(address: address),
+                    SizedBox(height: 18.h),
+                    SizedBox(
+                      height: ScreenUtil().screenHeight * 0.5,
+                      child: Column(
+                        children: List.generate(value.selectedCartItem.length, (
+                          i,
+                        ) {
+                          return CheckOutTile(cart: value.selectedCartItem[i]);
+                        }),
+                      ),
+                    ),
+                  ],
+                );
+        },
+      ),
+      bottomNavigationBar: Consumer<CartNotifier>(
+        builder: (context, value, child) {
+          return GestureDetector(
+            onTap: () {
+              String data = cartModelToJson(value.selectedCartItem);
+              value.createCheckOut(data);
+            },
+            child: Container(
+              height: 80,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 200, 138, 115),
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: Center(
+                child: ReusableText(
+                  text: address == null
+                      ? "Please add an address"
+                      : "Proceed to payment",
+                  style: appStyle(18, Colors.white, FontWeight.w400),
                 ),
-              )
-          ],
-          
-         );
-           
+              ),
+            ),
+          );
         },
-      
-        ),
-    bottomNavigationBar: Consumer<CartNotifier>(
-      builder: (context, value, child) {
-        return GestureDetector(
-        onTap: () {
-          
-        },
-        child: Container(
-          height: 80,
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 200, 138, 115),
-          borderRadius: BorderRadius.circular(12.0)
-        ),
-        child: Center(child: ReusableText(text: 
-        address==null?"Please add an address"
-        :"Proceed to payment", style: appStyle(18, Colors.white, FontWeight.w400))),
-        ),
-      );
-      },
-      
-    ),
-
+      ),
     );
   }
 }
