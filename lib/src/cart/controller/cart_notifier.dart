@@ -161,19 +161,24 @@ class CartNotifier with ChangeNotifier {
   }
 
   void createCheckOut(String data) async {
-    print(data);
-
+    final accessToken = GetStorage().read('accessToken');
     try {
-      Uri url = Uri.parse("hh");
+      Uri url = Uri.parse(
+        "https://dbe247c83b8a.ngrok-free.app/create-checkout-session",
+      );
 
       final response = await http.post(
         url,
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Token ${accessToken}",
+        },
         body: data,
       );
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
         setPaymentUrl(responseData['url']);
+        print(responseData);
       }
     } catch (e) {
       print(e.toString());

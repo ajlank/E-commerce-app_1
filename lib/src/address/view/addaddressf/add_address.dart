@@ -150,13 +150,13 @@ class _AddAddressState extends State<AddAddress> {
 
 class _buildtextfield extends StatelessWidget {
   const _buildtextfield({
-    Key? key,
+    super.key,
     required this.hintText,
     required this.controller,
     required this.onSubmitted,
     this.keyboard,
     this.readOnly,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
   final String hintText;

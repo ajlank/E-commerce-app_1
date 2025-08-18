@@ -80,10 +80,9 @@ class _PaymentWebViewState extends State<PaymentWebView> {
     return Consumer<CartNotifier>(
       builder: (context, cartNotifier, child) {
         if (cartNotifier.success.contains('checkout-success')) {
-          context.read<AddressNotifier>().clearAddress();
           return const SuccessfullPayment();
         } else if (cartNotifier.success.contains('cancel')) {
-          context.read<AddressNotifier>().clearAddress();
+          // context.read<AddressNotifier>().clearAddress();
           return FailedPayment();
         }
 

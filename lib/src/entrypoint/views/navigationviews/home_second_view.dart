@@ -1,9 +1,9 @@
-
 import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
 import 'package:fashionapp/src/addresses2/hooks/fetch/fetch_default.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/home_category.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/explore_products.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home/home_tab_products_type.dart';
+import 'package:fashionapp/src/widgets/notification_bar_wid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
@@ -15,20 +15,19 @@ import 'package:go_router/go_router.dart';
 class HomeSecondView extends HookWidget {
   const HomeSecondView({super.key});
 
- final bool isTapped = false;
+  final bool isTapped = false;
 
   @override
   Widget build(BuildContext context) {
+    final result = fetchDefaultAdd2();
+    final address = result.address;
+    final isLoading = result.isLoading;
+    final error = result.error;
 
-    final result=fetchDefaultAdd2();
-    final address=result.address;
-    final isLoading=result.isLoading;
-    final error=result.error;
-
-    if(isLoading){
+    if (isLoading) {
       return Text('loading..');
     }
-    if(error!=null){
+    if (error != null) {
       return Center(child: Text(error.toString()));
     }
     return SingleChildScrollView(
@@ -53,8 +52,9 @@ class HomeSecondView extends HookWidget {
                               Icon(Icons.location_on),
                               SizedBox(width: 4),
                               Text(
-                               address==null?'Please select a location':address.address
-                               ,
+                                address == null
+                                    ? 'Please select a location'
+                                    : address.address,
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
@@ -65,27 +65,7 @@ class HomeSecondView extends HookWidget {
                         ],
                       ),
                     ),
-      
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 23.0),
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                          icon: Badge(
-                            label: Text('9'),
-                            child: Icon(Icons.notifications),
-                          ),
-                          onPressed: () {
-                            if (GetStorage().read('accessToken') == null) {
-                              
-                              showLoginBottomSheet(context);
-                            } else {
-                              context.push('/notifications');
-                            }
-                          },
-                        ),
-                      ),
-                    ),
+                    NotificationBarWid(),
                   ],
                 ),
                 Row(
@@ -113,7 +93,10 @@ class HomeSecondView extends HookWidget {
                         ),
                       ),
                     ),
-                    IconButton(onPressed: () {}, icon: Icon(FontAwesome.sliders)),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(FontAwesome.sliders),
+                    ),
                   ],
                 ),
                 Padding(
@@ -159,7 +142,7 @@ class HomeSecondView extends HookWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-      
+
                               TextButton(
                                 onPressed: () {},
                                 child: Container(
@@ -201,12 +184,11 @@ class HomeSecondView extends HookWidget {
                     ],
                   ),
                 ),
-                
+
                 HomeCategorys(),
-            
-                   HomeTabProductsType(),
-                  ExploreProducts(),
-                  
+
+                HomeTabProductsType(),
+                ExploreProducts(),
               ],
             ),
           ),
@@ -215,4 +197,3 @@ class HomeSecondView extends HookWidget {
     );
   }
 }
-
