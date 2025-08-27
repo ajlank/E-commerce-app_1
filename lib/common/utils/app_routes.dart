@@ -13,6 +13,7 @@ import 'package:fashionapp/src/entrypoint/views/navigationviews/test_poduct_view
 import 'package:fashionapp/src/entrypoint/views/notification_views.dart';
 import 'package:fashionapp/src/onboardingscreen/views/onboarding_screen.dart';
 import 'package:fashionapp/src/splashscreen/views/splash_screen_view.dart';
+import 'package:fashionapp/src/tracking_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,61 +23,47 @@ final GoRouter _router = GoRouter(
   navigatorKey: navigatorKey,
   initialLocation: '/',
   routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const SplashScreenView(),
-    ),
-    GoRoute(
-      path: '/home',
-      builder: (context, state) => AppEntryPointView()
-    ),
+    GoRoute(path: '/', builder: (context, state) => const SplashScreenView()),
+    GoRoute(path: '/home', builder: (context, state) => AppEntryPointView()),
     GoRoute(
       path: '/onboarding',
       builder: (context, state) => const OnboardingScreen(),
     ),
-      GoRoute(
+    GoRoute(
       path: '/addaddress',
       builder: (context, state) => const AddAddress(),
     ),
-  
-    GoRoute(path: '/notifications',
-    builder: (context, state) => const NotificationViews(),
-    ),
-    GoRoute(path: '/search',
-    builder: (context, state) =>SearchPageView()
-    ),
-    GoRoute(path: '/allcategories',
-     builder: (context, state) => AllCategoriesViews(),
-    ),
-    GoRoute(path: '/category',
-    builder: (context, state) => CategoryView(),
-    ),
-    GoRoute(path: '/product/:id',
-    builder: (BuildContext context ,GoRouterState state) {
-      final productId=state.pathParameters['id'];
-     return ProductPage(productId: productId.toString(),);   
-    },
-    ),
-    GoRoute(path: '/testproducts/:id',
-    builder: (BuildContext context, GoRouterState state) {
-      final productId=state.pathParameters['id'];
-      return TestPoductView(productId: productId.toString(),);
-    },
-    ),
-    GoRoute(path: '/register',
-    builder: (context, state) => RegisterView(),
-    ),
-    GoRoute(path: '/login',
-    builder: (context, state) => LoginShopView(),
-    ),
-     GoRoute(path: '/checkout',
-    builder: (context, state) => CheckoutScreen(),
-    ),
-     GoRoute(path: '/address',
-    builder: (context, state) => ShippingAddress(),
-    )
 
-    
+    GoRoute(
+      path: '/notifications',
+      builder: (context, state) => const NotificationViews(),
+    ),
+    GoRoute(path: '/search', builder: (context, state) => SearchPageView()),
+    GoRoute(
+      path: '/allcategories',
+      builder: (context, state) => AllCategoriesViews(),
+    ),
+    GoRoute(path: '/category', builder: (context, state) => CategoryView()),
+    GoRoute(
+      path: '/product/:id',
+      builder: (BuildContext context, GoRouterState state) {
+        final productId = state.pathParameters['id'];
+        return ProductPage(productId: productId.toString());
+      },
+    ),
+    GoRoute(
+      path: '/testproducts/:id',
+      builder: (BuildContext context, GoRouterState state) {
+        final productId = state.pathParameters['id'];
+        return TestPoductView(productId: productId.toString());
+      },
+    ),
+    GoRoute(path: '/register', builder: (context, state) => RegisterView()),
+    GoRoute(path: '/login', builder: (context, state) => LoginShopView()),
+    GoRoute(path: '/checkout', builder: (context, state) => CheckoutScreen()),
+    GoRoute(path: '/address', builder: (context, state) => ShippingAddress()),
+    GoRoute(path: '/tracking', builder: (context, state) => TrackOrderPage()),
+
     // GoRoute(
     //   path: '/product/:id',
     //   builder: (BuildContext context, GoRouterState state) {
@@ -156,7 +143,6 @@ final GoRouter _router = GoRouter(
     //   path: '/failed',
     //   builder: (context, state) => const FailedPayment(),
     // ),
-
   ],
 );
 

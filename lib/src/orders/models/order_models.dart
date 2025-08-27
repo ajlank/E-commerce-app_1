@@ -3,6 +3,9 @@ import 'dart:convert';
 List<OrderModel> orderModelFromJson(String str) =>
     List<OrderModel>.from(json.decode(str).map((x) => OrderModel.fromJson(x)));
 
+OrderModel orderModelSingleFromJson(String str) =>
+    OrderModel.fromJson(json.decode(str));
+
 String orderModelToJson(List<OrderModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 

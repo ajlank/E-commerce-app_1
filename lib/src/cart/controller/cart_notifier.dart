@@ -164,7 +164,7 @@ class CartNotifier with ChangeNotifier {
     final accessToken = GetStorage().read('accessToken');
     try {
       Uri url = Uri.parse(
-        "https://dbe247c83b8a.ngrok-free.app/create-checkout-session",
+        "https://05ea71082003.ngrok-free.app/create-checkout-session",
       );
 
       final response = await http.post(

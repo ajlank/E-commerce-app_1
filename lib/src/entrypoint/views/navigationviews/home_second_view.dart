@@ -9,7 +9,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeSecondView extends HookWidget {
@@ -129,7 +128,7 @@ class HomeSecondView extends HookWidget {
                               const Text(
                                 'New Collection',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Color.fromARGB(255, 255, 95, 95),
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -137,7 +136,7 @@ class HomeSecondView extends HookWidget {
                               const Text(
                                 'Discount 50% off \nthe first transaction',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Color.fromARGB(255, 255, 95, 95),
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
                                 ),
