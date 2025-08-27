@@ -45,7 +45,7 @@ The app allows users to browse products, view details, manage cart and wishlist,
 <img src="./assets/images/stripe.png" alt="Stripe" width="220">  
 
 **Success**  
-<img src="./assets/images/success.png" alt="Success" width="220">  
+<img src="./assets/images/success_payment.png" alt="Success" width="220">  
 
 **Profile**  
 <img src="./assets/images/profile.png" alt="Profile" width="220">  
