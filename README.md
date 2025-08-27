@@ -24,13 +24,28 @@ The app allows users to browse products, view details, manage cart and wishlist,
 - **Payment Gateway:** Stripe  
 
 ---
+## 📸 Screenshots  
 
-<img src="./assets/images/home.png" alt="Home" width="220">
-<img src="./assets/images/product_details.png" alt="Product Details" width="220">
-<img src="./assets/images/wishlist.png" alt="Wishlist" width="220">
-<img src="./assets/images/cart.png" alt="Cart" width="220">
+**Home**  
+<img src="./assets/images/home.png" alt="Home" width="220">  
 
-<img src="./assets/images/checkout2.png" alt="Checkout" width="220">
-<img src="./assets/images/stripe.png" alt="Stripe" width="220">
-<img src="./assets/images/success.png" alt="Success" width="220">
-<img src="./assets/images/profile.png" alt="Profile" width="220">
+**Product Details**  
+<img src="./assets/images/product_details.png" alt="Product Details" width="220">  
+
+**Wishlist**  
+<img src="./assets/images/wishlist.png" alt="Wishlist" width="220">  
+
+**Cart**  
+<img src="./assets/images/cart.png" alt="Cart" width="220">  
+
+**Checkout**  
+<img src="./assets/images/checkout2.png" alt="Checkout" width="220">  
+
+**Stripe Payment**  
+<img src="./assets/images/stripe.png" alt="Stripe" width="220">  
+
+**Success**  
+<img src="./assets/images/success.png" alt="Success" width="220">  
+
+**Profile**  
+<img src="./assets/images/profile.png" alt="Profile" width="220">  
