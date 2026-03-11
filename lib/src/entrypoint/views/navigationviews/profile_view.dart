@@ -1,8 +1,8 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/profile_list_tile.dart';
-import 'package:fashionapp/src/auth/models/user_model.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/register_view.dart';
-import 'package:fashionapp/statemanagement/auth_notifier.dart';
+import 'package:fashionapp/features/auth/domain/entities/user.dart';
+import 'package:fashionapp/features/auth/presentation/controllers/auth_notifier.dart';
+import 'package:fashionapp/features/auth/presentation/views/register_view.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +29,7 @@ class _ProfileViewState extends State<ProfileView> {
     }
     return Consumer<AuthNotifier>(
       builder: (context, value, child) {
-      UserModel? user =value.userData();
+      User? user = value.userData();
       return ListView(
      children: [ 
       Container(

@@ -6,7 +6,10 @@ import 'package:fashionapp/features/address/domain/repositories/address_reposito
 import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
 import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
 import 'package:fashionapp/src/notifications/controller/notification_notifier.dart';
-import 'package:fashionapp/statemanagement/auth_notifier.dart';
+import 'package:fashionapp/features/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:fashionapp/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:fashionapp/features/auth/domain/repositories/auth_repository.dart';
+import 'package:fashionapp/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:fashionapp/statemanagement/color_size_notifier.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
@@ -34,7 +37,19 @@ void main() async {
         ChangeNotifierProvider(create: (context) => TabControllerNotifier()),
         ChangeNotifierProvider(create: (context) => ProductNotifier()),
         ChangeNotifierProvider(create: (context) => ColorSizeNotifier()),
-        ChangeNotifierProvider(create: (context) => AuthNotifier()),
+        Provider<AuthRepository>(
+          create: (_) => AuthRepositoryImpl(
+            remoteDataSource: AuthRemoteDataSourceImpl(
+              client: http.Client(),
+            ),
+            storage: GetStorage(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AuthNotifier(
+            repository: context.read<AuthRepository>(),
+          ),
+        ),
         ChangeNotifierProvider(create: (context) => SearchNotifier()),
         ChangeNotifierProvider(create: (context) => WishlistNotifier()),
         ChangeNotifierProvider(create: (context) => CartNotifier()),
