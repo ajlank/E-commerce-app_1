@@ -1,6 +1,9 @@
 import 'package:fashionapp/common/utils/app_routes.dart';
 import 'package:fashionapp/common/utils/kstrings2.dart';
-import 'package:fashionapp/src/address/controller/address_notifier.dart';
+import 'package:fashionapp/features/address/data/datasources/address_remote_data_source.dart';
+import 'package:fashionapp/features/address/data/repositories/address_repository_impl.dart';
+import 'package:fashionapp/features/address/domain/repositories/address_repository.dart';
+import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
 import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
 import 'package:fashionapp/src/notifications/controller/notification_notifier.dart';
 import 'package:fashionapp/statemanagement/auth_notifier.dart';
@@ -15,6 +18,7 @@ import 'package:fashionapp/src/wishlist/statemanagement/wishlist_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 // 10:11:26
@@ -34,7 +38,19 @@ void main() async {
         ChangeNotifierProvider(create: (context) => SearchNotifier()),
         ChangeNotifierProvider(create: (context) => WishlistNotifier()),
         ChangeNotifierProvider(create: (context) => CartNotifier()),
-        ChangeNotifierProvider(create: (context) => AddressNotifier()),
+        Provider<AddressRepository>(
+          create: (_) => AddressRepositoryImpl(
+            remoteDataSource: AddressRemoteDataSourceImpl(
+              client: http.Client(),
+              storage: GetStorage(),
+            ),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AddressNotifier(
+            repository: context.read<AddressRepository>(),
+          ),
+        ),
         ChangeNotifierProvider(create: (context) => NotificationNotifier()),
       ],
       child: const MyApp(),

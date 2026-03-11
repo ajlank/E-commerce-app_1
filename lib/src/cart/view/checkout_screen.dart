@@ -1,11 +1,11 @@
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/back_button.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
-import 'package:fashionapp/src/address/controller/address_notifier.dart';
-import 'package:fashionapp/src/addresses2/hooks/fetch/fetch_default.dart';
+import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
+import 'package:fashionapp/features/address/presentation/hooks/fetch/fetch_default.dart';
+import 'package:fashionapp/features/address/presentation/widgets/address_block.dart';
 import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
 import 'package:fashionapp/src/cart/view/checkout_tile.dart';
-import 'package:fashionapp/src/address/view/address_block.dart';
 import 'package:fashionapp/src/checkout/model/check_out_model.dart';
 import 'package:fashionapp/src/checkout/payment/payment_web_view.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class CheckoutScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final result = fetchDefaultAdd2();
+    final result = fetchDefaultAddress();
     final address = result.address;
     final isLoading = result.isLoading;
     final error = result.error;

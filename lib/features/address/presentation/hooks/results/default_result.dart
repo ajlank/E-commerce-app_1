@@ -1,17 +1,15 @@
-import 'package:fashionapp/src/addresses2/models/addresses_model2.dart';
+import 'package:fashionapp/features/address/domain/entities/address.dart';
 import 'package:flutter/material.dart';
 
-class FetchAddressListResult {
-
-  final List<AddressModel> address;
+class FetchDefaultAddressResult {
+  final Address? address;
   final bool isLoading;
   final String? error;
   final VoidCallback refetch;
-  
-  FetchAddressListResult({
+
+  FetchDefaultAddressResult({
     required this.address,
-    required this.refetch, 
+    required this.refetch,
     required this.isLoading,
     required this.error});
-
 }

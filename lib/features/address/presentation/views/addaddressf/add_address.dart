@@ -1,8 +1,8 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
-import 'package:fashionapp/src/address/controller/address_notifier.dart';
-import 'package:fashionapp/src/addresses2/models/create_address.dart';
+import 'package:fashionapp/features/address/domain/entities/create_address.dart';
+import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -119,7 +119,7 @@ class _AddAddressState extends State<AddAddress> {
                     if (_address.text.isNotEmpty &&
                         _phone.text.isNotEmpty &&
                         value.addressType != '') {
-                      CreateAddress createAddress = CreateAddress(
+                      final createAddress = CreateAddress(
                         lat: 0.00,
                         lan: 0.00,
                         isDefault: value.defaultToggle,
@@ -127,9 +127,7 @@ class _AddAddressState extends State<AddAddress> {
                         phone: _phone.text,
                         addressType: value.addressType,
                       );
-
-                      String data = createAddressToJson(createAddress);
-                      value.addAddress(data, context);
+                      value.addAddress(createAddress, context);
                     } else {
                       print('fields are empty');
                     }

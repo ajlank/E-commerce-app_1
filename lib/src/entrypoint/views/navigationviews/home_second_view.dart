@@ -1,5 +1,5 @@
 import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
-import 'package:fashionapp/src/addresses2/hooks/fetch/fetch_default.dart';
+import 'package:fashionapp/features/address/presentation/hooks/fetch/fetch_default.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/home_category.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/explore_products.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/home/home_tab_products_type.dart';
@@ -18,7 +18,7 @@ class HomeSecondView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final result = fetchDefaultAdd2();
+    final result = fetchDefaultAddress();
     final address = result.address;
     final isLoading = result.isLoading;
     final error = result.error;

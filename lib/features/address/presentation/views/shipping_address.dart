@@ -1,9 +1,9 @@
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/common/widgets/shimmers/list_shimmer.dart';
-import 'package:fashionapp/src/address/controller/address_notifier.dart';
-import 'package:fashionapp/src/address/view/address_tile.dart';
-import 'package:fashionapp/src/addresses2/hooks/fetch/fetch_address_list.dart';
+import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
+import 'package:fashionapp/features/address/presentation/hooks/fetch/fetch_address_list.dart';
+import 'package:fashionapp/features/address/presentation/widgets/address_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -14,7 +14,7 @@ class ShippingAddress extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final result = fetchAddressList2();
+    final result = fetchAddressList();
     final address = result.address;
     final isLoading = result.isLoading;
     final errorr = result.error;

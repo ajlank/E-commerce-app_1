@@ -1,9 +1,8 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
-import 'package:fashionapp/src/address/controller/address_notifier.dart';
-import 'package:fashionapp/src/addresses2/models/addresses_model2.dart';
-
+import 'package:fashionapp/features/address/domain/entities/address.dart';
+import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +11,7 @@ import 'package:provider/provider.dart';
 class SelectAddressTile2 extends StatelessWidget {
   const SelectAddressTile2({super.key, required this.address});
 
-  final AddressModel address;
+  final Address address;
 
   @override
   Widget build(BuildContext context) {

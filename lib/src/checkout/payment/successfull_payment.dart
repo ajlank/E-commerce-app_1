@@ -3,7 +3,7 @@ import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/const/constants.dart';
 import 'package:fashionapp/const/resource.dart';
-import 'package:fashionapp/src/address/controller/address_notifier.dart';
+import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
 import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
