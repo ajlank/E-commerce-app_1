@@ -3,7 +3,7 @@ import 'package:fashionapp/features/cart/presentation/views/cart_view.dart';
 import 'package:fashionapp/features/home/presentation/views/home_second_view.dart';
 
 import 'package:fashionapp/features/profile/presentation/views/profile_view.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/wishlist_view.dart';
+import 'package:fashionapp/features/wishlist/presentation/views/wishlist_view.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

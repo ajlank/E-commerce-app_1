@@ -15,6 +15,13 @@ import 'package:fashionapp/features/profile/domain/usecases/get_profile_user.dar
 import 'package:fashionapp/features/profile/domain/usecases/has_access_token.dart';
 import 'package:fashionapp/features/profile/domain/usecases/logout.dart';
 import 'package:fashionapp/features/profile/presentation/controllers/profile_notifier.dart';
+import 'package:fashionapp/features/wishlist/data/datasources/wishlist_local_data_source.dart';
+import 'package:fashionapp/features/wishlist/data/datasources/wishlist_remote_data_source.dart';
+import 'package:fashionapp/features/wishlist/data/repositories/wishlist_repository_impl.dart';
+import 'package:fashionapp/features/wishlist/domain/repositories/wishlist_repository.dart';
+import 'package:fashionapp/features/wishlist/domain/usecases/get_wishlist_ids.dart';
+import 'package:fashionapp/features/wishlist/domain/usecases/toggle_wishlist.dart';
+import 'package:fashionapp/features/wishlist/presentation/controllers/wishlist_notifier.dart';
 import 'package:fashionapp/features/searchview/data/datasources/search_remote_data_source.dart';
 import 'package:fashionapp/features/searchview/data/repositories/search_repository_impl.dart';
 import 'package:fashionapp/features/searchview/domain/repositories/search_repository.dart';
@@ -31,7 +38,6 @@ import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
 import 'package:fashionapp/statemanagement/onboard_change_notifier.dart';
 import 'package:fashionapp/statemanagement/product_notifier.dart';
 import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
-import 'package:fashionapp/src/wishlist/statemanagement/wishlist_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
@@ -76,7 +82,22 @@ void main() async {
             ),
           ),
         ),
-        ChangeNotifierProvider(create: (context) => WishlistNotifier()),
+        Provider<WishlistRepository>(
+          create: (_) => WishlistRepositoryImpl(
+            remoteDataSource: WishlistRemoteDataSource(client: http.Client()),
+            localDataSource: WishlistLocalDataSource(GetStorage()),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WishlistNotifier(
+            getWishlistIds: GetWishlistIds(
+              context.read<WishlistRepository>(),
+            ),
+            toggleWishlist: ToggleWishlist(
+              context.read<WishlistRepository>(),
+            ),
+          ),
+        ),
         Provider<CartRepository>(
           create: (_) => CartRepositoryImpl(
             remoteDataSource: CartRemoteDataSource(

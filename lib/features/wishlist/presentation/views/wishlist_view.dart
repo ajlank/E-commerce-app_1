@@ -1,7 +1,6 @@
 import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
 import 'package:fashionapp/common/widgets/staggered_tile_widget.dart';
-import 'package:fashionapp/features/products/presentation/hooks/fetch/fetch_products_by_type.dart';
-import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
+import 'package:fashionapp/features/wishlist/presentation/hooks/fetch/fetch_wishlist.dart';
 import 'package:fashionapp/features/wishlist/presentation/controllers/wishlist_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -10,18 +9,17 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 
-class ExploreProducts extends HookWidget {
-  const ExploreProducts({super.key});
+class WishList extends HookWidget {
+  const WishList({super.key});
 
   @override
   Widget build(BuildContext context) {
     final accessToken = GetStorage().read('accessToken');
 
-    final products = fetchProductsByType(
-      context.watch<TabControllerNotifier>().queryType,
-    );
+    final products = fetchWishList();
     final product = products.products;
     final isLoading = products.isLoading;
+    final refetch = products.refetch;
     final error = products.error;
 
     if (isLoading) {
@@ -52,9 +50,10 @@ class ExploreProducts extends HookWidget {
                       if (accessToken == null) {
                         showLoginBottomSheet(context);
                       } else {
-                        context
-                            .read<WishlistNotifier>()
-                            .removeOrAddWishList(pdc.id, () {});
+                        context.read<WishlistNotifier>().removeOrAddWishList(
+                              pdc.id,
+                              refetch,
+                            );
                       }
                     },
                     i: i,
