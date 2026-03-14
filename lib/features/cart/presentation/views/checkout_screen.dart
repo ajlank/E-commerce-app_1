@@ -6,8 +6,8 @@ import 'package:fashionapp/features/address/presentation/hooks/fetch/fetch_defau
 import 'package:fashionapp/features/address/presentation/widgets/address_block.dart';
 import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
 import 'package:fashionapp/features/cart/presentation/widgets/checkout_tile.dart';
-import 'package:fashionapp/src/checkout/model/check_out_model.dart';
-import 'package:fashionapp/src/checkout/payment/payment_web_view.dart';
+import 'package:fashionapp/features/cart/data/models/check_out_model.dart';
+import 'package:fashionapp/features/cart/presentation/widgets/payment_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

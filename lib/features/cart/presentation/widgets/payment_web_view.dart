@@ -1,7 +1,7 @@
 import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
 import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
-import 'package:fashionapp/src/checkout/payment/failed_payment.dart';
-import 'package:fashionapp/src/checkout/payment/successfull_payment.dart';
+import 'package:fashionapp/features/cart/presentation/widgets/failed_payment.dart';
+import 'package:fashionapp/features/cart/presentation/widgets/successfull_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
