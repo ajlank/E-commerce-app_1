@@ -1,12 +1,14 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
-import 'package:fashionapp/src/onboardingscreen/widgets/onboarding_page1.dart';
-import 'package:fashionapp/src/onboardingscreen/widgets/onboarding_page2.dart';
-import 'package:fashionapp/src/onboardingscreen/widgets/welcom_page.dart';
-import 'package:fashionapp/statemanagement/onboard_change_notifier.dart';
+import 'package:fashionapp/features/onboarding/data/datasources/onboarding_local_data_source.dart';
+import 'package:fashionapp/features/onboarding/data/repositories/onboarding_repository_impl.dart';
+import 'package:fashionapp/features/onboarding/domain/usecases/get_onboarding_content.dart';
+import 'package:fashionapp/features/onboarding/presentation/controllers/onboard_change_notifier.dart';
+import 'package:fashionapp/features/onboarding/presentation/widgets/onboarding_content_page.dart';
+import 'package:fashionapp/features/onboarding/presentation/widgets/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
+import 'package:provider/provider.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -17,7 +19,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   late final PageController _pageController;
-  
+
   @override
   void initState() {
     _pageController = PageController(
@@ -28,6 +30,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final repository = OnboardingRepositoryImpl(
+      const OnboardingLocalDataSource(),
+    );
+    final pages = GetOnboardingContent(repository)();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -36,10 +43,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             onPageChanged: (value) {
               context.read<OnboardChangeNotifier>().setSelectedPage = value;
             },
-            children: [OnboardingPage1(), OnboardingPage2(), WelcomePage()],
+            children: [
+              ...pages.map(
+                (content) => OnboardingContentPage(content: content),
+              ),
+              const WelcomePage(),
+            ],
           ),
-          (context.watch<OnboardChangeNotifier>().selectedPage == 2)
-              ? SizedBox.shrink()
+          (context.watch<OnboardChangeNotifier>().selectedPage ==
+                  pages.length)
+              ? const SizedBox.shrink()
               : Positioned(
                   bottom: 50,
                   child: SizedBox(
@@ -53,7 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         children: [
                           context.watch<OnboardChangeNotifier>().selectedPage ==
                                   0
-                              ? SizedBox.shrink()
+                              ? const SizedBox.shrink()
                               : GestureDetector(
                                   onTap: () {
                                     _pageController.animateToPage(
@@ -61,9 +74,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                               .read<OnboardChangeNotifier>()
                                               .selectedPage -
                                           1,
-                                      duration: const Duration(
-                                        microseconds: 200,
-                                      ),
+                                      duration:
+                                          const Duration(microseconds: 200),
                                       curve: Curves.easeIn,
                                     );
                                   },
@@ -80,7 +92,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               currentItem: context
                                   .watch<OnboardChangeNotifier>()
                                   .selectedPage,
-                              count: 3,
+                              count: pages.length + 1,
                               unselectedColor: Colors.black26,
                               selectedColor: Kolors.kPrimary,
                               duration: const Duration(microseconds: 200),
@@ -94,8 +106,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                           ),
                           context.watch<OnboardChangeNotifier>().selectedPage ==
-                                  2
-                              ? SizedBox.shrink()
+                                  pages.length
+                              ? const SizedBox.shrink()
                               : GestureDetector(
                                   onTap: () {
                                     _pageController.animateToPage(
@@ -103,9 +115,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                               .read<OnboardChangeNotifier>()
                                               .selectedPage +
                                           1,
-                                      duration: const Duration(
-                                        microseconds: 200,
-                                      ),
+                                      duration:
+                                          const Duration(microseconds: 200),
                                       curve: Curves.easeIn,
                                     );
                                   },

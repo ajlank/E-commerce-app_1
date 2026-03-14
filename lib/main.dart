@@ -40,7 +40,7 @@ import 'package:fashionapp/features/auth/presentation/controllers/auth_notifier.
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:fashionapp/statemanagement/color_size_notifier.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
-import 'package:fashionapp/statemanagement/onboard_change_notifier.dart';
+import 'package:fashionapp/features/onboarding/presentation/controllers/onboard_change_notifier.dart';
 import 'package:fashionapp/statemanagement/product_notifier.dart';
 import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
 import 'package:flutter/material.dart';
