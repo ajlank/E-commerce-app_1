@@ -42,7 +42,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => ColorSizeNotifier()),
         Provider<AuthRepository>(
           create: (_) => AuthRepositoryImpl(
-            remoteDataSource: AuthRemoteDataSourceImpl(
+            remoteDataSource: AuthRemoteDataSource(
               client: http.Client(),
             ),
             storage: GetStorage(),
@@ -57,7 +57,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => WishlistNotifier()),
         Provider<CartRepository>(
           create: (_) => CartRepositoryImpl(
-            remoteDataSource: CartRemoteDataSourceImpl(
+            remoteDataSource: CartRemoteDataSource(
               client: http.Client(),
               storage: GetStorage(),
             ),
