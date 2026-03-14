@@ -1,7 +1,7 @@
 // ignore_for_file: unused_element
 import 'package:fashionapp/features/address/presentation/views/addaddressf/add_address.dart';
 import 'package:fashionapp/features/address/presentation/views/shipping_address.dart';
-import 'package:fashionapp/src/cart/view/checkout_screen.dart';
+import 'package:fashionapp/features/cart/presentation/views/checkout_screen.dart';
 import 'package:fashionapp/src/entrypoint/views/app_entry_point_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/category_view.dart';

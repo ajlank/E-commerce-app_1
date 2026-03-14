@@ -1,12 +1,13 @@
-import 'package:fashionapp/src/cart/model/cart_model.dart';
-import 'package:fashionapp/src/cart/hooks/fetch_cart_result.dart';
+import 'package:fashionapp/features/cart/data/models/cart_model.dart';
+import 'package:fashionapp/features/cart/domain/entities/cart.dart';
+import 'package:fashionapp/features/cart/presentation/hooks/results/fetch_cart_result.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 FetchCartResult fetchCart(){
    
-   final cart=useState<List<CartModel>>([]);
+   final cart=useState<List<Cart>>([]);
    final isLoading=useState(false);
    final error=useState<String?>(null);
 
@@ -23,7 +24,7 @@ FetchCartResult fetchCart(){
      );
   
      if(response.statusCode==200){
-       cart.value=cartModelFromJson(response.body);
+       cart.value=List<Cart>.from(cartModelFromJson(response.body));
      }
     
     }catch(e){

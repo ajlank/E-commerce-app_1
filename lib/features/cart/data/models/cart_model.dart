@@ -2,23 +2,19 @@ import 'dart:convert';
 
 import 'package:fashionapp/src/model/products_model.dart';
 
+import '../../domain/entities/cart.dart';
+
 List<CartModel> cartModelFromJson(String str) => List<CartModel>.from(json.decode(str).map((x) => CartModel.fromJson(x)));
 
 String cartModelToJson(List<CartModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class CartModel {
-    final int id;
-    final Products product;
-    final int quantity;
-    final String? size;
-    final String? color;
-
+class CartModel extends Cart {
     CartModel({
-        required this.id,
-        required this.product,
-        required this.quantity,
-        required this.size,
-        required this.color,
+        required super.id,
+        required super.product,
+        required super.quantity,
+        required super.size,
+        required super.color,
     });
 
     factory CartModel.fromJson(Map<String, dynamic> json) {

@@ -1,5 +1,5 @@
 import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
-import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
+import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
 import 'package:fashionapp/src/checkout/payment/failed_payment.dart';
 import 'package:fashionapp/src/checkout/payment/successfull_payment.dart';
 import 'package:flutter/material.dart';

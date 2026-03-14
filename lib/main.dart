@@ -4,7 +4,10 @@ import 'package:fashionapp/features/address/data/datasources/address_remote_data
 import 'package:fashionapp/features/address/data/repositories/address_repository_impl.dart';
 import 'package:fashionapp/features/address/domain/repositories/address_repository.dart';
 import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
-import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
+import 'package:fashionapp/features/cart/data/datasources/cart_remote_data_source.dart';
+import 'package:fashionapp/features/cart/data/repositories/cart_repository_impl.dart';
+import 'package:fashionapp/features/cart/domain/repositories/cart_repository.dart';
+import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
 import 'package:fashionapp/src/notifications/controller/notification_notifier.dart';
 import 'package:fashionapp/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:fashionapp/features/auth/data/repositories/auth_repository_impl.dart';
@@ -52,7 +55,19 @@ void main() async {
         ),
         ChangeNotifierProvider(create: (context) => SearchNotifier()),
         ChangeNotifierProvider(create: (context) => WishlistNotifier()),
-        ChangeNotifierProvider(create: (context) => CartNotifier()),
+        Provider<CartRepository>(
+          create: (_) => CartRepositoryImpl(
+            remoteDataSource: CartRemoteDataSourceImpl(
+              client: http.Client(),
+              storage: GetStorage(),
+            ),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CartNotifier(
+            repository: context.read<CartRepository>(),
+          ),
+        ),
         Provider<AddressRepository>(
           create: (_) => AddressRepositoryImpl(
             remoteDataSource: AddressRemoteDataSourceImpl(

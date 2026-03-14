@@ -1,7 +1,7 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
-import 'package:fashionapp/src/cart/view/cart_counter_ui.dart';
-import 'package:fashionapp/src/cart/model/cart_model.dart';
-import 'package:fashionapp/src/cart/controller/cart_notifier.dart';
+import 'package:fashionapp/features/cart/domain/entities/cart.dart';
+import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
+import 'package:fashionapp/features/cart/presentation/widgets/cart_counter_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class CartTile extends StatelessWidget {
   const CartTile({super.key, required this.cart, required this.onDelete, required this.onUpdate});
   
-  final CartModel cart;
+  final Cart cart;
   final void Function()? onDelete;
   final void Function()? onUpdate;
    

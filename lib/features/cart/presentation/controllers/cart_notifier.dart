@@ -1,14 +1,26 @@
-import 'dart:convert';
-
-import 'package:fashionapp/src/cart/model/cart_model.dart';
+import 'package:fashionapp/features/cart/domain/entities/cart.dart';
+import 'package:fashionapp/features/cart/domain/repositories/cart_repository.dart';
+import 'package:fashionapp/features/cart/domain/usecases/add_to_cart.dart';
+import 'package:fashionapp/features/cart/domain/usecases/create_checkout.dart';
+import 'package:fashionapp/features/cart/domain/usecases/delete_cart_item.dart';
+import 'package:fashionapp/features/cart/domain/usecases/update_cart_item.dart';
 import 'package:fashionapp/statemanagement/color_size_notifier.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 class CartNotifier with ChangeNotifier {
+  CartNotifier({required CartRepository repository})
+      : _addToCart = AddToCart(repository),
+        _deleteCartItem = DeleteCartItem(repository),
+        _updateCartItem = UpdateCartItem(repository),
+        _createCheckout = CreateCheckout(repository);
+
+  final AddToCart _addToCart;
+  final DeleteCartItem _deleteCartItem;
+  final UpdateCartItem _updateCartItem;
+  final CreateCheckout _createCheckout;
+
   Function? refetchCount;
   int _qty = 0;
 
@@ -49,19 +61,9 @@ class CartNotifier with ChangeNotifier {
   }
 
   Future<void> add(String data, BuildContext ctx) async {
-    String accessToken = GetStorage().read('accessToken');
     try {
-      Uri url = Uri.parse("http://192.168.0.106:8000/api/cart/add/");
-
-      final response = await http.post(
-        url,
-        body: data,
-        headers: {
-          'Authorization': 'Token $accessToken',
-          'Content-Type': 'application/json',
-        },
-      );
-      if (response.statusCode == 201) {
+      final added = await _addToCart(data);
+      if (added) {
         refetchCount!();
         ctx.read<ColorSizeNotifier>().setSize('');
         ctx.read<ColorSizeNotifier>().setColor('');
@@ -74,18 +76,9 @@ class CartNotifier with ChangeNotifier {
   }
 
   Future<void> delete(int id, void Function() refetch) async {
-    String accessToken = GetStorage().read('accessToken');
     try {
-      Uri url = Uri.parse("http://192.168.0.106:8000/api/cart/delete/?id=$id");
-
-      final response = await http.delete(
-        url,
-        headers: {
-          'Authorization': 'Token $accessToken',
-          'Content-Type': 'application/json',
-        },
-      );
-      if (response.statusCode == 204) {
+      final deleted = await _deleteCartItem(id);
+      if (deleted) {
         refetch();
         refetchCount!();
         clearCart();
@@ -94,20 +87,9 @@ class CartNotifier with ChangeNotifier {
   }
 
   Future<void> update(int id, void Function() refetch) async {
-    String accessToken = GetStorage().read('accessToken');
     try {
-      Uri url = Uri.parse(
-        "http://192.168.0.106:8000/api/cart/update/?id=$id&count=$qty",
-      );
-
-      final response = await http.patch(
-        url,
-        headers: {
-          'Authorization': 'Token $accessToken',
-          'Content-Type': 'application/json',
-        },
-      );
-      if (response.statusCode == 200) {
+      final updated = await _updateCartItem(id: id, count: _qty);
+      if (updated) {
         refetch();
         refetchCount!();
         clearCart();
@@ -118,11 +100,11 @@ class CartNotifier with ChangeNotifier {
   final List<int> _selectedCartItemId = [];
   List<int> get selectedCartItemId => _selectedCartItemId;
 
-  final List<CartModel> _selectedCartItem = [];
-  List<CartModel> get selectedCartItem => _selectedCartItem;
+  final List<Cart> _selectedCartItem = [];
+  List<Cart> get selectedCartItem => _selectedCartItem;
   double totalPrice = 0.0;
 
-  void selectOrDeselct(int id, CartModel cartItem) {
+  void selectOrDeselct(int id, Cart cartItem) {
     if (_selectedCartItemId.contains(id)) {
       _selectedCartItemId.remove(id);
       _selectedCartItem.removeWhere((i) => i.id == id);
@@ -135,7 +117,7 @@ class CartNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  double calculateTotalPrice(List<CartModel> items) {
+  double calculateTotalPrice(List<Cart> items) {
     double tp = 0.0;
 
     for (var item in items) {
@@ -161,24 +143,10 @@ class CartNotifier with ChangeNotifier {
   }
 
   void createCheckOut(String data) async {
-    final accessToken = GetStorage().read('accessToken');
     try {
-      Uri url = Uri.parse(
-        "https://05ea71082003.ngrok-free.app/create-checkout-session",
-      );
-
-      final response = await http.post(
-        url,
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Token ${accessToken}",
-        },
-        body: data,
-      );
-      if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
-        setPaymentUrl(responseData['url']);
-        print(responseData);
+      final url = await _createCheckout(data);
+      if (url != null) {
+        setPaymentUrl(url);
       }
     } catch (e) {
       print(e.toString());

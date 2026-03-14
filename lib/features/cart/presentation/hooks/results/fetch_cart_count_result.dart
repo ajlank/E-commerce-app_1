@@ -1,4 +1,4 @@
-import 'package:fashionapp/src/cart/model/cart_count_model.dart';
+import 'package:fashionapp/features/cart/domain/entities/cart_count.dart';
 import 'package:flutter/foundation.dart';
 
 class FetchCartCountResult {
