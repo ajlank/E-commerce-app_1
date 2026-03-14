@@ -8,6 +8,13 @@ import 'package:fashionapp/features/cart/data/datasources/cart_remote_data_sourc
 import 'package:fashionapp/features/cart/data/repositories/cart_repository_impl.dart';
 import 'package:fashionapp/features/cart/domain/repositories/cart_repository.dart';
 import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
+import 'package:fashionapp/features/profile/data/datasources/profile_local_data_source.dart';
+import 'package:fashionapp/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:fashionapp/features/profile/domain/repositories/profile_repository.dart';
+import 'package:fashionapp/features/profile/domain/usecases/get_profile_user.dart';
+import 'package:fashionapp/features/profile/domain/usecases/has_access_token.dart';
+import 'package:fashionapp/features/profile/domain/usecases/logout.dart';
+import 'package:fashionapp/features/profile/presentation/controllers/profile_notifier.dart';
 import 'package:fashionapp/features/searchview/data/datasources/search_remote_data_source.dart';
 import 'package:fashionapp/features/searchview/data/repositories/search_repository_impl.dart';
 import 'package:fashionapp/features/searchview/domain/repositories/search_repository.dart';
@@ -94,6 +101,22 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => AddressNotifier(
             repository: context.read<AddressRepository>(),
+          ),
+        ),
+        Provider<ProfileRepository>(
+          create: (context) => ProfileRepositoryImpl(
+            ProfileLocalDataSource(
+              authRepository: context.read<AuthRepository>(),
+              storage: GetStorage(),
+            ),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProfileNotifier(
+            getProfileUser: GetProfileUser(context.read<ProfileRepository>()),
+            hasAccessToken:
+                HasAccessToken(context.read<ProfileRepository>()),
+            logout: Logout(context.read<ProfileRepository>()),
           ),
         ),
         ChangeNotifierProvider(create: (context) => NotificationNotifier()),
