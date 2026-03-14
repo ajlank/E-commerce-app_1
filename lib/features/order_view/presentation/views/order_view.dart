@@ -5,7 +5,7 @@ import 'package:fashionapp/common/widgets/back_button.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/common/widgets/shimmers/list_shimmer.dart';
 import 'package:fashionapp/features/notification/presentation/controllers/notification_notifier.dart';
-import 'package:fashionapp/src/orders/hooks/fetch_orders.dart';
+import 'package:fashionapp/features/order_view/presentation/hooks/fetch/fetch_order.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,9 +21,13 @@ class TrackOrderPage extends HookWidget {
 
     final isLoading = results.isLoading;
     final order = results.order;
+    final error = results.error;
 
     if (isLoading) {
       return const ListShimmer();
+    }
+    if (error != null) {
+      return Center(child: Text(error.toString()));
     }
 
     return Scaffold(
@@ -43,7 +47,6 @@ class TrackOrderPage extends HookWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
           child: ListView(
             children: [
-              // OrderTile(order: order!),
               SizedBox(height: 20.h),
               Divider(thickness: 0.5.h),
               SizedBox(height: 10.h),
@@ -52,7 +55,6 @@ class TrackOrderPage extends HookWidget {
                 style: appStyle(13, Kolors.kDark, FontWeight.w600),
               ),
               SizedBox(height: 20.h),
-
               Table(
                 border: TableBorder.all(
                   color: Kolors.kGrayLight,
@@ -61,7 +63,6 @@ class TrackOrderPage extends HookWidget {
                 ),
                 children: [
                   TableRow(
-                    // Define the first row of the table
                     children: [
                       Padding(
                         padding: EdgeInsets.all(8.h),
@@ -79,9 +80,7 @@ class TrackOrderPage extends HookWidget {
                       ),
                     ],
                   ),
-
                   TableRow(
-                    // Define the second row of the table
                     children: [
                       Padding(
                         padding: EdgeInsets.all(8.h),
@@ -100,7 +99,6 @@ class TrackOrderPage extends HookWidget {
                     ],
                   ),
                   TableRow(
-                    // Define the second row of the table
                     children: [
                       Padding(
                         padding: EdgeInsets.all(8.h),
@@ -118,9 +116,7 @@ class TrackOrderPage extends HookWidget {
                       ),
                     ],
                   ),
-
                   TableRow(
-                    // Define the second row of the table
                     children: [
                       Padding(
                         padding: EdgeInsets.all(8.h),
@@ -139,7 +135,6 @@ class TrackOrderPage extends HookWidget {
                     ],
                   ),
                   TableRow(
-                    // Define the second row of the table
                     children: [
                       Padding(
                         padding: EdgeInsets.all(8.h),
@@ -162,36 +157,6 @@ class TrackOrderPage extends HookWidget {
                   ),
                 ],
               ),
-              // SizedBox(
-              //   height: 20.h,
-              // ),
-              // ReusableText(
-              //     text: "Order Status",
-              //     style: appStyle(13, Kolors.kDark, FontWeight.w600)),
-              // SizedBox(
-              //   height: 10.h,
-              // ),
-              // SizedBox(
-              //   height: 250.h,
-              //   child: ListView(
-              //     physics: const NeverScrollableScrollPhysics(),
-              //     children: List.generate(
-              //       trackingData.length,
-              //       (index) => SteppersTile(
-              //         status: trackingData[index].status,
-              //         date: order.createdAt.add(const Duration(days: 3)).toString().substring(0,10),
-              //         address: trackingData[index].address,
-              //         color: Kolors.kPrimaryLight,
-              //         icon: trackingData[index].icon,
-              //         isLast:
-              //             index == trackingData.length - 1 ? true : false,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // Divider(
-              //   thickness: 0.5.h,
-              // ),
             ],
           ),
         ),

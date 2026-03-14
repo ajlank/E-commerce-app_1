@@ -13,7 +13,7 @@ import 'package:fashionapp/features/products/presentation/views/test_product_vie
 import 'package:fashionapp/features/notification/presentation/views/notification_views.dart';
 import 'package:fashionapp/src/onboardingscreen/views/onboarding_screen.dart';
 import 'package:fashionapp/src/splashscreen/views/splash_screen_view.dart';
-import 'package:fashionapp/src/tracking_page.dart';
+import 'package:fashionapp/features/order_view/presentation/views/order_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
