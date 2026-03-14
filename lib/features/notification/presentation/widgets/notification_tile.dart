@@ -1,7 +1,7 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
-import 'package:fashionapp/src/notifications/models/notification_model.dart';
+import 'package:fashionapp/features/notification/domain/entities/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_time_ago/get_time_ago.dart';
@@ -14,7 +14,7 @@ class NotificationTile extends StatelessWidget {
     required this.i,
   });
 
-  final NotificationModel notification;
+  final NotificationEntity notification;
   final void Function()? onUpdate;
   final int i;
 
@@ -48,7 +48,6 @@ class NotificationTile extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: ScreenUtil().screenWidth * .82,
-
                       child: Row(
                         children: [
                           ReusableText(

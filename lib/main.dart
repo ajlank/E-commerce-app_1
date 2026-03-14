@@ -8,6 +8,12 @@ import 'package:fashionapp/features/cart/data/datasources/cart_remote_data_sourc
 import 'package:fashionapp/features/cart/data/repositories/cart_repository_impl.dart';
 import 'package:fashionapp/features/cart/domain/repositories/cart_repository.dart';
 import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
+import 'package:fashionapp/features/notification/data/datasources/notification_local_data_source.dart';
+import 'package:fashionapp/features/notification/data/datasources/notification_remote_data_source.dart';
+import 'package:fashionapp/features/notification/data/repositories/notification_repository_impl.dart';
+import 'package:fashionapp/features/notification/domain/repositories/notification_repository.dart';
+import 'package:fashionapp/features/notification/domain/usecases/mark_notification_read.dart';
+import 'package:fashionapp/features/notification/presentation/controllers/notification_notifier.dart';
 import 'package:fashionapp/features/profile/data/datasources/profile_local_data_source.dart';
 import 'package:fashionapp/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:fashionapp/features/profile/domain/repositories/profile_repository.dart';
@@ -27,7 +33,6 @@ import 'package:fashionapp/features/searchview/data/repositories/search_reposito
 import 'package:fashionapp/features/searchview/domain/repositories/search_repository.dart';
 import 'package:fashionapp/features/searchview/domain/usecases/search_products.dart';
 import 'package:fashionapp/features/searchview/presentation/controllers/search_notifier.dart';
-import 'package:fashionapp/src/notifications/controller/notification_notifier.dart';
 import 'package:fashionapp/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:fashionapp/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:fashionapp/features/auth/domain/repositories/auth_repository.dart';
@@ -140,7 +145,19 @@ void main() async {
             logout: Logout(context.read<ProfileRepository>()),
           ),
         ),
-        ChangeNotifierProvider(create: (context) => NotificationNotifier()),
+        Provider<NotificationRepository>(
+          create: (_) => NotificationRepositoryImpl(
+            remoteDataSource: NotificationRemoteDataSource(client: http.Client()),
+            localDataSource: NotificationLocalDataSource(GetStorage()),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => NotificationNotifier(
+            markNotificationRead: MarkNotificationRead(
+              context.read<NotificationRepository>(),
+            ),
+          ),
+        ),
       ],
       child: const MyApp(),
     ),

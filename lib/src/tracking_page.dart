@@ -4,7 +4,7 @@ import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/back_button.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/common/widgets/shimmers/list_shimmer.dart';
-import 'package:fashionapp/src/notifications/controller/notification_notifier.dart';
+import 'package:fashionapp/features/notification/presentation/controllers/notification_notifier.dart';
 import 'package:fashionapp/src/orders/hooks/fetch_orders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

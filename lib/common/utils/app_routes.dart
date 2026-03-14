@@ -10,7 +10,7 @@ import 'package:fashionapp/features/products/presentation/views/product_page.dar
 import 'package:fashionapp/features/auth/presentation/views/register_view.dart';
 import 'package:fashionapp/features/searchview/presentation/views/search_page_view.dart';
 import 'package:fashionapp/features/products/presentation/views/test_product_view.dart';
-import 'package:fashionapp/src/entrypoint/views/notification_views.dart';
+import 'package:fashionapp/features/notification/presentation/views/notification_views.dart';
 import 'package:fashionapp/src/onboardingscreen/views/onboarding_screen.dart';
 import 'package:fashionapp/src/splashscreen/views/splash_screen_view.dart';
 import 'package:fashionapp/src/tracking_page.dart';
