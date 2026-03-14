@@ -1,8 +1,7 @@
-import 'package:fashionapp/common/widgets/bottom_sheet_login.dart';
 import 'package:fashionapp/features/address/presentation/hooks/fetch/fetch_default.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/home_category.dart';
+import 'package:fashionapp/features/home/presentation/widgets/home_tab_products_type.dart';
+import 'package:fashionapp/features/categories/presentation/views/home_category.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/explore_products.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/home/home_tab_products_type.dart';
 import 'package:fashionapp/src/widgets/notification_bar_wid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -14,8 +13,6 @@ import 'package:go_router/go_router.dart';
 class HomeSecondView extends HookWidget {
   const HomeSecondView({super.key});
 
-  final bool isTapped = false;
-
   @override
   Widget build(BuildContext context) {
     final result = fetchDefaultAddress();
@@ -24,7 +21,7 @@ class HomeSecondView extends HookWidget {
     final error = result.error;
 
     if (isLoading) {
-      return Text('loading..');
+      return const Text('loading..');
     }
     if (error != null) {
       return Center(child: Text(error.toString()));
@@ -37,7 +34,7 @@ class HomeSecondView extends HookWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Location', style: TextStyle(fontSize: 12)),
+                const Text('Location', style: TextStyle(fontSize: 12)),
                 Row(
                   children: [
                     SizedBox(
@@ -48,13 +45,13 @@ class HomeSecondView extends HookWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.location_on),
-                              SizedBox(width: 4),
+                              const Icon(Icons.location_on),
+                              const SizedBox(width: 4),
                               Text(
                                 address == null
                                     ? 'Please select a location'
                                     : address.address,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -64,13 +61,12 @@ class HomeSecondView extends HookWidget {
                         ],
                       ),
                     ),
-                    NotificationBarWid(),
+                    const NotificationBarWid(),
                   ],
                 ),
                 Row(
                   children: [
                     Container(
-                      // width: ScreenUtil().screenWidth - 69,
                       width: ScreenUtil().screenWidth - 80,
                       decoration: BoxDecoration(
                         border: Border.all(width: 0.5, color: Colors.black),
@@ -82,11 +78,11 @@ class HomeSecondView extends HookWidget {
                           onTap: () {
                             context.push('/search');
                           },
-                          child: Row(
+                          child: const Row(
                             children: [
                               Icon(Icons.search),
                               SizedBox(width: 7),
-                              const Text('Search Products'),
+                              Text('Search Products'),
                             ],
                           ),
                         ),
@@ -94,7 +90,7 @@ class HomeSecondView extends HookWidget {
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(FontAwesome.sliders),
+                      icon: const Icon(FontAwesome.sliders),
                     ),
                   ],
                 ),
@@ -141,7 +137,6 @@ class HomeSecondView extends HookWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-
                               TextButton(
                                 onPressed: () {},
                                 child: Container(
@@ -150,10 +145,10 @@ class HomeSecondView extends HookWidget {
                                     borderRadius: BorderRadius.circular(42),
                                     color: Colors.brown,
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(6.0),
                                     child: Center(
-                                      child: const Text(
+                                      child: Text(
                                         'Shop Now',
                                         style: TextStyle(color: Colors.white),
                                       ),
@@ -183,11 +178,9 @@ class HomeSecondView extends HookWidget {
                     ],
                   ),
                 ),
-
-                HomeCategorys(),
-
-                HomeTabProductsType(),
-                ExploreProducts(),
+                const HomeCategorys(),
+                const HomeTabProductsType(),
+                const ExploreProducts(),
               ],
             ),
           ),

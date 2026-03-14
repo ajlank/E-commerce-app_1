@@ -3,8 +3,8 @@ import 'package:fashionapp/features/address/presentation/views/addaddressf/add_a
 import 'package:fashionapp/features/address/presentation/views/shipping_address.dart';
 import 'package:fashionapp/features/cart/presentation/views/checkout_screen.dart';
 import 'package:fashionapp/src/entrypoint/views/app_entry_point_view.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/all_categories_views.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/categories/category_view.dart';
+import 'package:fashionapp/features/categories/presentation/views/all_categories_view.dart';
+import 'package:fashionapp/features/categories/presentation/views/category_view.dart';
 import 'package:fashionapp/features/auth/presentation/views/login_shop_view.dart';
 import 'package:fashionapp/src/entrypoint/views/navigationviews/product_page.dart';
 import 'package:fashionapp/features/auth/presentation/views/register_view.dart';

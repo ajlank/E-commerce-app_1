@@ -1,8 +1,16 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
-import 'package:fashionapp/src/entrypoint/views/navigationviews/home_view.dart';
 import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+const List<String> _homeTabs = [
+  'All',
+  'Popular',
+  'Unisex',
+  'Men',
+  'Women',
+  'Kids',
+];
 
 class HomeTabProductsType extends StatefulWidget {
   const HomeTabProductsType({super.key});
@@ -11,16 +19,19 @@ class HomeTabProductsType extends StatefulWidget {
   State<HomeTabProductsType> createState() => _HomeTabProductsTypeState();
 }
 
-class _HomeTabProductsTypeState extends State<HomeTabProductsType> with TickerProviderStateMixin{
+class _HomeTabProductsTypeState extends State<HomeTabProductsType>
+    with TickerProviderStateMixin {
   late final TabController _tabController;
   int _currentTabIndex = 0;
+
   @override
   void initState() {
-    _tabController = TabController(length: homeTabs.length, vsync: this);
-    _tabController.addListener(_handleSelection);
     super.initState();
+    _tabController = TabController(length: _homeTabs.length, vsync: this);
+    _tabController.addListener(_handleSelection);
   }
-   void _handleSelection() {
+
+  void _handleSelection() {
     final controller = Provider.of<TabControllerNotifier>(
       context,
       listen: false,
@@ -30,15 +41,16 @@ class _HomeTabProductsTypeState extends State<HomeTabProductsType> with TickerPr
         _currentTabIndex = _tabController.index;
       });
     }
-    controller.setIndex(homeTabs[_currentTabIndex]);
+    controller.setIndex(_homeTabs[_currentTabIndex]);
   }
 
   @override
   void dispose() {
-        _tabController.removeListener(_handleSelection);
+    _tabController.removeListener(_handleSelection);
     _tabController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -54,15 +66,15 @@ class _HomeTabProductsTypeState extends State<HomeTabProductsType> with TickerPr
           labelColor: Colors.white,
           dividerColor: Colors.white,
           labelPadding: EdgeInsets.zero,
-          labelStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
-          unselectedLabelStyle: TextStyle(
+          labelStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+          unselectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.w500,
             color: Colors.grey,
             fontSize: 11,
           ),
           tabs: List.generate(
-            homeTabs.length,
-            (i) => Tab(child: Center(child: Text(homeTabs[i]))),
+            _homeTabs.length,
+            (i) => Tab(child: Center(child: Text(_homeTabs[i]))),
           ),
         ),
       ),

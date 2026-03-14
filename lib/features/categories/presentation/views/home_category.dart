@@ -1,4 +1,4 @@
-import 'package:fashionapp/hooks/results/fetch_home_categories.dart';
+import 'package:fashionapp/features/categories/presentation/hooks/fetch/fetch_home_categories.dart';
 import 'package:fashionapp/statemanagement/category_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -11,14 +11,16 @@ class HomeCategorys extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final result = fetchHomeCategories();
+    final homeCategories = result.categories;
+    final isLoading = result.isLoading;
+    final error = result.error;
 
-   final result=fetchHomeCategories();
-   final homeCategories=result.categories;
-   final isLoading=result.isLoading;
-   final error=result.error;
-  
-    if(isLoading){
+    if (isLoading) {
       return const CircularProgressIndicator();
+    }
+    if (error != null) {
+      return Center(child: Text(error.toString()));
     }
     return Padding(
       padding: const EdgeInsets.all(1.0),
@@ -29,9 +31,9 @@ class HomeCategorys extends HookWidget {
           return GestureDetector(
             onTap: () {
               context.read<CategoryNotifier>().setCategoryAndId(
-                item.id,
-                item.title,
-              );
+                    item.id,
+                    item.title,
+                  );
               context.push('/category');
             },
             child: Padding(
@@ -47,7 +49,7 @@ class HomeCategorys extends HookWidget {
                         child: SvgPicture.network(item.imageUrl),
                       ),
                     ),
-                    Text(item.title, style: TextStyle(fontSize: 11.3)),
+                    Text(item.title, style: const TextStyle(fontSize: 11.3)),
                   ],
                 ),
               ),
