@@ -1,5 +1,5 @@
 import 'package:fashionapp/common/widgets/staggered_tile_widget.dart';
-import 'package:fashionapp/hooks/results/fetch_recommended_products.dart';
+import 'package:fashionapp/features/products/presentation/hooks/fetch/fetch_recommended_products.dart';
 import 'package:fashionapp/statemanagement/product_notifier.dart';
 import 'package:fashionapp/src/wishlist/statemanagement/wishlist_notifier.dart';
 import 'package:flutter/material.dart';
@@ -10,20 +10,25 @@ import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class RecommendedProducts extends HookWidget{
+class RecommendedProducts extends HookWidget {
   const RecommendedProducts({super.key});
 
   @override
   Widget build(BuildContext context) {
     final accessToken = GetStorage().read('accessToken');
 
-     final products=fetchRecommendedProducts(context.read<ProductNotifier>().product!.category);
-     final product=products.products;
-     final isLoading=products.isLoading;
-     final error=products.error;
+    final products = fetchRecommendedProducts(
+      context.read<ProductNotifier>().product!.category,
+    );
+    final product = products.products;
+    final isLoading = products.isLoading;
+    final error = products.error;
 
-    if(isLoading){
-      return CircularProgressIndicator();
+    if (isLoading) {
+      return const CircularProgressIndicator();
+    }
+    if (error != null) {
+      return Center(child: Text(error.toString()));
     }
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2.h),
@@ -50,22 +55,22 @@ class RecommendedProducts extends HookWidget{
                           padding: const EdgeInsets.all(12.0),
                           child: Column(
                             children: [
-                              Text(
+                              const Text(
                                 'You are restricted to proceed',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              Divider(),
-                              Text(
+                              const Divider(),
+                              const Text(
                                 'To proceed please login into your account or register',
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              SizedBox(height: 12),
+                              const SizedBox(height: 12),
                               GestureDetector(
                                 onTap: () {
                                   context.go('/login');
@@ -77,8 +82,8 @@ class RecommendedProducts extends HookWidget{
                                   ),
                                   height: 40,
                                   width: double.infinity,
-                                  child: Center(
-                                    child: const Text(
+                                  child: const Center(
+                                    child: Text(
                                       'Proceed to Login',
                                       style: TextStyle(color: Colors.white),
                                     ),
@@ -92,7 +97,9 @@ class RecommendedProducts extends HookWidget{
                     },
                   );
                 } else {
-                 context.read<WishlistNotifier>().removeOrAddWishList(pd.id, (){});
+                  context
+                      .read<WishlistNotifier>()
+                      .removeOrAddWishList(pd.id, () {});
                 }
               },
               i: i,

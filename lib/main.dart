@@ -8,6 +8,11 @@ import 'package:fashionapp/features/cart/data/datasources/cart_remote_data_sourc
 import 'package:fashionapp/features/cart/data/repositories/cart_repository_impl.dart';
 import 'package:fashionapp/features/cart/domain/repositories/cart_repository.dart';
 import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
+import 'package:fashionapp/features/searchview/data/datasources/search_remote_data_source.dart';
+import 'package:fashionapp/features/searchview/data/repositories/search_repository_impl.dart';
+import 'package:fashionapp/features/searchview/domain/repositories/search_repository.dart';
+import 'package:fashionapp/features/searchview/domain/usecases/search_products.dart';
+import 'package:fashionapp/features/searchview/presentation/controllers/search_notifier.dart';
 import 'package:fashionapp/src/notifications/controller/notification_notifier.dart';
 import 'package:fashionapp/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:fashionapp/features/auth/data/repositories/auth_repository_impl.dart';
@@ -18,7 +23,6 @@ import 'package:fashionapp/statemanagement/color_size_notifier.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
 import 'package:fashionapp/statemanagement/onboard_change_notifier.dart';
 import 'package:fashionapp/statemanagement/product_notifier.dart';
-import 'package:fashionapp/statemanagement/search_notifier.dart';
 import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
 import 'package:fashionapp/src/wishlist/statemanagement/wishlist_notifier.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +57,18 @@ void main() async {
             repository: context.read<AuthRepository>(),
           ),
         ),
-        ChangeNotifierProvider(create: (context) => SearchNotifier()),
+        Provider<SearchRepository>(
+          create: (_) => SearchRepositoryImpl(
+            SearchRemoteDataSource(client: http.Client()),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SearchNotifier(
+            searchProducts: SearchProducts(
+              context.read<SearchRepository>(),
+            ),
+          ),
+        ),
         ChangeNotifierProvider(create: (context) => WishlistNotifier()),
         Provider<CartRepository>(
           create: (_) => CartRepositoryImpl(
