@@ -1,4 +1,4 @@
-import 'package:fashionapp/src/model/products_model.dart';
+import 'package:fashionapp/features/products/data/models/products_model.dart';
 import '../repositories/wishlist_repository.dart';
 
 class GetWishlist {

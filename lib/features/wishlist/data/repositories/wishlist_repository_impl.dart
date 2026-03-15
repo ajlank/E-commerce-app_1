@@ -1,4 +1,4 @@
-import 'package:fashionapp/src/model/products_model.dart';
+import 'package:fashionapp/features/products/data/models/products_model.dart';
 import '../../domain/repositories/wishlist_repository.dart';
 import '../datasources/wishlist_local_data_source.dart';
 import '../datasources/wishlist_remote_data_source.dart';

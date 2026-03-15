@@ -1,3 +1,4 @@
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -8,7 +9,7 @@ import '../../../domain/entities/notification.dart';
 import '../../../domain/usecases/get_notifications.dart';
 import '../results/notification_result.dart';
 
-NotificationResult fetchNotification() {
+NotificationResult fetchNotification(BuildContext context) {
   final notification = useState<List<NotificationEntity>>([]);
   final isLoading = useState(false);
   final error = useState<String?>(null);

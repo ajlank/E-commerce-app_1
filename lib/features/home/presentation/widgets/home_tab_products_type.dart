@@ -1,5 +1,5 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
-import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
+import 'package:fashionapp/features/home/presentation/controller/tab_controller_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -37,12 +37,12 @@ import 'package:fashionapp/features/auth/data/datasources/auth_remote_data_sourc
 import 'package:fashionapp/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:fashionapp/features/auth/domain/repositories/auth_repository.dart';
 import 'package:fashionapp/features/auth/presentation/controllers/auth_notifier.dart';
-import 'package:fashionapp/statemanagement/category_notifier.dart';
-import 'package:fashionapp/statemanagement/color_size_notifier.dart';
+import 'package:fashionapp/features/categories/presentation/controller/category_notifier.dart';
+import 'package:fashionapp/features/cart/presentation/controllers/color_size_notifier.dart';
 import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
 import 'package:fashionapp/features/onboarding/presentation/controllers/onboard_change_notifier.dart';
-import 'package:fashionapp/statemanagement/product_notifier.dart';
-import 'package:fashionapp/statemanagement/tab_controller_notifier.dart';
+import 'package:fashionapp/features/products/presentation/controller/product_notifier.dart';
+import 'package:fashionapp/features/home/presentation/controller/tab_controller_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';

@@ -1,5 +1,5 @@
-import 'package:fashionapp/src/model/products_model.dart';
-import 'package:fashionapp/statemanagement/product_notifier.dart';
+import 'package:fashionapp/features/products/data/models/products_model.dart';
+import 'package:fashionapp/features/products/presentation/controller/product_notifier.dart';
 import 'package:fashionapp/features/wishlist/presentation/controllers/wishlist_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';

@@ -1,4 +1,4 @@
-import 'package:fashionapp/src/model/categories_model.dart';
+import 'package:fashionapp/features/categories/data/models/categories_model.dart';
 import 'package:flutter/foundation.dart';
 
 class FetchCategories {

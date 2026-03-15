@@ -1,6 +1,6 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import 'package:fashionapp/src/model/products_model.dart';
+import 'package:fashionapp/features/products/data/models/products_model.dart';
 import '../../../data/datasources/product_remote_data_source.dart';
 import '../../../data/repositories/product_repository_impl.dart';
 import '../../../domain/usecases/get_recommended_products.dart';

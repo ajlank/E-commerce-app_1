@@ -1,12 +1,11 @@
-import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/back_button.dart';
-import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
 import 'package:fashionapp/features/address/presentation/hooks/fetch/fetch_default.dart';
 import 'package:fashionapp/features/address/presentation/widgets/address_block.dart';
 import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
-import 'package:fashionapp/features/cart/presentation/widgets/checkout_tile.dart';
 import 'package:fashionapp/features/cart/data/models/check_out_model.dart';
+import 'package:fashionapp/features/cart/presentation/widgets/checkout_bottom_bar.dart';
+import 'package:fashionapp/features/cart/presentation/widgets/checkout_items_section.dart';
 import 'package:fashionapp/features/cart/presentation/widgets/payment_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -48,23 +47,17 @@ class CheckoutScreen extends HookWidget {
                         ? SizedBox.shrink()
                         : AddressBlock(address: address),
                     SizedBox(height: 18.h),
-                    SizedBox(
-                      height: ScreenUtil().screenHeight * 0.5,
-                      child: Column(
-                        children: List.generate(value.selectedCartItem.length, (
-                          i,
-                        ) {
-                          return CheckOutTile(cart: value.selectedCartItem[i]);
-                        }),
-                      ),
-                    ),
+                    CheckoutItemsSection(items: value.selectedCartItem),
                   ],
                 );
               },
             ),
             bottomNavigationBar: Consumer<CartNotifier>(
               builder: (context, value, child) {
-                return GestureDetector(
+                return CheckoutBottomBar(
+                  label: address == null
+                      ? "Please add an address"
+                      : "Proceed to payment",
                   onTap: () {
                     if (address == null) {
                       context.push('/address');
@@ -95,21 +88,6 @@ class CheckoutScreen extends HookWidget {
                       value.createCheckOut(c);
                     }
                   },
-                  child: Container(
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 200, 138, 115),
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: Center(
-                      child: ReusableText(
-                        text: address == null
-                            ? "Please add an address"
-                            : "Proceed to payment",
-                        style: appStyle(18, Colors.white, FontWeight.w400),
-                      ),
-                    ),
-                  ),
                 );
               },
             ),
@@ -117,6 +95,3 @@ class CheckoutScreen extends HookWidget {
   }
 }
 
-// 10:11:26
-
-// 2:54:03

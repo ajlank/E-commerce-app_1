@@ -2,7 +2,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../data/datasources/wishlist_local_data_source.dart';
-import 'package:fashionapp/src/model/products_model.dart';
+import 'package:fashionapp/features/products/data/models/products_model.dart';
 import '../../../data/datasources/wishlist_remote_data_source.dart';
 import '../../../data/repositories/wishlist_repository_impl.dart';
 import '../../../domain/usecases/get_wishlist.dart';

@@ -1,6 +1,6 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
-import 'package:fashionapp/statemanagement/color_size_notifier.dart';
-import 'package:fashionapp/statemanagement/product_notifier.dart';
+import 'package:fashionapp/features/cart/presentation/controllers/color_size_notifier.dart';
+import 'package:fashionapp/features/products/presentation/controller/product_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

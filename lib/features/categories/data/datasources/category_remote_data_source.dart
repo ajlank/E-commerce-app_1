@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:fashionapp/src/model/products_model.dart';
+import 'package:fashionapp/features/products/data/models/products_model.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/category_model.dart';

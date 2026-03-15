@@ -4,7 +4,7 @@ import 'package:fashionapp/features/cart/domain/usecases/add_to_cart.dart';
 import 'package:fashionapp/features/cart/domain/usecases/create_checkout.dart';
 import 'package:fashionapp/features/cart/domain/usecases/delete_cart_item.dart';
 import 'package:fashionapp/features/cart/domain/usecases/update_cart_item.dart';
-import 'package:fashionapp/statemanagement/color_size_notifier.dart';
+import 'package:fashionapp/features/cart/presentation/controllers/color_size_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';

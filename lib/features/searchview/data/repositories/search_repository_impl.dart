@@ -1,4 +1,4 @@
-import 'package:fashionapp/src/model/products_model.dart';
+import 'package:fashionapp/features/products/data/models/products_model.dart';
 import '../../domain/repositories/search_repository.dart';
 import '../datasources/search_remote_data_source.dart';
 

@@ -1,4 +1,4 @@
-import 'package:fashionapp/statemanagement/product_notifier.dart';
+import 'package:fashionapp/features/products/presentation/controller/product_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

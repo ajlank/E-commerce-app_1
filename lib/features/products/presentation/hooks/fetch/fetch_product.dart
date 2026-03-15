@@ -1,5 +1,5 @@
-import 'package:fashionapp/hooks/results/fetch_product_by_categories_result.dart';
-import 'package:fashionapp/src/model/products_model.dart';
+import 'package:fashionapp/features/products/presentation/hooks/fetch/fetch_product_by_categories_result.dart';
+import 'package:fashionapp/features/products/data/models/products_model.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:http/http.dart' as http;
 

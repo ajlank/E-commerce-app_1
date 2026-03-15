@@ -1,4 +1,4 @@
-import 'package:fashionapp/src/model/products_model.dart';
+import 'package:fashionapp/features/products/data/models/products_model.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../data/datasources/category_remote_data_source.dart';
