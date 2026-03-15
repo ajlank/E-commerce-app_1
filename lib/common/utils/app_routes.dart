@@ -5,7 +5,7 @@ import 'package:fashionapp/features/cart/presentation/views/checkout_screen.dart
 import 'package:fashionapp/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:fashionapp/features/order_view/presentation/views/order_view.dart';
 import 'package:fashionapp/features/splash_screen/presentation/views/splash_screen_view.dart';
-import 'package:fashionapp/src/entrypoint/views/app_entry_point_view.dart';
+import 'package:fashionapp/features/entry/presentation/views/app_entry_point_view.dart';
 import 'package:fashionapp/features/categories/presentation/views/all_categories_view.dart';
 import 'package:fashionapp/features/categories/presentation/views/category_view.dart';
 import 'package:fashionapp/features/auth/presentation/views/login_shop_view.dart';
