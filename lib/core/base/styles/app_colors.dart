@@ -25,6 +25,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color entryNavBackground;
   final Color promoSliderAccent;
   final Color homeTabUnselected;
+  final Color surfaceOffWhite;
 
   const AppColors({
     required this.addAddressBackground,
@@ -50,6 +51,7 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.entryNavBackground,
     required this.promoSliderAccent,
     required this.homeTabUnselected,
+    required this.surfaceOffWhite,
   });
 
   static const light = AppColors(
@@ -76,6 +78,7 @@ class AppColors extends ThemeExtension<AppColors> {
     entryNavBackground: Color(0x1FFFFFFF),
     promoSliderAccent: Color.fromARGB(255, 255, 95, 95),
     homeTabUnselected: Color(0xFF9E9E9E),
+    surfaceOffWhite: Color(0xFFF3F4F8),
   );
 
   @override
@@ -103,6 +106,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? entryNavBackground,
     Color? promoSliderAccent,
     Color? homeTabUnselected,
+    Color? surfaceOffWhite,
   }) {
     return AppColors(
       addAddressBackground: addAddressBackground ?? this.addAddressBackground,
@@ -142,6 +146,7 @@ class AppColors extends ThemeExtension<AppColors> {
       entryNavBackground: entryNavBackground ?? this.entryNavBackground,
       promoSliderAccent: promoSliderAccent ?? this.promoSliderAccent,
       homeTabUnselected: homeTabUnselected ?? this.homeTabUnselected,
+      surfaceOffWhite: surfaceOffWhite ?? this.surfaceOffWhite,
     );
   }
 
@@ -259,6 +264,9 @@ class AppColors extends ThemeExtension<AppColors> {
       homeTabUnselected:
           Color.lerp(homeTabUnselected, other.homeTabUnselected, t) ??
               homeTabUnselected,
+      surfaceOffWhite:
+          Color.lerp(surfaceOffWhite, other.surfaceOffWhite, t) ??
+              surfaceOffWhite,
     );
   }
 }

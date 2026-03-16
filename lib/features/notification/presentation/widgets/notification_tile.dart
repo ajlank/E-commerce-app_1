@@ -1,6 +1,6 @@
-import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:fashionapp/features/notification/domain/entities/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,13 +20,20 @@ class NotificationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return GestureDetector(
       onTap: onUpdate,
       child: Container(
         decoration: BoxDecoration(
-          color: (i % 2 == 0) ? Kolors.kOffWhite : Kolors.kWhite,
+          color: (i % 2 == 0)
+              ? appColors.surfaceOffWhite
+              : appColors.addAddressText,
           border: Border.symmetric(
-            horizontal: BorderSide(width: .2.h, color: Kolors.kGrayLight),
+            horizontal: BorderSide(
+              width: .2.h,
+              color: appColors.addressTileBadgeInactiveBackground,
+            ),
           ),
         ),
         child: Padding(
@@ -34,10 +41,10 @@ class NotificationTile extends StatelessWidget {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundColor: Kolors.kSecondaryLight,
+                backgroundColor: appColors.addressTileAvatarBackground,
                 child: Icon(
                   Icons.notifications,
-                  color: Kolors.kPrimary,
+                  color: appColors.addressBlockTitle,
                   size: 28,
                 ),
               ),
@@ -54,7 +61,7 @@ class NotificationTile extends StatelessWidget {
                             text: notification.title,
                             style: appStyle(
                               13,
-                              Kolors.kGrayLight,
+                              appColors.addressTileBadgeInactiveBackground,
                               FontWeight.w500,
                             ),
                           ),
@@ -63,7 +70,7 @@ class NotificationTile extends StatelessWidget {
                             text: GetTimeAgo.parse(notification.createdAt),
                             style: appStyle(
                               12,
-                              Kolors.kGrayLight,
+                              appColors.addressTileBadgeInactiveBackground,
                               FontWeight.normal,
                             ),
                           ),
@@ -76,7 +83,11 @@ class NotificationTile extends StatelessWidget {
                         notification.message,
                         textAlign: TextAlign.justify,
                         maxLines: 3,
-                        style: appStyle(12, Kolors.kGray, FontWeight.normal),
+                        style: appStyle(
+                          12,
+                          appColors.addressTextFieldDisabledBorder,
+                          FontWeight.normal,
+                        ),
                       ),
                     ),
                   ],

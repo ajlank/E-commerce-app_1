@@ -3,6 +3,7 @@ import 'package:fashionapp/common/widgets/shimmers/list_shimmer.dart';
 import 'package:fashionapp/features/notification/presentation/controllers/notification_notifier.dart';
 import 'package:fashionapp/features/notification/presentation/hooks/fetch/fetch_notifications.dart';
 import 'package:fashionapp/features/notification/presentation/widgets/notification_tile.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,8 @@ class NotificationViews extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     final result = fetchNotification(context);
     final notifications = result.notifications;
     final isLoading = result.isLoading;
@@ -24,7 +27,7 @@ class NotificationViews extends HookWidget {
       return Scaffold(
         body: Container(
           padding: const EdgeInsets.all(8.0),
-          color: Colors.white,
+          color: appColors.addAddressText,
           child: const ListShimmer(),
         ),
       );
