@@ -17,6 +17,10 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color addressTileDeleteBackground;
   final Color addressTypeSelectedBackground;
   final Color authHeaderTitle;
+  final Color cartCheckoutBackground;
+  final Color cartTileSelectedBackground;
+  final Color cartTileUpdateBackground;
+  final Color webViewBackground;
 
   const AppColors({
     required this.addAddressBackground,
@@ -34,6 +38,10 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.addressTileDeleteBackground,
     required this.addressTypeSelectedBackground,
     required this.authHeaderTitle,
+    required this.cartCheckoutBackground,
+    required this.cartTileSelectedBackground,
+    required this.cartTileUpdateBackground,
+    required this.webViewBackground,
   });
 
   static const light = AppColors(
@@ -52,6 +60,10 @@ class AppColors extends ThemeExtension<AppColors> {
     addressTileDeleteBackground: Color(0xFFFF0000),
     addressTypeSelectedBackground: Color(0xFFB47043),
     authHeaderTitle: Color(0xFFA52A2A),
+    cartCheckoutBackground: Color.fromARGB(255, 216, 151, 127),
+    cartTileSelectedBackground: Color.fromARGB(77, 227, 189, 189),
+    cartTileUpdateBackground: Color.fromARGB(255, 153, 103, 84),
+    webViewBackground: Color(0x00000000),
   );
 
   @override
@@ -71,6 +83,10 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? addressTileDeleteBackground,
     Color? addressTypeSelectedBackground,
     Color? authHeaderTitle,
+    Color? cartCheckoutBackground,
+    Color? cartTileSelectedBackground,
+    Color? cartTileUpdateBackground,
+    Color? webViewBackground,
   }) {
     return AppColors(
       addAddressBackground: addAddressBackground ?? this.addAddressBackground,
@@ -98,6 +114,13 @@ class AppColors extends ThemeExtension<AppColors> {
       addressTypeSelectedBackground:
           addressTypeSelectedBackground ?? this.addressTypeSelectedBackground,
       authHeaderTitle: authHeaderTitle ?? this.authHeaderTitle,
+      cartCheckoutBackground:
+          cartCheckoutBackground ?? this.cartCheckoutBackground,
+      cartTileSelectedBackground:
+          cartTileSelectedBackground ?? this.cartTileSelectedBackground,
+      cartTileUpdateBackground:
+          cartTileUpdateBackground ?? this.cartTileUpdateBackground,
+      webViewBackground: webViewBackground ?? this.webViewBackground,
     );
   }
 
@@ -182,6 +205,24 @@ class AppColors extends ThemeExtension<AppColors> {
       authHeaderTitle:
           Color.lerp(authHeaderTitle, other.authHeaderTitle, t) ??
               authHeaderTitle,
+      cartCheckoutBackground:
+          Color.lerp(cartCheckoutBackground, other.cartCheckoutBackground, t) ??
+              cartCheckoutBackground,
+      cartTileSelectedBackground: Color.lerp(
+            cartTileSelectedBackground,
+            other.cartTileSelectedBackground,
+            t,
+          ) ??
+          cartTileSelectedBackground,
+      cartTileUpdateBackground: Color.lerp(
+            cartTileUpdateBackground,
+            other.cartTileUpdateBackground,
+            t,
+          ) ??
+          cartTileUpdateBackground,
+      webViewBackground:
+          Color.lerp(webViewBackground, other.webViewBackground, t) ??
+              webViewBackground,
     );
   }
 }

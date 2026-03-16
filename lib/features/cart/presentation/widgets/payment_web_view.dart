@@ -2,6 +2,7 @@ import 'package:fashionapp/features/address/presentation/controllers/address_not
 import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
 import 'package:fashionapp/features/cart/presentation/widgets/failed_payment.dart';
 import 'package:fashionapp/features/cart/presentation/widgets/successfull_payment.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +41,6 @@ class _PaymentWebViewState extends State<PaymentWebView> {
 
     controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (String url) {},
@@ -77,6 +77,9 @@ class _PaymentWebViewState extends State<PaymentWebView> {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
+    _controller.setBackgroundColor(appColors.webViewBackground);
     return Consumer<CartNotifier>(
       builder: (context, cartNotifier, child) {
         if (cartNotifier.success.contains('checkout-success')) {
@@ -87,7 +90,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
         }
 
         return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: appColors.addAddressText,
           body: Padding(
             padding: EdgeInsets.only(top: 68.h),
             child: WebViewWidget(controller: _controller),

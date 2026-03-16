@@ -1,4 +1,5 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:fashionapp/features/cart/domain/entities/cart.dart';
 import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,8 @@ class CheckOutTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return Consumer<CartNotifier>(
       builder: (context, value, child) {
         return Padding(
@@ -25,7 +28,7 @@ class CheckOutTile extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: value.selectedCartItemId.contains(cart.id)
-                        ? Color.fromARGB(77, 227, 189, 189)
+                        ? appColors.cartTileSelectedBackground
                         : Kolors.kOffWhite,
                   ),
                   child: Row(

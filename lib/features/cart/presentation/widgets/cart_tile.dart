@@ -1,4 +1,5 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:fashionapp/features/cart/domain/entities/cart.dart';
 import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
 import 'package:fashionapp/features/cart/presentation/widgets/cart_counter_ui.dart';
@@ -15,6 +16,8 @@ class CartTile extends StatelessWidget {
    
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return Consumer<CartNotifier>(
       builder: (context, value, child) {
         return Padding(
@@ -32,7 +35,7 @@ class CartTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: value.selectedCartItemId.contains(cart.id)?
-                   Color.fromARGB(77, 227, 189, 189):Kolors.kOffWhite,
+                   appColors.cartTileSelectedBackground:Kolors.kOffWhite,
                 ),
                 child: Row(
                   children: [
@@ -50,7 +53,13 @@ class CartTile extends StatelessWidget {
                          Positioned(
                           bottom: 60,
                           right: 30,
-                          child: IconButton(onPressed: onDelete, icon: Icon(Icons.delete_sharp,color: Colors.red,)))
+                          child: IconButton(
+                            onPressed: onDelete,
+                            icon: Icon(
+                              Icons.delete_sharp,
+                              color: appColors.addressTileDeleteBackground,
+                            ),
+                          ))
                         ],
                         
                       )
@@ -113,7 +122,9 @@ class CartTile extends StatelessWidget {
                               },
                               onTap: onUpdate,
                               child: Text('update',style: TextStyle(
-                                color: Colors.white,backgroundColor: const Color.fromARGB(255, 153, 103, 84)),)
+                                color: appColors.addAddressText,
+                                backgroundColor: appColors.cartTileUpdateBackground,
+                              ),)
                            ):SizedBox.shrink()
                      
                       ],

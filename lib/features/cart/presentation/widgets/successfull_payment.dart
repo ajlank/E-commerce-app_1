@@ -1,6 +1,6 @@
-import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:fashionapp/core/const/constants.dart';
 import 'package:fashionapp/core/const/resource.dart';
 import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
@@ -15,12 +15,14 @@ class SuccessfullPayment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: ReusableText(
           text: 'Payment',
-          style: appStyle(16, Kolors.kPrimary, FontWeight.w600),
+          style: appStyle(16, appColors.addressBlockTitle, FontWeight.w600),
         ),
       ),
       body: Column(
@@ -37,7 +39,7 @@ class SuccessfullPayment extends StatelessWidget {
           Center(
             child: ReusableText(
               text: 'Payment Successful',
-              style: appStyle(20, Kolors.kPrimary, FontWeight.w600),
+              style: appStyle(20, appColors.addressBlockTitle, FontWeight.w600),
             ),
           ),
           SizedBox(height: 10.h),
@@ -45,7 +47,11 @@ class SuccessfullPayment extends StatelessWidget {
           Center(
             child: ReusableText(
               text: 'Thank you for your purchase',
-              style: appStyle(14, Kolors.kGray, FontWeight.normal),
+              style: appStyle(
+                14,
+                appColors.addressTextFieldDisabledBorder,
+                FontWeight.normal,
+              ),
             ),
           ),
         ],
@@ -63,13 +69,13 @@ class SuccessfullPayment extends StatelessWidget {
           height: 80,
           width: ScreenUtil().scaleWidth,
           decoration: BoxDecoration(
-            color: Kolors.kPrimary,
+            color: appColors.addressBlockTitle,
             borderRadius: kRadiusTop,
           ),
           child: Center(
             child: ReusableText(
               text: 'Continue to Home',
-              style: appStyle(16, Kolors.kWhite, FontWeight.w600),
+              style: appStyle(16, appColors.addAddressText, FontWeight.w600),
             ),
           ),
         ),

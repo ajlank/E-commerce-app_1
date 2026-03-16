@@ -2,6 +2,7 @@ import 'package:fashionapp/features/cart/presentation/widgets/cart_tile.dart';
 import 'package:fashionapp/features/cart/presentation/hooks/fetch_cart.dart';
 import 'package:fashionapp/features/cart/presentation/controllers/cart_notifier.dart';
 import 'package:fashionapp/features/auth/presentation/views/register_view.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,7 +14,9 @@ class CartView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     final accessToken=GetStorage().read('accessToken');
  
     if(accessToken==null){
@@ -56,7 +59,7 @@ class CartView extends HookWidget {
             child: value.selectedCartItem.isNotEmpty? Container(
               height: 40,
              decoration: BoxDecoration(
-               color: const Color.fromARGB(255, 216, 151, 127),
+               color: appColors.cartCheckoutBackground,
                borderRadius: BorderRadius.circular(12.1)
              ),
              child: Row(
@@ -64,11 +67,23 @@ class CartView extends HookWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left:8.0),
-                  child: const Text('Click To Checkout', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                  child: Text(
+                    'Click To Checkout',
+                    style: TextStyle(
+                      color: appColors.addAddressText,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                  Padding(
                   padding: const EdgeInsets.only(right:8.0),
-                  child: Text('\$ ${value.totalPrice.toStringAsFixed(2)}', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                  child: Text(
+                    '\$ ${value.totalPrice.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      color: appColors.addAddressText,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 )
               ],
              ),
