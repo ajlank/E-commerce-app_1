@@ -30,6 +30,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color welcomeLink;
   final Color productInfoTypeText;
   final Color productInfoStar;
+  final Color splashBackground;
 
   const AppColors({
     required this.addAddressBackground,
@@ -60,6 +61,7 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.welcomeLink,
     required this.productInfoTypeText,
     required this.productInfoStar,
+    required this.splashBackground,
   });
 
   static const light = AppColors(
@@ -91,6 +93,7 @@ class AppColors extends ThemeExtension<AppColors> {
     welcomeLink: Color(0xFF2196F3),
     productInfoTypeText: Color.fromARGB(255, 75, 73, 73),
     productInfoStar: Color.fromARGB(255, 231, 178, 44),
+    splashBackground: Color(0xFF000000),
   );
 
   @override
@@ -123,6 +126,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? welcomeLink,
     Color? productInfoTypeText,
     Color? productInfoStar,
+    Color? splashBackground,
   }) {
     return AppColors(
       addAddressBackground: addAddressBackground ?? this.addAddressBackground,
@@ -168,6 +172,7 @@ class AppColors extends ThemeExtension<AppColors> {
       welcomeLink: welcomeLink ?? this.welcomeLink,
       productInfoTypeText: productInfoTypeText ?? this.productInfoTypeText,
       productInfoStar: productInfoStar ?? this.productInfoStar,
+      splashBackground: splashBackground ?? this.splashBackground,
     );
   }
 
@@ -304,6 +309,9 @@ class AppColors extends ThemeExtension<AppColors> {
       productInfoStar:
           Color.lerp(productInfoStar, other.productInfoStar, t) ??
               productInfoStar,
+      splashBackground:
+          Color.lerp(splashBackground, other.splashBackground, t) ??
+              splashBackground,
     );
   }
 }

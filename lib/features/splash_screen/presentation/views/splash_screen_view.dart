@@ -1,6 +1,7 @@
 import 'package:fashionapp/features/splash_screen/data/datasources/splash_local_data_source.dart';
 import 'package:fashionapp/features/splash_screen/data/repositories/splash_repository_impl.dart';
 import 'package:fashionapp/features/splash_screen/domain/usecases/get_next_route.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
@@ -33,8 +34,10 @@ class _SplashScreenViewState extends State<SplashScreenView> {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: appColors.splashBackground,
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
