@@ -1,3 +1,4 @@
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AddressSubmitButton extends StatelessWidget {
@@ -7,17 +8,19 @@ class AddressSubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return Container(
       height: 30,
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 161, 125, 112),
+        color: appColors.addressSubmitBackground,
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextButton(
         onPressed: onPressed,
-        child: const Text(
+        child: Text(
           'S U B M I T',
-          style: TextStyle(color: Colors.white, fontSize: 12),
+          style: TextStyle(color: appColors.addAddressText, fontSize: 12),
         ),
       ),
     );

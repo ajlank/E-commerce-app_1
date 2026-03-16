@@ -1,6 +1,7 @@
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/common/widgets/shimmers/list_shimmer.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
 import 'package:fashionapp/features/address/presentation/hooks/fetch/fetch_address_list.dart';
 import 'package:fashionapp/features/address/presentation/widgets/address_tile.dart';
@@ -28,6 +29,8 @@ class ShippingAddress extends HookWidget {
       );
     }
     context.read<AddressNotifier>().setRefetch(refetch);
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return Scaffold(
       appBar: AppBar(title: Text('Address'), centerTitle: true),
 
@@ -59,13 +62,13 @@ class ShippingAddress extends HookWidget {
         child: Container(
           height: 80,
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 200, 138, 115),
+            color: appColors.addAddressBackground,
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Center(
             child: ReusableText(
               text: "Add address",
-              style: appStyle(18, Colors.white, FontWeight.w400),
+              style: appStyle(18, appColors.addAddressText, FontWeight.w400),
             ),
           ),
         ),

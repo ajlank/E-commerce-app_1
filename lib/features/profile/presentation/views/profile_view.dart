@@ -2,7 +2,7 @@ import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/features/profile/presentation/widgets/profile_list_tile.dart';
 import 'package:fashionapp/features/profile/presentation/controllers/profile_notifier.dart';
 import 'package:fashionapp/features/auth/presentation/views/register_view.dart';
-import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
+import 'package:fashionapp/features/home/presentation/controller/navigation_page_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';

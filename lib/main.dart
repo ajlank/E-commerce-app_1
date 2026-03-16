@@ -39,10 +39,11 @@ import 'package:fashionapp/features/auth/domain/repositories/auth_repository.dar
 import 'package:fashionapp/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:fashionapp/features/categories/presentation/controller/category_notifier.dart';
 import 'package:fashionapp/features/cart/presentation/controllers/color_size_notifier.dart';
-import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
+import 'package:fashionapp/features/home/presentation/controller/navigation_page_notifier.dart';
 import 'package:fashionapp/features/onboarding/presentation/controllers/onboard_change_notifier.dart';
 import 'package:fashionapp/features/products/presentation/controller/product_notifier.dart';
 import 'package:fashionapp/features/home/presentation/controller/tab_controller_notifier.dart';
+import 'package:fashionapp/core/base/styles/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
@@ -180,9 +181,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: AppTxt.appName,
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          ),
+          theme: AppTheme.lightTheme,
           routerConfig: router,
         );
       },

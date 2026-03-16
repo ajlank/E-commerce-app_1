@@ -1,5 +1,5 @@
 import 'package:fashionapp/common/utils/kcolors.dart';
-import 'package:fashionapp/const/resource.dart';
+import 'package:fashionapp/core/const/resource.dart';
 import 'package:flutter/material.dart';
 
 LinearGradient kGradient = const LinearGradient(

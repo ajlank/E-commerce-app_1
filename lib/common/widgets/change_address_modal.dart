@@ -2,7 +2,7 @@ import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/utils/kstrings.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
-import 'package:fashionapp/const/constants.dart';
+import 'package:fashionapp/core/const/constants.dart';
 import 'package:fashionapp/features/address/presentation/views/checkout_address_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

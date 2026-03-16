@@ -6,7 +6,7 @@ import 'package:fashionapp/features/auth/domain/usecases/fetch_me.dart';
 import 'package:fashionapp/features/auth/domain/usecases/get_cached_user.dart';
 import 'package:fashionapp/features/auth/domain/usecases/login_user.dart';
 import 'package:fashionapp/features/auth/domain/usecases/register_user.dart';
-import 'package:fashionapp/statemanagement/navigation_page_notifier.dart';
+import 'package:fashionapp/features/home/presentation/controller/navigation_page_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
