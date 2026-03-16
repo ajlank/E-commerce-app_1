@@ -1,5 +1,6 @@
 import 'package:fashionapp/common/widgets/back_button.dart';
 import 'package:fashionapp/common/widgets/email_textfield.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,13 +21,15 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return AppBar(
-      title: const Text(
+      title: Text(
         'Search',
         style: TextStyle(
           fontSize: 13,
           fontWeight: FontWeight.bold,
-          color: Colors.brown,
+          color: appColors.authHeaderTitle,
         ),
       ),
       centerTitle: true,
