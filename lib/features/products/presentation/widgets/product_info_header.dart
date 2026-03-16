@@ -1,3 +1,4 @@
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:fashionapp/features/products/data/models/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +10,8 @@ class ProductInfoHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(7.0),
@@ -21,15 +24,15 @@ class ProductInfoHeader extends StatelessWidget {
                 children: [
                   Text(
                     product.clothesTypes.toUpperCase(),
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 75, 73, 73),
+                    style: TextStyle(
+                      color: appColors.productInfoTypeText,
                     ),
                   ),
                   Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.star,
-                        color: Color.fromARGB(255, 231, 178, 44),
+                        color: appColors.productInfoStar,
                       ),
                       Text(product.ratings.toStringAsFixed(1)),
                     ],

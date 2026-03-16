@@ -1,3 +1,4 @@
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,16 +16,18 @@ class ProductImageAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return SliverAppBar(
       leading: IconButton(
         onPressed: onBack,
-        icon: const Icon(Icons.arrow_back, color: Colors.white),
+        icon: Icon(Icons.arrow_back, color: appColors.addAddressText),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: appColors.addAddressText,
       expandedHeight: 320.h,
       collapsedHeight: 65.h,
       floating: true,
-      actions: const [Icon(AntDesign.heart, color: Colors.white)],
+      actions: [Icon(AntDesign.heart, color: appColors.addAddressText)],
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: false,
         background: ImageSlideshow(

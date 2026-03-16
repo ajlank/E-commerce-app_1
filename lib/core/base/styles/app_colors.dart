@@ -28,6 +28,8 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color surfaceOffWhite;
   final Color onboardingDotUnselected;
   final Color welcomeLink;
+  final Color productInfoTypeText;
+  final Color productInfoStar;
 
   const AppColors({
     required this.addAddressBackground,
@@ -56,6 +58,8 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.surfaceOffWhite,
     required this.onboardingDotUnselected,
     required this.welcomeLink,
+    required this.productInfoTypeText,
+    required this.productInfoStar,
   });
 
   static const light = AppColors(
@@ -85,6 +89,8 @@ class AppColors extends ThemeExtension<AppColors> {
     surfaceOffWhite: Color(0xFFF3F4F8),
     onboardingDotUnselected: Color(0x42000000),
     welcomeLink: Color(0xFF2196F3),
+    productInfoTypeText: Color.fromARGB(255, 75, 73, 73),
+    productInfoStar: Color.fromARGB(255, 231, 178, 44),
   );
 
   @override
@@ -115,6 +121,8 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? surfaceOffWhite,
     Color? onboardingDotUnselected,
     Color? welcomeLink,
+    Color? productInfoTypeText,
+    Color? productInfoStar,
   }) {
     return AppColors(
       addAddressBackground: addAddressBackground ?? this.addAddressBackground,
@@ -158,6 +166,8 @@ class AppColors extends ThemeExtension<AppColors> {
       onboardingDotUnselected:
           onboardingDotUnselected ?? this.onboardingDotUnselected,
       welcomeLink: welcomeLink ?? this.welcomeLink,
+      productInfoTypeText: productInfoTypeText ?? this.productInfoTypeText,
+      productInfoStar: productInfoStar ?? this.productInfoStar,
     );
   }
 
@@ -285,6 +295,15 @@ class AppColors extends ThemeExtension<AppColors> {
           ) ??
           onboardingDotUnselected,
       welcomeLink: Color.lerp(welcomeLink, other.welcomeLink, t) ?? welcomeLink,
+      productInfoTypeText: Color.lerp(
+            productInfoTypeText,
+            other.productInfoTypeText,
+            t,
+          ) ??
+          productInfoTypeText,
+      productInfoStar:
+          Color.lerp(productInfoStar, other.productInfoStar, t) ??
+              productInfoStar,
     );
   }
 }

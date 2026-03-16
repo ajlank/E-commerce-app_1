@@ -1,4 +1,5 @@
 import 'package:fashionapp/common/widgets/staggered_tile_widget.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:fashionapp/features/products/presentation/hooks/fetch/fetch_recommended_products.dart';
 import 'package:fashionapp/features/products/presentation/controller/product_notifier.dart';
 import 'package:fashionapp/features/wishlist/presentation/controllers/wishlist_notifier.dart';
@@ -15,6 +16,8 @@ class RecommendedProducts extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     final accessToken = GetStorage().read('accessToken');
 
     final products = fetchRecommendedProducts(
@@ -77,15 +80,17 @@ class RecommendedProducts extends HookWidget {
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Colors.brown,
+                                    color: appColors.authHeaderTitle,
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   height: 40,
                                   width: double.infinity,
-                                  child: const Center(
+                                  child: Center(
                                     child: Text(
                                       'Proceed to Login',
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(
+                                        color: appColors.addAddressText,
+                                      ),
                                     ),
                                   ),
                                 ),
