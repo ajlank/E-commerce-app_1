@@ -5,6 +5,7 @@ import 'package:fashionapp/features/home/presentation/views/home_second_view.dar
 import 'package:fashionapp/features/profile/presentation/views/profile_view.dart';
 import 'package:fashionapp/features/wishlist/presentation/views/wishlist_view.dart';
 import 'package:fashionapp/features/home/presentation/controller/navigation_page_notifier.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -22,7 +23,9 @@ class AppEntryPointView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-   
+
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     final result=fetchCartCount(context);
    final counts= result.count;
    final count=counts.cartCount;
@@ -30,7 +33,7 @@ class AppEntryPointView extends HookWidget {
       builder: (context, value, child) {
       return Scaffold(
         bottomNavigationBar: NavigationBar(
-          backgroundColor: Colors.white12,
+          backgroundColor: appColors.entryNavBackground,
           destinations: [
             NavigationDestination(
               icon: Icon(AntDesign.home),

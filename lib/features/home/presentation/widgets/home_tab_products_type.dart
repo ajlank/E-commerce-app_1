@@ -1,5 +1,5 @@
-import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/features/home/presentation/controller/tab_controller_notifier.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -53,6 +53,8 @@ class _HomeTabProductsTypeState extends State<HomeTabProductsType>
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return Padding(
       padding: const EdgeInsets.only(top: 15),
       child: SizedBox(
@@ -60,16 +62,16 @@ class _HomeTabProductsTypeState extends State<HomeTabProductsType>
         child: TabBar(
           controller: _tabController,
           indicator: BoxDecoration(
-            color: Kolors.kPrimary,
+            color: appColors.addressBlockTitle,
             borderRadius: BorderRadius.circular(12),
           ),
-          labelColor: Colors.white,
-          dividerColor: Colors.white,
+          labelColor: appColors.addAddressText,
+          dividerColor: appColors.addAddressText,
           labelPadding: EdgeInsets.zero,
           labelStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
-          unselectedLabelStyle: const TextStyle(
+          unselectedLabelStyle: TextStyle(
             fontWeight: FontWeight.w500,
-            color: Colors.grey,
+            color: appColors.homeTabUnselected,
             fontSize: 11,
           ),
           tabs: List.generate(

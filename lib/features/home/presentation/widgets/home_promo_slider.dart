@@ -1,3 +1,4 @@
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
@@ -6,6 +7,8 @@ class HomePromoSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return Padding(
       padding: const EdgeInsets.all(0),
       child: ClipRRect(
@@ -39,18 +42,18 @@ class HomePromoSlider extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'New Collection',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 255, 95, 95),
+                      color: appColors.promoSliderAccent,
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const Text(
+                  Text(
                     'Discount 50% off \nthe first transaction',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 255, 95, 95),
+                      color: appColors.promoSliderAccent,
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
@@ -61,14 +64,14 @@ class HomePromoSlider extends StatelessWidget {
                       width: 100,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(42),
-                        color: Colors.brown,
+                        color: appColors.authHeaderTitle,
                       ),
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.all(6.0),
                         child: Center(
                           child: Text(
                             'Shop Now',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: appColors.addAddressText),
                           ),
                         ),
                       ),

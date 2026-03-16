@@ -22,6 +22,9 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color cartTileUpdateBackground;
   final Color webViewBackground;
   final Color categoryAvatarBackground;
+  final Color entryNavBackground;
+  final Color promoSliderAccent;
+  final Color homeTabUnselected;
 
   const AppColors({
     required this.addAddressBackground,
@@ -44,6 +47,9 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.cartTileUpdateBackground,
     required this.webViewBackground,
     required this.categoryAvatarBackground,
+    required this.entryNavBackground,
+    required this.promoSliderAccent,
+    required this.homeTabUnselected,
   });
 
   static const light = AppColors(
@@ -67,6 +73,9 @@ class AppColors extends ThemeExtension<AppColors> {
     cartTileUpdateBackground: Color.fromARGB(255, 153, 103, 84),
     webViewBackground: Color(0x00000000),
     categoryAvatarBackground: Color.fromARGB(255, 245, 214, 167),
+    entryNavBackground: Color(0x1FFFFFFF),
+    promoSliderAccent: Color.fromARGB(255, 255, 95, 95),
+    homeTabUnselected: Color(0xFF9E9E9E),
   );
 
   @override
@@ -91,6 +100,9 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? cartTileUpdateBackground,
     Color? webViewBackground,
     Color? categoryAvatarBackground,
+    Color? entryNavBackground,
+    Color? promoSliderAccent,
+    Color? homeTabUnselected,
   }) {
     return AppColors(
       addAddressBackground: addAddressBackground ?? this.addAddressBackground,
@@ -127,6 +139,9 @@ class AppColors extends ThemeExtension<AppColors> {
       webViewBackground: webViewBackground ?? this.webViewBackground,
       categoryAvatarBackground:
           categoryAvatarBackground ?? this.categoryAvatarBackground,
+      entryNavBackground: entryNavBackground ?? this.entryNavBackground,
+      promoSliderAccent: promoSliderAccent ?? this.promoSliderAccent,
+      homeTabUnselected: homeTabUnselected ?? this.homeTabUnselected,
     );
   }
 
@@ -235,6 +250,15 @@ class AppColors extends ThemeExtension<AppColors> {
             t,
           ) ??
           categoryAvatarBackground,
+      entryNavBackground:
+          Color.lerp(entryNavBackground, other.entryNavBackground, t) ??
+              entryNavBackground,
+      promoSliderAccent:
+          Color.lerp(promoSliderAccent, other.promoSliderAccent, t) ??
+              promoSliderAccent,
+      homeTabUnselected:
+          Color.lerp(homeTabUnselected, other.homeTabUnselected, t) ??
+              homeTabUnselected,
     );
   }
 }
