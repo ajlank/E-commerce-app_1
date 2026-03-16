@@ -1,9 +1,9 @@
-import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/utils/kstrings.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/back_button.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
 import 'package:fashionapp/common/widgets/shimmers/list_shimmer.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:fashionapp/features/notification/presentation/controllers/notification_notifier.dart';
 import 'package:fashionapp/features/order_view/presentation/hooks/fetch/fetch_order.dart';
 import 'package:fashionapp/features/order_view/presentation/widgets/order_details_body.dart';
@@ -17,6 +17,8 @@ class TrackOrderPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     final results = fetchOrder(context.read<NotificationNotifier>().orderId);
 
     final isLoading = results.isLoading;
@@ -31,14 +33,14 @@ class TrackOrderPage extends HookWidget {
     }
 
     return Scaffold(
-      backgroundColor: Kolors.kWhite,
+      backgroundColor: appColors.addAddressText,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Kolors.kWhite,
+        backgroundColor: appColors.addAddressText,
         leading: const AppBackButton(),
         title: ReusableText(
           text: AppText.kTrack,
-          style: appStyle(14, Kolors.kPrimary, FontWeight.w600),
+          style: appStyle(14, appColors.addressBlockTitle, FontWeight.w600),
         ),
       ),
       body: OrderDetailsBody(order: order!),

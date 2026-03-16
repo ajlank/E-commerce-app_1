@@ -1,6 +1,6 @@
-import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -25,6 +25,8 @@ class SteppersTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return SizedBox(
       height: 60,
       child: Row(
@@ -36,10 +38,10 @@ class SteppersTile extends StatelessWidget {
               children: [
                 isLast == true
                     ? SizedBox.fromSize()
-                    : const Icon(
+                    : Icon(
                         AntDesign.checkcircle,
                         size: 18,
-                        color: Kolors.kPrimary,
+                        color: appColors.addressBlockTitle,
                       ),
                 isLast == true
                     ? SizedBox.fromSize()
@@ -47,14 +49,14 @@ class SteppersTile extends StatelessWidget {
                         child: Container(
                           height: 35,
                           width: 2,
-                          color: Kolors.kPrimary,
+                          color: appColors.addressBlockTitle,
                         ),
                       ),
                 isLast == true
-                    ? const Icon(
+                    ? Icon(
                         AntDesign.checkcircle,
                         size: 18,
-                        color: Kolors.kPrimary,
+                        color: appColors.addressBlockTitle,
                       )
                     : SizedBox.fromSize(),
               ],
@@ -73,20 +75,35 @@ class SteppersTile extends StatelessWidget {
                     children: [
                       ReusableText(
                         text: status,
-                        style: appStyle(12, Kolors.kDark, FontWeight.w500),
+                        style: appStyle(
+                          12,
+                          appColors.addressTextFieldText,
+                          FontWeight.w500,
+                        ),
                       ),
                       ReusableText(
                         text: date,
-                        style: appStyle(10, Kolors.kGray, FontWeight.normal),
+                        style: appStyle(
+                          10,
+                          appColors.addressTextFieldDisabledBorder,
+                          FontWeight.normal,
+                        ),
                       ),
                       ReusableText(
                         text: address,
-                        style: appStyle(10, Kolors.kGray, FontWeight.normal),
+                        style: appStyle(
+                          10,
+                          appColors.addressTextFieldDisabledBorder,
+                          FontWeight.normal,
+                        ),
                       ),
                     ],
                   ),
                   const Spacer(),
-                  Icon(icon, color: Kolors.kPrimary.withOpacity(0.4)),
+                  Icon(
+                    icon,
+                    color: appColors.addressBlockTitle.withOpacity(0.4),
+                  ),
                 ],
               ),
             ),
