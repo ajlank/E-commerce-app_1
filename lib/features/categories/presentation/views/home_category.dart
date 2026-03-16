@@ -1,5 +1,6 @@
 import 'package:fashionapp/features/categories/presentation/hooks/fetch/fetch_home_categories.dart';
 import 'package:fashionapp/features/categories/presentation/controller/category_notifier.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,6 +12,8 @@ class HomeCategorys extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     final result = fetchHomeCategories();
     final homeCategories = result.categories;
     final isLoading = result.isLoading;
@@ -42,7 +45,7 @@ class HomeCategorys extends HookWidget {
                 child: Column(
                   children: [
                     CircleAvatar(
-                      backgroundColor: const Color.fromARGB(255, 245, 214, 167),
+                      backgroundColor: appColors.categoryAvatarBackground,
                       radius: 20,
                       child: Padding(
                         padding: const EdgeInsets.all(6.0),

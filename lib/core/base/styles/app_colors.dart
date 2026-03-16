@@ -21,6 +21,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color cartTileSelectedBackground;
   final Color cartTileUpdateBackground;
   final Color webViewBackground;
+  final Color categoryAvatarBackground;
 
   const AppColors({
     required this.addAddressBackground,
@@ -42,6 +43,7 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.cartTileSelectedBackground,
     required this.cartTileUpdateBackground,
     required this.webViewBackground,
+    required this.categoryAvatarBackground,
   });
 
   static const light = AppColors(
@@ -64,6 +66,7 @@ class AppColors extends ThemeExtension<AppColors> {
     cartTileSelectedBackground: Color.fromARGB(77, 227, 189, 189),
     cartTileUpdateBackground: Color.fromARGB(255, 153, 103, 84),
     webViewBackground: Color(0x00000000),
+    categoryAvatarBackground: Color.fromARGB(255, 245, 214, 167),
   );
 
   @override
@@ -87,6 +90,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? cartTileSelectedBackground,
     Color? cartTileUpdateBackground,
     Color? webViewBackground,
+    Color? categoryAvatarBackground,
   }) {
     return AppColors(
       addAddressBackground: addAddressBackground ?? this.addAddressBackground,
@@ -121,6 +125,8 @@ class AppColors extends ThemeExtension<AppColors> {
       cartTileUpdateBackground:
           cartTileUpdateBackground ?? this.cartTileUpdateBackground,
       webViewBackground: webViewBackground ?? this.webViewBackground,
+      categoryAvatarBackground:
+          categoryAvatarBackground ?? this.categoryAvatarBackground,
     );
   }
 
@@ -223,6 +229,12 @@ class AppColors extends ThemeExtension<AppColors> {
       webViewBackground:
           Color.lerp(webViewBackground, other.webViewBackground, t) ??
               webViewBackground,
+      categoryAvatarBackground: Color.lerp(
+            categoryAvatarBackground,
+            other.categoryAvatarBackground,
+            t,
+          ) ??
+          categoryAvatarBackground,
     );
   }
 }
