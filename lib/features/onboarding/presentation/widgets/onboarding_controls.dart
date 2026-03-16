@@ -1,4 +1,4 @@
-import 'package:fashionapp/common/utils/kcolors.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
@@ -17,6 +17,8 @@ class OnboardingControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     if (selectedPage == pagesLength) {
       return const SizedBox.shrink();
     }
@@ -42,9 +44,9 @@ class OnboardingControls extends StatelessWidget {
                           curve: Curves.easeIn,
                         );
                       },
-                      child: const Icon(
+                      child: Icon(
                         Icons.arrow_circle_left,
-                        color: Kolors.kPrimary,
+                        color: appColors.addressBlockTitle,
                         size: 30,
                       ),
                     ),
@@ -54,8 +56,8 @@ class OnboardingControls extends StatelessWidget {
                 child: PageViewDotIndicator(
                   currentItem: selectedPage,
                   count: pagesLength + 1,
-                  unselectedColor: Colors.black26,
-                  selectedColor: Kolors.kPrimary,
+                  unselectedColor: appColors.onboardingDotUnselected,
+                  selectedColor: appColors.addressBlockTitle,
                   duration: const Duration(microseconds: 200),
                   onItemClicked: (index) {
                     controller.animateToPage(
@@ -76,9 +78,9 @@ class OnboardingControls extends StatelessWidget {
                           curve: Curves.easeIn,
                         );
                       },
-                      child: const Icon(
+                      child: Icon(
                         Icons.arrow_circle_right,
-                        color: Kolors.kPrimary,
+                        color: appColors.addressBlockTitle,
                         size: 30,
                       ),
                     ),

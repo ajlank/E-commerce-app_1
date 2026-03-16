@@ -26,6 +26,8 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color promoSliderAccent;
   final Color homeTabUnselected;
   final Color surfaceOffWhite;
+  final Color onboardingDotUnselected;
+  final Color welcomeLink;
 
   const AppColors({
     required this.addAddressBackground,
@@ -52,6 +54,8 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.promoSliderAccent,
     required this.homeTabUnselected,
     required this.surfaceOffWhite,
+    required this.onboardingDotUnselected,
+    required this.welcomeLink,
   });
 
   static const light = AppColors(
@@ -79,6 +83,8 @@ class AppColors extends ThemeExtension<AppColors> {
     promoSliderAccent: Color.fromARGB(255, 255, 95, 95),
     homeTabUnselected: Color(0xFF9E9E9E),
     surfaceOffWhite: Color(0xFFF3F4F8),
+    onboardingDotUnselected: Color(0x42000000),
+    welcomeLink: Color(0xFF2196F3),
   );
 
   @override
@@ -107,6 +113,8 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? promoSliderAccent,
     Color? homeTabUnselected,
     Color? surfaceOffWhite,
+    Color? onboardingDotUnselected,
+    Color? welcomeLink,
   }) {
     return AppColors(
       addAddressBackground: addAddressBackground ?? this.addAddressBackground,
@@ -147,6 +155,9 @@ class AppColors extends ThemeExtension<AppColors> {
       promoSliderAccent: promoSliderAccent ?? this.promoSliderAccent,
       homeTabUnselected: homeTabUnselected ?? this.homeTabUnselected,
       surfaceOffWhite: surfaceOffWhite ?? this.surfaceOffWhite,
+      onboardingDotUnselected:
+          onboardingDotUnselected ?? this.onboardingDotUnselected,
+      welcomeLink: welcomeLink ?? this.welcomeLink,
     );
   }
 
@@ -267,6 +278,13 @@ class AppColors extends ThemeExtension<AppColors> {
       surfaceOffWhite:
           Color.lerp(surfaceOffWhite, other.surfaceOffWhite, t) ??
               surfaceOffWhite,
+      onboardingDotUnselected: Color.lerp(
+            onboardingDotUnselected,
+            other.onboardingDotUnselected,
+            t,
+          ) ??
+          onboardingDotUnselected,
+      welcomeLink: Color.lerp(welcomeLink, other.welcomeLink, t) ?? welcomeLink,
     );
   }
 }

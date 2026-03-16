@@ -1,5 +1,5 @@
-import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:fashionapp/features/onboarding/domain/entities/onboarding_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +11,8 @@ class OnboardingContentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return SizedBox(
       height: ScreenUtil().screenHeight,
       width: ScreenUtil().scaleWidth,
@@ -24,7 +26,11 @@ class OnboardingContentPage extends StatelessWidget {
             child: Text(
               content.message,
               textAlign: TextAlign.center,
-              style: appStyle(11, Kolors.kGray, FontWeight.normal),
+              style: appStyle(
+                11,
+                appColors.addressTextFieldDisabledBorder,
+                FontWeight.normal,
+              ),
             ),
           ),
         ],
