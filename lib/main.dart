@@ -165,7 +165,6 @@ void main() async {
   );
 }
 
-//3:32:48
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -190,8 +189,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// 12345678Abc#@
-//1234567Fashionh
 class RootApp extends StatelessWidget {
   const RootApp({super.key});
 
@@ -204,4 +201,3 @@ class RootApp extends StatelessWidget {
   }
 }
 
-//9:43:08
