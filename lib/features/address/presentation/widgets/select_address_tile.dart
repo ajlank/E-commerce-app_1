@@ -1,6 +1,6 @@
-import 'package:fashionapp/common/utils/kcolors.dart';
 import 'package:fashionapp/common/widgets/app_style.dart';
 import 'package:fashionapp/common/widgets/reusable_text.dart';
+import 'package:fashionapp/core/base/styles/app_colors.dart';
 import 'package:fashionapp/features/address/domain/entities/address.dart';
 import 'package:fashionapp/features/address/presentation/controllers/address_notifier.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +15,8 @@ class SelectAddressTile2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors =
+        Theme.of(context).extension<AppColors>() ?? AppColors.light;
     return Consumer<AddressNotifier>(
       builder: (context, addressNotifier, child) {
         return ListTile(
@@ -24,12 +26,15 @@ class SelectAddressTile2 extends StatelessWidget {
           },
           contentPadding: EdgeInsets.zero,
           leading: CircleAvatar(
-            backgroundColor: Kolors.kSecondaryLight,
-            child: Icon(MaterialIcons.location_pin, color: Kolors.kPrimary),
+            backgroundColor: appColors.addressTileAvatarBackground,
+            child: Icon(
+              MaterialIcons.location_pin,
+              color: appColors.addressBlockTitle,
+            ),
           ),
           title: ReusableText(
             text: address.addressType.toUpperCase(),
-            style: appStyle(13, Kolors.kPrimary, FontWeight.bold),
+            style: appStyle(13, appColors.addressBlockTitle, FontWeight.bold),
           ),
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,11 +45,13 @@ class SelectAddressTile2 extends StatelessWidget {
                 children: [
                   ReusableText(
                     text: address.address,
-                    style: appStyle(11, Kolors.kPrimary, FontWeight.w400),
+                    style:
+                        appStyle(11, appColors.addressBlockTitle, FontWeight.w400),
                   ),
                   ReusableText(
                     text: address.phone,
-                    style: appStyle(11, Kolors.kPrimary, FontWeight.w400),
+                    style:
+                        appStyle(11, appColors.addressBlockTitle, FontWeight.w400),
                   ),
                 ],
               ),
@@ -56,7 +63,11 @@ class SelectAddressTile2 extends StatelessWidget {
                     addressNotifier.address!.id == address.id
                 ? "Selected"
                 : "Select",
-            style: appStyle(12, Kolors.kPrimaryLight, FontWeight.w400),
+            style: appStyle(
+              12,
+              appColors.addressTypeSelectedBackground,
+              FontWeight.w400,
+            ),
           ),
         );
       },
