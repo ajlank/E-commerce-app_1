@@ -16,6 +16,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color addressTileBadgeInactiveBackground;
   final Color addressTileDeleteBackground;
   final Color addressTypeSelectedBackground;
+  final Color authHeaderTitle;
 
   const AppColors({
     required this.addAddressBackground,
@@ -32,6 +33,7 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.addressTileBadgeInactiveBackground,
     required this.addressTileDeleteBackground,
     required this.addressTypeSelectedBackground,
+    required this.authHeaderTitle,
   });
 
   static const light = AppColors(
@@ -49,6 +51,7 @@ class AppColors extends ThemeExtension<AppColors> {
     addressTileBadgeInactiveBackground: Color(0xFFC1C0C8),
     addressTileDeleteBackground: Color(0xFFFF0000),
     addressTypeSelectedBackground: Color(0xFFB47043),
+    authHeaderTitle: Color(0xFFA52A2A),
   );
 
   @override
@@ -67,6 +70,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? addressTileBadgeInactiveBackground,
     Color? addressTileDeleteBackground,
     Color? addressTypeSelectedBackground,
+    Color? authHeaderTitle,
   }) {
     return AppColors(
       addAddressBackground: addAddressBackground ?? this.addAddressBackground,
@@ -93,6 +97,7 @@ class AppColors extends ThemeExtension<AppColors> {
           addressTileDeleteBackground ?? this.addressTileDeleteBackground,
       addressTypeSelectedBackground:
           addressTypeSelectedBackground ?? this.addressTypeSelectedBackground,
+      authHeaderTitle: authHeaderTitle ?? this.authHeaderTitle,
     );
   }
 
@@ -174,6 +179,9 @@ class AppColors extends ThemeExtension<AppColors> {
             t,
           ) ??
           addressTypeSelectedBackground,
+      authHeaderTitle:
+          Color.lerp(authHeaderTitle, other.authHeaderTitle, t) ??
+              authHeaderTitle,
     );
   }
 }
